@@ -1,5 +1,5 @@
 services:
   - name: Blockbuster2024
     type: web
-    buildCommand: cd client && pnpm run build
+    buildCommand: cd server && pnpm install && pnpm run build
     startCommand: cd server && pnpm start
