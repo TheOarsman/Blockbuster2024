@@ -1,12 +1,13 @@
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import App from './App.jsx'
-import SearchBooks from './pages/SearchBooks'
-import SavedBooks from './pages/SavedBooks'
-import SearchMovies from './pages/SearchMovies' 
-import MyFavoritedMovies from './pages/FavoritedMovies'
+import App from './App.jsx';
+import SearchBooks from './pages/SearchBooks';
+import SavedBooks from './pages/SavedBooks';
+import SearchMovies from './pages/SearchMovies'; 
+import MyFavoritedMovies from './pages/FavoritedMovies';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -16,25 +17,29 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Home />
+      },
+      {
+        path: '/search-books',
         element: <SearchBooks />
-      }, {
-        path: '/saved',
+      }, 
+      {
+        path: '/saved-books',
         element: <SavedBooks />
       },
       {
-        index: true,
         path: '/search-movies',
         element: <SearchMovies />
       },
       {
         path: '/favorited-movies',
         element: <MyFavoritedMovies />
-      }
+      },
 
-    ]
-  }
-])
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
-)
+);
