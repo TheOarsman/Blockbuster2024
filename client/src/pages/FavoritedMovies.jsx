@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
-import { getMe, deleteMovie } from '../utils/API'; // Assuming you have similar API functions for movies
+import { getMe, deleteMovie } from '../utils/API'; 
 import Auth from '../utils/auth';
-import { removeMovieId } from '../utils/localStorage'; // Assuming you have similar functions for movies
+import { removeMovieId } from '../utils/localStorage'; 
 
 const MyFavoritedMovies = () => {
   const [userData, setUserData] = useState({});
