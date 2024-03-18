@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 
-import { saveMovieIds, getSavedMovieIds } from "../utils/movieStorage";
+import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 import { handleSearch } from "../utils/movieFetch";
 
 const SearchMovies = () => {

@@ -5,6 +5,8 @@ const typeDefs = `
     email: String!
     savedBooks: [Book]
     bookCount: Int
+    savedMovies: [Movie]
+    movieCount: Int 
   }
 
   type Book {
@@ -16,6 +18,15 @@ const typeDefs = `
    link: String
    title: String!
   }
+
+  type Movie {
+    _id: ID!
+    title: String!
+    poster_url: String!
+    movieId: String!
+    movieLength: String!
+  }
+
 
   type Auth {
     token: ID!
