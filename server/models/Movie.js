@@ -21,6 +21,15 @@ const movieSchema = new Schema({
     type: String,
     required: true,
   },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  directors: [
+    {
+      type: String,
+    },
+  ],
 });
 
 module.exports = movieSchema;

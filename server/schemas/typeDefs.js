@@ -16,6 +16,7 @@ const typeDefs = `
    image: String
    link: String
    title: String!
+   rating: Number
   }
 
   type Movie {
@@ -24,6 +25,8 @@ const typeDefs = `
    movieId: String!
    image: String
    title: String!
+   rating: Number
+   directors: [String]
   }
 
   type Auth {
