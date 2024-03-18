@@ -5,6 +5,7 @@ const typeDefs = `
     email: String!
     savedBooks: [Book]
     bookCount: Int
+    savedMovies: [Movie]
   }
 
   type Book {
@@ -14,6 +15,14 @@ const typeDefs = `
    bookId: String!
    image: String
    link: String
+   title: String!
+  }
+
+  type Movie {
+    _id: ID!
+   plot: String!
+   movieId: String!
+   image: String
    title: String!
   }
 
