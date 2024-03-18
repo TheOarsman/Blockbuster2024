@@ -1,10 +1,14 @@
 services:
-  - name: server
-    env: production
-    buildCommand: cd server && pnpm run build
-    startCommand: pnpm start
+  - type: web
+    name: blockbuster2024-server
+    env: node
+    buildCommand: cd server && pnpm i
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
 
-  - name: client
-    env: production
-    buildCommand: cd client && pnpm run build
-    startCommand: pnpm start
+  - type: static-site
+    name: blockbuster2024-client
+    buildCommand: cd client && pnpm i --production=false && pnpm run build
+    publishDir: client/dist
