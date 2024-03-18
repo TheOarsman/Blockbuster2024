@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import SearchBooks from './pages/SearchBooks'
 import SavedBooks from './pages/SavedBooks'
+import SearchMovies from './pages/SearchMovies' 
+import MyFavoritedMovies from './pages/FavoritedMovies'
 
 const router = createBrowserRouter([
   {
@@ -18,7 +20,17 @@ const router = createBrowserRouter([
       }, {
         path: '/saved',
         element: <SavedBooks />
+      },
+      {
+        index: true,
+        path: '/search-movies',
+        element: <SearchMovies />
+      },
+      {
+        path: '/favorited-movies',
+        element: <MyFavoritedMovies />
       }
+
     ]
   }
 ])
