@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import MovieSearch from "../components/MovieSearch";
+import MovieSearch from "../components/SearchMovies";
 import BookSearch from "../components/BookSearch";
 import LoginButton from "../components/LoginButton";
 
