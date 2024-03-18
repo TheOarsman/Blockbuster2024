@@ -40,29 +40,9 @@ export const saveBook = (bookData, token) => {
   });
 };
 
-export const saveMovie = (movieData, token) => {
-  return fetch('/api/users', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(movieData),
-  });
-};
-
 // remove saved book data for a logged in user
 export const deleteBook = (bookId, token) => {
   return fetch(`/api/users/books/${bookId}`, {
-    method: 'DELETE',
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  });
-};
-
-export const deleteMovie = (movieId, token) => {
-  return fetch(`/api/users/movies/${movieId}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
