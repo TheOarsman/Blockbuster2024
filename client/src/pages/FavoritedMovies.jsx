@@ -1,20 +1,14 @@
+// MyFavoritedMovies.jsx
+
 import { useState, useEffect } from 'react';
-import {
-  Container,
-  Card,
-  Button,
-  Row,
-  Col
-} from 'react-bootstrap';
-
-import { getMe, deleteBook } from '../utils/API';
+import { Container, Card, Button, Row, Col } from 'react-bootstrap';
+import { getMe, deleteMovie } from '../utils/API'; // Assuming you have similar API functions for movies
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+import { removeMovieId } from '../utils/localStorage'; // Assuming you have similar functions for movies
 
-const SavedBooks = () => {
+const MyFavoritedMovies = () => {
   const [userData, setUserData] = useState({});
 
-  // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
 
   useEffect(() => {
@@ -42,8 +36,7 @@ const SavedBooks = () => {
     getUserData();
   }, [userDataLength]);
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+  const handleDeleteMovie = async (movieId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -51,7 +44,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
+      const response = await deleteMovie(movieId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -59,14 +52,12 @@ const SavedBooks = () => {
 
       const updatedUser = await response.json();
       setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removeMovieId(movieId);
     } catch (err) {
       console.error(err);
     }
   };
 
-  // if data isn't here yet, say so
   if (!userDataLength) {
     return <h2>LOADING...</h2>;
   }
@@ -75,27 +66,26 @@ const SavedBooks = () => {
     <>
       <div className="text-light bg-dark p-5">
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing saved movies!</h1>
         </Container>
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'}
+          {userData.savedMovies.length
+            ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
+            : 'You have no saved movies!'}
         </h2>
         <Row>
-        {userData.savedBooks.map((book) => {
+        {userData.savedMovies.map((movie) => {
   return (
-    <Col key={book.bookId} md="4">
+    <Col key={movie.id} md="4">
       <Card border='dark'>
-        {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+        {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
         <Card.Body>
-          <Card.Title>{book.title}</Card.Title>
-          <p className='small'>Authors: {book.authors}</p>
-          <Card.Text>{book.description}</Card.Text>
-          <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
-            Delete this Book!
+          <Card.Title>{movie.title}</Card.Title>
+        
+          <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
+            Delete this Movie!
           </Button>
         </Card.Body>
       </Card>
@@ -109,4 +99,4 @@ const SavedBooks = () => {
   );
 };
 
-export default SavedBooks;
+export default MyFavoritedMovies;
