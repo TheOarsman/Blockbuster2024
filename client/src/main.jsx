@@ -8,12 +8,13 @@ import SavedBooks from './pages/SavedBooks';
 import SearchMovies from './pages/SearchMovies'; 
 import MyFavoritedMovies from './pages/FavoritedMovies';
 import Home from './pages/Home';
+import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <h1 className='display-2'>Wrong page!</h1>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
