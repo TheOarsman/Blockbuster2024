@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_MOVIE } from "../utils/mutations";
+import { SAVE_MOVIE } from "../utils/mutations";
 import { handleSearch } from "../utils/API";
 
 const MovieSearch = () => {
@@ -49,3 +49,5 @@ const MovieSearch = () => {
     </div>
   );
 };
+
+export default MovieSearch;
