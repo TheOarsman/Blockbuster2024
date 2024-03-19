@@ -1,0 +1,8 @@
+.blockbuster-logo-small {
+  width: 500px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.error-page-message {
+  color: yellow;
+}

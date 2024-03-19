@@ -1,8 +1,22 @@
 import { useState, useEffect } from "react";
-import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
+import { Container, Col, Form, Button, Row } from "react-bootstrap";
+import StarIcon from "../components/StarIcon";
 
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 import { handleSearch } from "../utils/movieFetch";
+
+import "../searchMovies.css";
+import imdbLogo from "../assets/images/imdbLogo.png";
+import tomatoesLogo from "../assets/images/rottenTomatoes.png";
+
+import "@fortawesome/fontawesome-free/css/all.css";
+
+const getRottenTomatoesRating = (ratings) => {
+  const rottenTomatoesRating = ratings.find(
+    (rating) => rating.Source === "Rotten Tomatoes"
+  );
+  return rottenTomatoesRating ? rottenTomatoesRating.Value : "N/A";
+};
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
@@ -23,7 +37,12 @@ const SearchMovies = () => {
     try {
       const movieData = await handleSearch(searchInput);
 
-      setSearchedMovies(movieData);
+      if (movieData && movieData.Response === "True") {
+        setSearchedMovies([movieData]);
+      } else {
+        setSearchedMovies([]);
+      }
+
       setSearchInput("");
     } catch (err) {
       console.error(err);
@@ -31,17 +50,19 @@ const SearchMovies = () => {
   };
 
   const handleSaveMovie = async (movieId) => {
-    const movieToSave = searchedMovies.find((movie) => movie.id === movieId);
+    const movieToSave = searchedMovies.find(
+      (movie) => movie.imdbID === movieId
+    );
 
     if (!movieToSave) {
       return false;
     }
 
     try {
-      if (!savedMovieIds.includes(movieToSave.id)) {
+      if (!savedMovieIds.includes(movieToSave.imdbID)) {
         setSavedMovieIds((prevSavedMovieIds) => [
           ...prevSavedMovieIds,
-          movieToSave.id,
+          movieToSave.imdbID,
         ]);
         alert("Movie saved successfully!");
       } else {
@@ -55,52 +76,81 @@ const SearchMovies = () => {
 
   return (
     <>
-      <div className="text-light bg-dark p-5">
-        <Container>
-          <h1>Search for Movies!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name="searchInput"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type="text"
-                  size="lg"
-                  placeholder="Search for a movie"
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
-                  Submit Search
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
-      </div>
-
+      <Container className="text-center custom-bg">
+        <Form onSubmit={handleFormSubmit} style={{ textAlign: "center" }}>
+          <Row className="justify-content-center align-items-center">
+            <Col xs={12} md={8}>
+              <Form.Control
+                name="searchInput"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                type="text"
+                size="md"
+                style={{ margin: "0 auto" }}
+                placeholder="Search for a movie"
+              />
+            </Col>
+            <Col
+              xs={12}
+              md={4}
+              className="d-flex justify-content-center align-items-center mb-3"
+            >
+              <Button type="submit" variant="success" size="lg">
+                Search
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
       <Container>
-        <h2 className="pt-5">
-          {searchedMovies.length
-            ? `Viewing ${searchedMovies.length} results:`
-            : "Search for a movie to begin"}
-        </h2>
         <Row>
           {searchedMovies.map((movie) => {
             return (
-              <Col md="4" key={movie.id}>
-                <Card border="dark">
-                  <Button
-                    disabled={savedMovieIds.includes(movie.id)}
-                    className="btn-block btn-info"
-                    onClick={() => handleSaveMovie(movie.id)}
-                  >
-                    {savedMovieIds.includes(movie.id)
-                      ? "This movie has already been saved!"
-                      : "Save this Movie!"}
-                  </Button>
-                </Card>
+              <Col md="4" key={movie.imdbID}>
+                <div className="wrapper">
+                  <div className="main_card">
+                    <div className="card_left">
+                      <div className="card_details">
+                        <h1>{movie.Title}</h1>
+                        <div className="card_cat">
+                          <p className="PG">{movie.Rated}</p>
+                          <p className="year">{movie.Year}</p>
+                          <p className="genre">{movie.Genre}</p>
+                          <p className="time">{movie.Runtime}</p>
+                        </div>
+                        <p className="disc">{movie.Plot}</p>
+                        <div className="card_cat">
+                          <p className="year">{movie.Director}</p>
+                          <p className="genre">{movie.Actors}</p>
+                        </div>
+                        <div className="social-btn">
+                          <div
+                            className="imdb-info"
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            <button>
+                              <i className="fas fa-play"></i> View on IMDB
+                            </button>
+                            <img src={imdbLogo} alt="IMDB" />
+                            <span>{movie.imdbRating}</span>
+                            <img src={tomatoesLogo} alt="IMDB" />
+                            <span>
+                              {getRottenTomatoesRating(movie.Ratings)}
+                            </span>
+                            <StarIcon
+                              onClick={() => handleSaveMovie(movie.imdbID)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="card_right">
+                      <div className="img_container">
+                        <img src={movie.Poster} alt={movie.Title} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Col>
             );
           })}

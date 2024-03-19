@@ -1,4 +1,3 @@
-// search movies on OMDB API function export 
 
 
 export const searchOMDBMovies = async (searchTerm, apiKey) => {
