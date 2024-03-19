@@ -16,7 +16,7 @@ const typeDefs = `
    image: String
    link: String
    title: String!
-   rating: Number
+   rating: Float
   }
 
   type Movie {
@@ -25,7 +25,7 @@ const typeDefs = `
    movieId: String!
    image: String
    title: String!
-   rating: Number
+   rating: Float
    directors: [String]
   }
 
