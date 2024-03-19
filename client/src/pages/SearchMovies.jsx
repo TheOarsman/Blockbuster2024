@@ -9,6 +9,7 @@ import "../searchMovies.css";
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
 
+
 import "@fortawesome/fontawesome-free/css/all.css";
 
 const getRottenTomatoesRating = (ratings) => {
@@ -77,7 +78,7 @@ const SearchMovies = () => {
   return (
     <>
       <Container className="text-center custom-bg">
-        <Form onSubmit={handleFormSubmit} style={{ textAlign: "center" }}>
+        <Form onSubmit={handleFormSubmit} style={{ textAlign: 'center' }}>
           <Row className="justify-content-center align-items-center">
             <Col xs={12} md={8}>
               <Form.Control
@@ -86,7 +87,7 @@ const SearchMovies = () => {
                 onChange={(e) => setSearchInput(e.target.value)}
                 type="text"
                 size="md"
-                style={{ margin: "0 auto" }}
+                style={{ margin: '0 auto' }}
                 placeholder="Search for a movie"
               />
             </Col>
@@ -156,8 +157,23 @@ const SearchMovies = () => {
           })}
         </Row>
       </Container>
+    <Container>
+      <Row>
+        <Col xs={12} md={8} className="text-center mb-4">
+          <h2>
+            {searchedMovies.length > 0
+              ? `Viewing ${searchedMovies.length} result${
+                  searchedMovies.length > 1 ? "s" : ""
+                }:`
+              : "While we are busy rewinding your last film, search for another movie."}
+          </h2>
+        </Col>
+      </Row>
+    </Container>
     </>
   );
 };
 
 export default SearchMovies;
+
+
