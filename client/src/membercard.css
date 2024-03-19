@@ -1,4 +1,25 @@
 .membership-card {
-  font-family: Helvetica, Arial, sans-serif; /* Set font family */
-  /* Add any additional CSS styles here */
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.card-container {
+  position: relative;
+  display: inline-block;
+  max-width: 500px; /* Set maximum width */
+  margin: auto; /* Center the container */
+}
+
+.card-image {
+  width: 100%; /* Set image width to 100% */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 15%;
+  border-color: rgb(235, 173, 4);
+}
+
+.user-info {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white; /* Adjust text color for visibility */
 }
