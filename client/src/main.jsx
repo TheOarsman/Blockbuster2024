@@ -2,13 +2,6 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-
-// import SearchBooks from './pages/SearchBooks';
-// import SavedBooks from './pages/SavedBooks';
-// import SearchMovies from './pages/SearchMovies';
-// import MyFavoritedMovies from './pages/FavoritedMovies';
-// import Home from "./pages/Home";
 import App from './App.jsx';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
@@ -23,33 +16,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
 
-    errorElement: <h1 className="display-2">Wrong page!</h1>,
-
     errorElement: <ErrorPage />,
 
     children: [
-      // {
-      //   index: true,
-      //   element: <Home />
-      // },
-
-      // {
-      //   path: '/search-books',
-      //   element: <SearchBooks />
-      // },
-      // {
-      //   path: '/saved-books',
-      //   element: <SavedBooks />
-      // },
-      // {
-      //   path: '/search-movies',
-      //   element: <SearchMovies />
-      // },
-      // {
-      //   path: '/favorite-movies',
-      //   element: <MyFavoritedMovies />
-      // },
-
       {
         index:true,
         path: '/search-books',
@@ -63,11 +32,6 @@ const router = createBrowserRouter([
         path: '/search-movies',
         element: <SearchMovies />
       },
-      {
-        path: '/favorite-movies',
-        element: <MyFavoritedMovies />
-      },
-
 
     ],
   },
