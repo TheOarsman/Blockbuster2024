@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-// import MovieSearch from "../components/MovieSearch";
-// import BookSearch from "../components/BookSearch";
-// import LoginButton from "../components/LoginButton";
+import MovieSearch from "../components/MovieSearch";
+import BookSearch from "../components/BookSearch";
+
 
 const Home = () => {
     const LoginButton = () => (
