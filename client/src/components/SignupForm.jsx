@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; // Import the MembershipCard component
-import "/Users/huv/Documents/Coding/Blockbuster2024/client/src/membercard.css"; // Import the CSS file
+import "../membercard.css"; // Import the CSS file
 
 const SignupForm = () => {
   // set initial form state

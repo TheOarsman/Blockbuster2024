@@ -9,7 +9,6 @@ import "../searchMovies.css";
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
 
-
 import "@fortawesome/fontawesome-free/css/all.css";
 
 const getRottenTomatoesRating = (ratings) => {
@@ -78,102 +77,107 @@ const SearchMovies = () => {
   return (
     <>
       <Container className="text-center custom-bg">
-        <Form onSubmit={handleFormSubmit} style={{ textAlign: 'center' }}>
-          <Row className="justify-content-center align-items-center">
-            <Col xs={12} md={8}>
-              <Form.Control
-                name="searchInput"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                type="text"
-                size="md"
-                style={{ margin: '0 auto' }}
-                placeholder="Search for a movie"
-              />
-            </Col>
-            <Col
-              xs={12}
-              md={4}
-              className="d-flex justify-content-center align-items-center mb-3"
-            >
-              <Button type="submit" variant="success" size="lg">
-                Search
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+        <div style={{ display: "block", width: "100vw" }}>
+          <Form onSubmit={handleFormSubmit} style={{ textAlign: "center" }}>
+            <Row className=" justify-content-md-center align-items-center">
+              <Col xs lg="2">
+                <Form.Control
+                  name="searchInput"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type="text"
+                  size="md"
+                  className="w-100"
+                  placeholder="Search for a movie"
+                />
+              </Col>
+              <Col md="auto">
+                <Button
+                  type="submit"
+                  variant="success"
+                  size="lg"
+                  className="mb-4"
+                >
+                  Search
+                </Button>
+              </Col>
+              <Col xs={6} className="text-center">
+                <h2>
+                  {searchedMovies.length > 0 ? (
+                    `Viewing  result for ${searchedMovies
+                      .map((movie) => `'${movie.Title}'`)
+                      .join(", ")}:`
+                  ) : (
+                    "While we are busy rewinding your last film, search for another movie."
+                  )}
+                </h2>
+              </Col>
+            </Row>
+          </Form>
+        </div>
       </Container>
+
       <Container>
         <Row>
-          {searchedMovies.map((movie) => {
-            return (
-              <Col md="4" key={movie.imdbID}>
-                <div className="wrapper">
-                  <div className="main_card">
-                    <div className="card_left">
-                      <div className="card_details">
-                        <h1>{movie.Title}</h1>
-                        <div className="card_cat">
-                          <p className="PG">{movie.Rated}</p>
-                          <p className="year">{movie.Year}</p>
-                          <p className="genre">{movie.Genre}</p>
-                          <p className="time">{movie.Runtime}</p>
-                        </div>
-                        <p className="disc">{movie.Plot}</p>
-                        <div className="card_cat">
-                          <p className="year">{movie.Director}</p>
-                          <p className="genre">{movie.Actors}</p>
-                        </div>
-                        <div className="social-btn">
-                          <div
-                            className="imdb-info"
-                            style={{ display: "flex", alignItems: "center" }}
-                          >
-                            <button>
-                              <i className="fas fa-play"></i> View on IMDB
-                            </button>
-                            <img src={imdbLogo} alt="IMDB" />
-                            <span>{movie.imdbRating}</span>
-                            <img src={tomatoesLogo} alt="IMDB" />
-                            <span>
-                              {getRottenTomatoesRating(movie.Ratings)}
-                            </span>
-                            <StarIcon
-                              onClick={() => handleSaveMovie(movie.imdbID)}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="card_right">
-                      <div className="img_container">
-                        <img src={movie.Poster} alt={movie.Title} />
-                      </div>
-                    </div>
+          {searchedMovies.map((movie) => (
+            <Col md="4" key={movie.imdbID}>
+              <div className="custom-card">
+                <h1 className="title">{movie.Title}</h1>
+                <Row className="item-row">
+                  <Col>
+                    <p className="item">{movie.Rated}</p>
+                  </Col>
+                  <Col>
+                    <p className="item">{movie.Year}</p>
+                  </Col>
+                  <Col>
+                    <p className="item">{movie.Genre}</p>
+                  </Col>
+                  <Col>
+                    <p className="item">{movie.Runtime}</p>
+                  </Col>
+                </Row>
+                <p className="plot">{movie.Plot}</p>
+                <Row className="item-row">
+                  <Col>
+                    <p className="item">Directed By: {movie.Director}</p>
+                  </Col>
+                  <Col>
+                    <p className="item">Written By: {movie.Writer}</p>
+                  </Col>
+                </Row>
+                <div className="social-btn">
+                  <div className="imdb-info">
+                    <button>
+                      <i className="fas fa-play"></i> View on IMDB
+                    </button>
+                    <img src={imdbLogo} alt="IMDB" />
+                    <span>{movie.imdbRating}</span>
+                    <img src={tomatoesLogo} alt="IMDB" />
+                    <span>{getRottenTomatoesRating(movie.Ratings)}</span>
+                    <StarIcon
+                      onClick={() => handleSaveMovie(movie.imdbID)}
+                    />
                   </div>
                 </div>
-              </Col>
-            );
-          })}
+                <div className="column">
+                  {/* Box office information */}
+                </div>
+                <Row>
+                  <Col md={{ span: 4, offset: 4 }}>
+                    <div className="poster">
+                      <img src={movie.Poster} alt={movie.Title} />
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          ))}
         </Row>
       </Container>
-    <Container>
-      <Row>
-        <Col xs={12} md={8} className="text-center mb-4">
-          <h2>
-            {searchedMovies.length > 0
-              ? `Viewing ${searchedMovies.length} result${
-                  searchedMovies.length > 1 ? "s" : ""
-                }:`
-              : "While we are busy rewinding your last film, search for another movie."}
-          </h2>
-        </Col>
-      </Row>
-    </Container>
     </>
   );
 };
 
 export default SearchMovies;
-
 
