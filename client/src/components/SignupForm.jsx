@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; // Import the MembershipCard component
+import ReactBarcode from "react-barcode";
 import "../membercard.css"; // Import the CSS file
 
 const SignupForm = () => {
@@ -69,7 +70,17 @@ const SignupForm = () => {
           <div className="text-overlay">
             <h5>Member: {userFormData.username}</h5>
             <h5>Email: {userFormData.email}</h5>
-            {/* <h5>{upc_needToCreate}</h5> */}
+            <div>
+              <ReactBarcode
+                value={userFormData.username}
+                width={2} // Set the width of the bars
+                height={15} // Set the height of the bars
+                format="CODE128" // Specify the barcode format
+                displayValue={false} // Hide the human-readable text
+                textPosition="none" // Hide the text completely
+                background="#2556A5" // Set the background color
+              />
+            </div>
           </div>
         </div>
       </div>
