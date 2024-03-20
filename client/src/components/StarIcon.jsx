@@ -2,12 +2,17 @@ import { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '../searchMovies.css';
 
-const StarIcon = ({ onClick }) => {
+
+const StarIcon = ({ onClick, isLoggedIn }) => {
   const [isStarred, setIsStarred] = useState(false);
 
   const handleClick = () => {
-    setIsStarred(!isStarred);
-    onClick();
+    if (isLoggedIn) {
+      setIsStarred(!isStarred);
+      onClick();
+    } else {
+      alert('You are not logged in. Try logging in to start a movie collection.');
+    }
   };
 
   return (

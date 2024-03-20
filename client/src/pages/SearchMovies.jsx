@@ -3,7 +3,9 @@ import { Container, Col, Form, Button, Row } from "react-bootstrap";
 import StarIcon from "../components/StarIcon";
 
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
+import { saveMovie } from "../utils/API";
 import { handleSearch } from "../utils/movieFetch";
+import Auth from "../utils/auth";
 
 import "../searchMovies.css";
 import imdbLogo from "../assets/images/imdbLogo.png";
@@ -22,6 +24,7 @@ const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+  const [isLoggedIn] = useState(Auth.loggedIn());
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
@@ -50,27 +53,29 @@ const SearchMovies = () => {
   };
 
   const handleSaveMovie = async (movieId) => {
-    const movieToSave = searchedMovies.find(
-      (movie) => movie.imdbID === movieId
-    );
-
-    if (!movieToSave) {
-      return false;
+    if (!isLoggedIn) {
+      alert("You are not logged in. Please log in to save movies.");
+      return;
     }
-
+  
+    const movieToSave = searchedMovies.find((movie) => movie.imdbID === movieId);
+  
+    const token = Auth.getToken();
+    if (!token) {
+      return;
+    }
+  
     try {
-      if (!savedMovieIds.includes(movieToSave.imdbID)) {
-        setSavedMovieIds((prevSavedMovieIds) => [
-          ...prevSavedMovieIds,
-          movieToSave.imdbID,
-        ]);
-        alert("Movie saved successfully!");
-      } else {
-        alert("This movie is already saved!");
+      const response = await saveMovie(movieToSave, token);
+  
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
       }
+  
+      // If movie successfully saves to user's account, save movie ID to state
+      setSavedMovieIds([...savedMovieIds, movieToSave.imdbID]);
     } catch (err) {
       console.error(err);
-      alert("Failed to save the movie. Please try again later.");
     }
   };
 
@@ -80,6 +85,9 @@ const SearchMovies = () => {
         <div style={{ display: "block", width: "100vw" }}>
           <Form onSubmit={handleFormSubmit} style={{ textAlign: "center" }}>
             <Row className=" justify-content-md-center align-items-center">
+              <Col md="auto">
+                <h2>Search Movie Collection:</h2>{" "}
+              </Col>
               <Col xs lg="2">
                 <Form.Control
                   name="searchInput"
@@ -103,13 +111,11 @@ const SearchMovies = () => {
               </Col>
               <Col xs={6} className="text-center">
                 <h2>
-                  {searchedMovies.length > 0 ? (
-                    `Viewing  result for ${searchedMovies
-                      .map((movie) => `'${movie.Title}'`)
-                      .join(", ")}:`
-                  ) : (
-                    "While we are busy rewinding your last film, search for another movie."
-                  )}
+                  {searchedMovies.length > 0
+                    ? `Viewing  result for ${searchedMovies
+                        .map((movie) => `'${movie.Title}'`)
+                        .join(", ")}:`
+                    : "While we are busy rewinding your last film, search for another movie."}
                 </h2>
               </Col>
             </Row>
@@ -157,14 +163,13 @@ const SearchMovies = () => {
                     <span>{getRottenTomatoesRating(movie.Ratings)}</span>
                     <StarIcon
                       onClick={() => handleSaveMovie(movie.imdbID)}
+                      isLoggedIn={isLoggedIn} // Assuming isLoggedIn is a state that indicates whether the user is logged in
                     />
                   </div>
                 </div>
-                <div className="column">
-                  {/* Box office information */}
-                </div>
+                <div className="column">{/* Box office information */}</div>
                 <Row>
-                  <Col md={{ span: 4, offset: 4 }}>
+                  <Col md={{ span: 12, offset: 12 }}>
                     <div className="poster">
                       <img src={movie.Poster} alt={movie.Title} />
                     </div>
@@ -180,4 +185,3 @@ const SearchMovies = () => {
 };
 
 export default SearchMovies;
-
