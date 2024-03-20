@@ -58,9 +58,5 @@
 
 .text-overlay div {
   display: inline-block;
-  margin-bottom: 30px; Adjust spacing between items
-}
-
-.text-overlay h3 {
-  margin: 0; /* Remove default margin for the heading */
+  margin-bottom: 30px; /* Adjust spacing between items */
 }
