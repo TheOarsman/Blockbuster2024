@@ -1,0 +1,16 @@
+.footer {
+    background-color: #0d2264 !important;
+    color: #f7bf33;
+    font-family: 'Rubik', sans-serif;
+    font-size: 10pt;
+
+    /*Keep the footer on the bottom of the screen*/
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/*Subclass for the header of the footer*/
+.footer .header {
+    font-size: 12pt;
+}
