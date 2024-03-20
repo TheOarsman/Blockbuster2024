@@ -3,11 +3,18 @@ import membershipCardImage from '../assets/images/BlockbusterMembership02.jpg';
 import vintageLogo from '../assets/images/BlockbusterLogo1985.png'
 import magicBooks from '../assets/images/magicBooks.jpg'
 import blockbusterStore from '../assets/images/blockbusterStore.jpg'
+import blockbusterTotalaccess from '../assets/images/BlockBusterTotalAccess.png'
 import '../home.css'
 
 const Home = () => {
     return (
       <Container className="home-container">
+        <Row className="img-header-row" >
+            <Col className="justify-content-center">
+            <img src={blockbusterTotalaccess} alt="Vintage Logo" style={{ width: '30%' }}
+            />
+            </Col>
+        </Row>
         <Row>
         <Col>
             <Card className='original-site-card'>
@@ -31,9 +38,9 @@ const Home = () => {
         </Row>
         
         <Row className ='membershipRow'>
-          <Col>
+          <Col className = 'membershipCol'>
             <Card style={{ width: '24rem' }}>
-              <Card.Img variant="top" src={membershipCardImage} style={{ height: '200px' }} />
+              <Card.Img variant="top" src={membershipCardImage} alt='Membership Card' style={{ height: '200px' }} />
               <Card.Body>
                 <Card.Title>Don't have a membership card?</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Get a BlockBuster Membership Card today!</Card.Subtitle>
@@ -43,9 +50,9 @@ const Home = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className = 'membershipCol'>
             <Card style={{ width: '24rem' }}>
-              <Card.Img variant="top" src={magicBooks} style={{ height: '200px' }}  />
+              <Card.Img variant="top" src={magicBooks} alt='Magical Book Stack' style={{ height: '200px' }}  />
               <Card.Body>
                 <Card.Title>Book Catalog</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Search through 1000's of titles!</Card.Subtitle>
@@ -57,9 +64,9 @@ const Home = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className = 'membershipCol'>
             <Card style={{ width: '24rem' }}>
-            <Card.Img variant="top" src={blockbusterStore} style={{ height: '200px' }} />
+            <Card.Img variant="top" src={blockbusterStore} alt='Blockbuster Store' style={{ height: '200px' }} />
               <Card.Body>
                 <Card.Title>Movie Catalog</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Looking for a movie? We got it!</Card.Subtitle>
