@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="footer">
         <Container fluid>
             {/* Sections for our developer info (GitHub, LinkedIn, some third thing) */}
-            <Row>The Developers</Row>
+            <div className="head"><Row className="header">The Developers</Row></div>
             <Row>
                 <Col>
                     Ethan Wynne

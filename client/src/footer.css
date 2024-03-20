@@ -4,7 +4,13 @@
     font-family: 'Rubik', sans-serif;
     font-size: 10pt;
 
-    position: fixed;
+    /*Keep the footer on the bottom of the screen*/
+    position: absolute;
     width: 100%;
     bottom: 0;
+}
+
+/*Subclass for the header of the footer*/
+.footer .header {
+    font-size: 12pt;
 }
