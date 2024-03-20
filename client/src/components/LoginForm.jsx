@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations";
+import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [validated, setValidated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [addUser, { error }] = useMutation(ADD_USER);
 
-  useEffect(() => {
-    if (error) {
-      setShowAlert(true);
-    } else {
-      setShowAlert(false);
-    }
-  }, [error]);
+const LoginForm = () => {
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const [login, {error}] = useMutation(LOGIN)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,29 +19,32 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
-
     if (form.checkValidity() === false) {
+      event.preventDefault();
       event.stopPropagation();
-    } else {
-      try {
-        const { data } = await addUser({
-          variables: { ...userFormData },
-        });
-        Auth.login(data.addUser.token);
-      } catch (e) {
-        console.error(e);
-        setShowAlert(true);
-      }
-
-      setUserFormData({
-        username: "",
-        email: "",
-        password: "",
-      });
     }
 
-    setValidated(true);
+    try {
+      const {data} = await login({
+        variables: {...userFormData}
+      })
+
+      
+      console.log(data);
+      Auth.login(data.login.token);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
+
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
   };
 
   return (
