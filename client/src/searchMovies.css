@@ -42,7 +42,11 @@ h2 {
 }
 
 .custom-card {
-	width:500px;
+	width:600px;
+}
+
+.item-row {
+	display: flex;
 }
 
 
@@ -91,6 +95,10 @@ button:hover {
     margin: 15px;
 }
   
+
+.poster {
+
+}
   
 
 
