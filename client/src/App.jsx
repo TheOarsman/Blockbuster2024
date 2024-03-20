@@ -9,6 +9,7 @@ import './App.css';
 import { Outlet } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -37,6 +38,7 @@ function App() {
      <ApolloProvider client={client}>
       <Navbar />
       <Outlet />
+      <Footer />
     </ApolloProvider>
   );
 }
