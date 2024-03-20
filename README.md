@@ -170,7 +170,11 @@ None currently
 
 ## Resources
 
-N/A
+**[React-Barcode](https://www.npmjs.com/package/react-barcode?activeTab=readme)**
+
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/TheOarsman)
+
+- A `<Barcode/>` component for use with React.
 
 ## Questions/Contact
 
