@@ -11,7 +11,7 @@ const StarIcon = ({ onClick, isLoggedIn }) => {
       setIsStarred(!isStarred);
       onClick();
     } else {
-      alert('You are not logged in. Try logging in to start a movie collection.');
+      alert('You are not logged in. Try logging in to start a favorite movie collection.');
     }
   };
 
