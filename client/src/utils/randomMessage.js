@@ -5,7 +5,7 @@ const message = [
      'More of a book person?',
      'Lost in pages, not WiFi signals.',
      `WiFi's off, imagination's on!`,
-     "No bars, just books! Embrace the paperbacks."
+     " Embrace the paperbacks!"
 ]
 
 const getRandomMessage = () => {
