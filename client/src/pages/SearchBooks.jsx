@@ -4,6 +4,7 @@ import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 import Auth from "../utils/auth";
 import { saveBook, searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
+import  getRandomMessage  from '../utils/randomMessage';
 
 import bookImage from "../assets/images/noWifibook.png";
 
@@ -114,14 +115,9 @@ const SearchBooks = () => {
                     `Viewing ${searchedBooks.length} results:`
                   ) : (
                     <span>
-                      No Wifi? No Problem!{" "}
-                      <img
-                        src={bookImage}
-                        alt="Book"
-                        style={{ width: "50px" }}
-                      />{" "}
-                      Search our Book Collection
-                    </span>
+                    {getRandomMessage()} 
+                    <img src={bookImage} alt="Book" style={{ width: "60px" , paddingLeft:'10px' }} /> Search our Book Collection
+                  </span>
                   )}
                 </h2>
               </Col>

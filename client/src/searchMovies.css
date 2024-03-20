@@ -1,105 +1,102 @@
 :root {
-	--primary-color: #0D2264; 
-	--secondary-color: #CBC9BC;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-image: url('https://wallpaperaccess.com/full/2000044.png');
-    background-repeat: no-repeat; /* Prevent the background image from tiling */
-    background-size: cover; /* Cover the entire background */
-    background-position: center; /* Center the background image */
-    display: flex; /* Keep flexbox layout */
-    min-height: 100vh; /* Set minimum height to 100% of viewport height */
+  --primary-color: #0d2264;
+  --secondary-color: #cbc9bc;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-image: url("https://wallpaperaccess.com/full/2000044.png");
+  background-repeat: no-repeat; /* Prevent the background image from tiling */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+  display: flex; /* Keep flexbox layout */
+  min-height: 100vh; /* Set minimum height to 100% of viewport height */
 }
 
 .container {
-    width: 100% ; /* Ensure container covers entire width */
+  width: 100%; /* Ensure container covers entire width */
 }
 .custom-bg {
-    background-color: var(--primary-color);
-    max-width: 100vw; /* Set maximum width to cover the entire viewport */
-    display: flex; /* Maintain flexbox layout */   
+  background-image: url(https://wallpapercave.com/wp/wp4605390.jpg);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+  background-color: var(--primary-color);
+  max-width: 100vw; /* Set maximum width to cover the entire viewport */
+  display: flex; /* Maintain flexbox layout */
 }
 
 .movie-search-btn .btn {
-    background-color: #257ed7;
-    border: solid 2px #257ed7;
+  background-color: #257ed7;
+  border: solid 2px #257ed7;
 }
 
 .movie-search-btn .btn:hover {
-    background-color: #1f6cb8;
-    border: solid 2px #1f6cb8;
+  background-color: #1f6cb8;
+  border: solid 2px #1f6cb8;
 }
 
 h2 {
-    color: whitesmoke;
-    text-align: center;
-    font-size: 24px;
-	font-family: "Yrsa", serif;
+  color: whitesmoke;
+  text-align: center;
+  font-size: 32px;
+  font-family: "Yrsa", serif;
 }
 
 .custom-card {
-	width:600px;
+  width: 600px;
 }
 
 .item-row {
-	display: flex;
+  display: flex;
 }
 
-
 a {
-    color: darkcyan;
-    text-decoration: none;
+  color: darkcyan;
+  text-decoration: none;
 }
 
 button {
-    color: #fff;
-    border: none;
-    padding: 20px;
-    outline: none;
-    font-size: 12px;
-    margin-top: 30px;
-    margin-left: 10px;
-    background: var(--secondary-color);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    transition: 200ms ease-in-out;
-    color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 20px;
+  outline: none;
+  font-size: 12px;
+  margin-top: 30px;
+  margin-left: 10px;
+  background: var(--secondary-color);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: 200ms ease-in-out;
+  color: var(--primary-color);
 }
 
 button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .imdb-info img {
-    width: 50px;
-    padding: 0;
-    margin: 0;
+  width: 50px;
+  padding: 0;
+  margin: 0;
 }
 
 .star-icon {
-    font-size: 32px;
+  font-size: 32px;
 }
 
 .social-btn {
-    display: flex; /* Use Flexbox */
-    align-items: center; /* Align items vertically */
+  display: flex; /* Use Flexbox */
+  align-items: center; /* Align items vertically */
 }
 
 .social-btn button,
 .star-icon {
-    /* Add some spacing between the elements */
-    margin: 15px;
+  /* Add some spacing between the elements */
+  margin: 15px;
 }
-  
 
 .poster {
-
 }
-  
-
-
-
