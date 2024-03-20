@@ -66,6 +66,11 @@ const SignupForm = () => {
             alt="Membership Card"
             className="card-image"
           />
+          <div className="text-overlay">
+            <h5>Member: {userFormData.username}</h5>
+            <h5>Email: {userFormData.email}</h5>
+            {/* <h5>{upc_needToCreate}</h5> */}
+          </div>
         </div>
       </div>
       {/* This is needed for the validation functionality above */}
