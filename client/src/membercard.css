@@ -1,62 +1,8 @@
 .membership-card {
-  font-family: Helvetica, Arial, sans-serif;
-  text-align: center;
-}
-
-.card-container {
-  position: relative;
-  display: inline-block;
-  max-width: 500px; /* Set maximum width */
-  margin: auto; /* Center the container */
-}
-
-.card-image {
-  width: 100%; /* Set image width to 100% */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 15%;
-  border-color: rgb(235, 173, 4);
-  position: relative; /* Ensure relative positioning for absolute child */
-}
-
-.user-info {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  color: white; /* Adjust text color for visibility */
-}
-
-.image-container {
-  position: relative;
-  display: inline-block; /* Ensures container takes up only as much width as necessary */
-}
-
-.text-overlay {
-  position: absolute;
-  display: flex; /* Use flexbox for inline layout */
-  flex-direction: column; /* Stack items vertically */
-  top: 35%; /* Adjust as needed */
-  left: 15%; /* Adjust as needed */
-  transform: translate(-10%, -10%); /* Adjust for centering */
-  text-align: left;
-}
-
-.text-overlay h5 {
-  color: black;
   font-family: "American Typewriter", serif;
-  text-align: left;
-  padding: 20px; /* Adjust as needed */
-  margin-bottom: 0px; /* Adjust spacing between lines */
-  line-height: 0; /* Set line height to 1 */
-  /*background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  );*/ /* Background color for text overlay */
-  /* text-align: center; Center the text horizontally */
 }
 
-.text-overlay div {
-  display: inline-block;
-  margin-bottom: 30px; /* Adjust spacing between items */
+.cardText {
+  margin-top: 6.5rem;
+  margin-left: 4.75rem;
 }
