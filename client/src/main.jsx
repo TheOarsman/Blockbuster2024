@@ -6,9 +6,10 @@ import App from './App.jsx';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import SearchMovies from './pages/SearchMovies'; 
-// import MyFavoritedMovies from './pages/FavoritedMovies';
-// import Home from './pages/Home';
+import FavoriteMovies from './pages/FavoritedMovies';
+import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
+
 
 
 const router = createBrowserRouter([
@@ -19,8 +20,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
 
     children: [
+      
       {
-        index:true,
+        path: '/',
+        element: <Home />
+      }, 
+      {
         path: '/search-books',
         element: <SearchBooks />
       }, 
@@ -32,6 +37,13 @@ const router = createBrowserRouter([
         path: '/search-movies',
         element: <SearchMovies />
       },
+
+      {
+        path: '/favorite-movies',
+        element: <FavoriteMovies />
+      },
+
+      
 
     ],
   },

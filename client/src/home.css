@@ -1,0 +1,23 @@
+.original-site-card {
+    text-align: center;
+    font-size: large;
+}
+
+
+
+.home-container {
+
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 25px;
+
+}
+
+.membershipCol {
+    padding-top: 25px;
+}
+
+.img-header-row {
+  text-align: center;
+  padding-bottom: 25px;
+}

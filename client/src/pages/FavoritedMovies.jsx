@@ -36,28 +36,6 @@ const MyFavoritedMovies = () => {
     getUserData();
   }, [userDataLength]);
 
-  const handleDeleteMovie = async (movieId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const response = await deleteMovie(movieId, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
-      removeMovieId(movieId);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   if (!userDataLength) {
     return <h2>LOADING...</h2>;
   }
@@ -71,28 +49,26 @@ const MyFavoritedMovies = () => {
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.savedMovies.length
+          {userData.savedMovies && userData.savedMovies.length
             ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
             : 'You have no saved movies!'}
         </h2>
         <Row>
-        {userData.savedMovies.map((movie) => {
-  return (
-    <Col key={movie.id} md="4">
-      <Card border='dark'>
-        {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
-        <Card.Body>
-          <Card.Title>{movie.title}</Card.Title>
-        
-          <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
-            Delete this Movie!
-          </Button>
-        </Card.Body>
-      </Card>
-    </Col>
-  );
-})}
-
+          {userData.savedMovies && userData.savedMovies.map((movie) => {
+            return (
+              <Col key={movie.id} md="4">
+                <Card border='dark'>
+                  {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
+                  <Card.Body>
+                    <Card.Title>{movie.title}</Card.Title>
+                    <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
+                      Delete this Movie!
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })}
         </Row>
       </Container>
     </>
@@ -100,3 +76,4 @@ const MyFavoritedMovies = () => {
 };
 
 export default MyFavoritedMovies;
+
