@@ -19,11 +19,10 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
 
-  const [paddedUsername, setPaddedUsername] = useState(userFormData.username);
-  useEffect(() => {
-    setPaddedUsername(userFormData.username.padEnd(20, "."));
-  }, [userFormData.username]);
+  // settings for barcode generation based on username input
+  const [paddedUsername, setPaddedUsername] = useState("");
 
+  // sets the "User Since" date on MemberCard
   const memberSince = new Date(Date.now()).toLocaleDateString();
 
   useEffect(() => {
@@ -36,6 +35,11 @@ const SignupForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
+
+    // Update paddedUsername only when typing in the username field
+    if (name === "username") {
+      setPaddedUsername(value.padEnd(20, "."));
+    }
   };
 
   const handleFormSubmit = async (event) => {
@@ -75,6 +79,7 @@ const SignupForm = () => {
           memberSince={memberSince}
         ></MemberCard>
       </div>
+      <br></br>
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}

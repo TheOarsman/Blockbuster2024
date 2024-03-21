@@ -4,7 +4,7 @@ import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; //
 
 function MemberCard({ username, email, paddedUsername, memberSince }) {
   return (
-    <Card style={{ width: "35rem" }}>
+    <Card style={{ width: "35rem", border: "none", margin: "auto" }}>
       <Card.Img
         src={MembershipCardImg}
         alt="Membership Card"

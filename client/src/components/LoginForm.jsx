@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
+import MemberCard from "./MemberCard";
+import "../membercard.css"; // Import the CSS file
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
@@ -10,6 +12,17 @@ const LoginForm = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const [login, { error }] = useMutation(LOGIN);
+
+  // settings for barcode generation based on username input
+  const [paddedUsername, setPaddedUsername] = useState("");
+  useEffect(() => {
+    setPaddedUsername(
+      userFormData.username ? userFormData.username.padEnd(20, ".") : ""
+    );
+  }, [userFormData.username]);
+
+  // sets the "User Since" date on MemberCard
+  const memberSince = new Date(Date.now()).toLocaleDateString();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -47,6 +60,10 @@ const LoginForm = () => {
 
   return (
     <>
+      <div className="membership-card">
+        <MemberCard paddedUsername={paddedUsername} memberSince={memberSince} />
+      </div>
+      <br></br>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert
           dismissible
