@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
-  mutation login( $username: String!,$email: String!, $password: String!) {
+  mutation login($username: String!, $email: String!, $password: String!) {
     login(username: $username, email: $email, password: $password) {
       token
       user {
@@ -30,7 +30,12 @@ export const SAVE_MOVIE = gql`
       _id
       username
       email
-      savedMovies
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
     }
   }
 `;
@@ -41,7 +46,12 @@ export const REMOVE_MOVIE = gql`
       _id
       username
       email
-      savedMovies
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
     }
   }
 `;
@@ -84,3 +94,19 @@ export const REMOVE_BOOK = gql`
   }
 `;
 
+
+export const UPDATE_MOVIE_ORDER = gql`
+  mutation updateMovieOrder($movieIds: [ID]!) {
+    updateMovieOrder(movieIds: $movieIds) {
+      _id
+      username
+      email
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
+    }
+  }
+`;

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 
 import Auth from "../utils/auth";
-import {  searchGoogleBooks } from "../utils/API";
+import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
-import  getRandomMessage  from '../utils/randomMessage';
-import { useMutation } from '@apollo/client';
-import { SAVE_BOOK } from '../utils/mutations';
+import getRandomMessage from "../utils/randomMessage";
+import { useMutation } from "@apollo/client";
+import { SAVE_BOOK } from "../utils/mutations";
 
 import bookImage from "../assets/images/noWifibook.png";
 
@@ -72,10 +72,10 @@ const SearchBooks = () => {
     try {
       const { data } = await saveBook({
         variables: { bookData: { ...bookToSave } },
-        description: bookToSave.description || ''
+        description: bookToSave.description || "",
       });
       console.log(savedBookIds);
-      console.log(data)
+      console.log(data);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
@@ -102,12 +102,12 @@ const SearchBooks = () => {
                   placeholder="Search for a book"
                 />
               </Col>
-              <Col md="auto">
+              <Col className="align-items-center" md="auto">
                 <Button
                   type="submit"
                   variant="success"
-                  size="lg"
-                  className="mb-4"
+                  size="md"
+                  className="mb-2 mt-2"
                 >
                   Search
                 </Button>
@@ -118,9 +118,14 @@ const SearchBooks = () => {
                     `Viewing ${searchedBooks.length} results:`
                   ) : (
                     <span>
-                    {getRandomMessage()} 
-                    <img src={bookImage} alt="Book" style={{ width: "60px" , paddingLeft:'10px' }} /> Search our Book Collection
-                  </span>
+                      {getRandomMessage()}
+                      <img
+                        src={bookImage}
+                        alt="Book"
+                        style={{ width: "60px", paddingLeft: "10px" }}
+                      />{" "}
+                      Search our Book Collection
+                    </span>
                   )}
                 </h2>
               </Col>
@@ -129,12 +134,12 @@ const SearchBooks = () => {
         </div>
       </Container>
 
-      <Container>
+      <Container style={{ marginBottom: "150px" }}>
         <Row>
           {searchedBooks.map((book) => {
             return (
-              <Col md="4" key={book.bookId} style={{ paddingTop: '25px' }}>
-                <Card border="dark">
+              <Col md="4" key={book.bookId} style={{ paddingTop: "25px" }}>
+                <Card className="card-box-shadow " border="dark">
                   {book.image ? (
                     <Card.Img
                       src={book.image}

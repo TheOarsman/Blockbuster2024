@@ -2,8 +2,16 @@
   background-color: #0d2264 !important;
   width: 100vw;
   height: 100px;
+  font-family: "Oxygen", sans-serif;
+  z-index: 100;
 }
 
 .navbar-logo {
   width: 200px;
+}
+
+@media (max-width: 450px) {
+  .custom-navbar {
+    width: 450px; /* Set a fixed width for screens smaller than 450px */
+  }
 }
