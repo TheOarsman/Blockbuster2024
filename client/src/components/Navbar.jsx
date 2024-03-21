@@ -47,6 +47,7 @@ const AppNavbar = () => {
                     activeClassName="active"
                   >
                     Book Collection
+                    
                   </Nav.Link>
                   <Nav.Link
                     as={NavLink}

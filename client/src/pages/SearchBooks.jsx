@@ -134,7 +134,7 @@ const SearchBooks = () => {
         </div>
       </Container>
 
-      <Container>
+      <Container style={{ marginBottom: "150px" }}>
         <Row>
           {searchedBooks.map((book) => {
             return (

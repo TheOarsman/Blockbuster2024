@@ -1,5 +1,6 @@
 import { useQuery, useMutation } from "@apollo/client";
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import { Container, Card, Button, Row, Col, Badge } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
@@ -30,22 +31,32 @@ const SavedBooks = () => {
 
   const userData = data?.me || {};
   console.log(userData.savedBooks);
+  console.log(userData);
 
   return (
     <>
-      <div className="text-light bg-dark p-5">
-        <Container fluid>
-          <h1>Viewing saved books!</h1>
-        </Container>
-      </div>
-      <Container>
-        <h2 className="pt-5">
-          {userData.savedBooks && userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "book" : "books"
-              }:`
-            : "Loading..."}
-        </h2>
+   <Container fluid className='text-center p-3 bg-light viewing-books'>
+  <Row className='mb-2'>
+    <h1>Welcome to the all new Blockbuster Book Collection</h1>
+  </Row>
+  <Row>
+    <h4>
+      {userData.savedBooks.length > 0 ? (
+        <>
+          <span className='italic-view-books'>Viewing {userData.savedBooks.length} saved books for</span>{" "}
+          <Badge bg="primary">{userData.username}</Badge>
+        </>
+      ) : (
+        <>
+          You have no saved books.{" "}
+          <Link to="/search-books" className="text-decoration-none"><span className='search-now-hover'>Search Now!</span></Link>
+        </>
+      )}
+    </h4>
+  </Row>
+</Container>
+
+      <Container style={{ marginBottom: "150px", padding: "10px" }}>
         <Row>
           {userData.savedBooks.map((book) => {
             return (

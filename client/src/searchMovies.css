@@ -80,3 +80,20 @@ button:hover {
 .movie-card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
+
+.viewing-books h1 {
+  font-family: "Oxygen", sans-serif ;
+}
+
+.italic-view-books {
+  font-style: italic;
+}
+
+.search-now-hover{
+  color:#57A3DB ;
+}
+
+.search-now-hover:hover {
+color: #2485CC ;
+}
+
