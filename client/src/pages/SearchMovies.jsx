@@ -13,9 +13,10 @@ import StarIcon from "../components/StarIcon";
 
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 import { saveMovie } from "../utils/API";
+import { useMutation } from "@apollo/client";
 import { handleSearch } from "../utils/movieFetch";
 import Auth from "../utils/auth";
-
+import { SAVE_MOVIE } from "../utils/mutations";
 import "../searchMovies.css";
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
@@ -33,11 +34,12 @@ const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
-  const [isLoggedIn] = useState(Auth.loggedIn());
+  const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
-  }, [savedMovieIds]);
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -59,40 +61,29 @@ const SearchMovies = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const handleSaveMovie = async (movieId) => {
-    // Check if the user is logged in
-    if (!isLoggedIn) {
-      alert("You are not logged in. Please log in to save movies.");
-      return;
-    }
-
+  };const handleSaveMovie = async (movieId) => {
     // Find the movie to save based on its IMDb ID
     const movieToSave = searchedMovies.find(
-      (movie) => movie.imdbID === movieId
+      (movie) => movie.movieID === movieId
     );
-
+  
     // Get the authentication token
-    const token = Auth.getToken();
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
-      return;
+      return false;
     }
-
+  
     try {
-      // Attempt to save the movie using the saveMovie function
-      const response = await saveMovie(movieToSave, token);
-
-      // Check if the save operation was successful
-      if (!response.ok) {
-        // If not, throw an error
-        throw new Error("Something went wrong!");
-      }
-
-      // If the movie was successfully saved, update the savedMovieIds state with the new movie ID
-      setSavedMovieIds([...savedMovieIds, movieToSave.imdbID]);
+      // Call the saveMovie mutation to save the movie
+      const { data } = await saveMovie({
+        variables: { movieData: { ...movieToSave } },
+      });
+      console.log(data);
+      console.log("Movie added to favorites:", movieToSave);
+  
+      // Update the savedMovieIds state with the newly saved movie's ID
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieID]);
     } catch (err) {
-      // If an error occurs during the save operation, log the error to the console
       console.error(err);
     }
   };
@@ -202,7 +193,7 @@ const SearchMovies = () => {
                     <Col>
                       <StarIcon
                         onClick={() => handleSaveMovie(movie.imdbID)}
-                        isLoggedIn={isLoggedIn} // Assuming isLoggedIn is a state that indicates whether the user is logged in
+                        isLoggedIn={isLoggedIn} 
                       />
                     </Col>
                   </Row>
