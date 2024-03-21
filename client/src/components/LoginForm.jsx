@@ -7,7 +7,10 @@ import MemberCard from "./MemberCard";
 import "../membercard.css"; // Import the CSS file
 
 const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    password: "",
+  });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -53,7 +56,6 @@ const LoginForm = () => {
 
     setUserFormData({
       username: "",
-      email: "",
       password: "",
     });
   };
@@ -61,7 +63,12 @@ const LoginForm = () => {
   return (
     <>
       <div className="membership-card">
-        <MemberCard paddedUsername={paddedUsername} memberSince={memberSince} />
+        <MemberCard
+          username={userFormData.username}
+          email="me@example.com"
+          paddedUsername={paddedUsername}
+          memberSince={memberSince}
+        />
       </div>
       <br></br>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
@@ -90,21 +97,6 @@ const LoginForm = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="email">Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Your email address"
-            name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Email is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3">
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
@@ -119,13 +111,7 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={
-            !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
+          disabled={!(userFormData.username && userFormData.password)}
           type="submit"
           variant="success"
         >
