@@ -1,0 +1,19 @@
+.footer {
+    background-color: #0d2264 !important;
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.2rem;
+
+    /*Keep the footer on the bottom of the screen*/
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 1rem;
+}
+
+.footer .header {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+

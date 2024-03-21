@@ -3,8 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; // Import the MembershipCard component
-import ReactBarcode from "react-barcode";
+import MemberCard from "./MemberCard";
 import "../membercard.css"; // Import the CSS file
 
 const SignupForm = () => {
@@ -19,6 +18,14 @@ const SignupForm = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
+
+  const [paddedUsername, setPaddedUsername] = useState(userFormData.username);
+  useEffect(() => {
+    setPaddedUsername(userFormData.username.padEnd(20, "."));
+  }, [userFormData.username]);
+
+  const memberSince = new Date(Date.now()).toLocaleDateString();
+
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -61,28 +68,12 @@ const SignupForm = () => {
   return (
     <>
       <div className="membership-card">
-        <div className="card-container">
-          <img
-            src={MembershipCardImg}
-            alt="Membership Card"
-            className="card-image"
-          />
-          <div className="text-overlay">
-            <h5>Member: {userFormData.username}</h5>
-            <h5>Email: {userFormData.email}</h5>
-            <div>
-              <ReactBarcode
-                value={userFormData.username}
-                width={2} // Set the width of the bars
-                height={15} // Set the height of the bars
-                format="CODE128" // Specify the barcode format
-                displayValue={false} // Hide the human-readable text
-                textPosition="none" // Hide the text completely
-                background="#2556A5" // Set the background color
-              />
-            </div>
-          </div>
-        </div>
+        <MemberCard
+          username={userFormData.username}
+          email={userFormData.email}
+          paddedUsername={paddedUsername}
+          memberSince={memberSince}
+        ></MemberCard>
       </div>
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
@@ -104,11 +95,17 @@ const SignupForm = () => {
             name="username"
             onChange={handleInputChange}
             value={userFormData.username}
+            aria-describedby="usernameHelpBlock"
+            maxLength={20}
+            minLength={8}
             required
           />
           <Form.Control.Feedback type="invalid">
-            Username is required!
+            A username between 8 - 20 characters is required!
           </Form.Control.Feedback>
+          <Form.Text id="usernameHelpBlock" muted>
+            Your username must be 8-20 characters long.
+          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3">
