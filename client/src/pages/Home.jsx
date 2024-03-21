@@ -1,78 +1,75 @@
-// import { Link } from "react-router-dom";
-// import { Container, Row, Col } from "react-bootstrap";
-// import MovieSearch from "../components/MovieSearch";
-// import BookSearch from "../components/BookSearch";
+//Important for useQuery: We import the useQuery hook from @apollo/client
+import { useQuery } from '@apollo/client';
 
-// import LoginButton from "../components/LoginButton";
-
-// const Home = () => {
-  // const LoginButton = () => (
-  //   <Link to="/login">
-  //     <Button variant="primary" size="lg" block>
-  //       Log In
-  //     </Button>
-  //   </Link>
-  // );
-  // return (
-  // <Container>
-  //   <Row className="justify-content-md-center">
-  //     <Col xs={12} md={6}>
-  //       <h1 className="text-center my-4">Welcome to Movie/Book Catalog!</h1>
-  //       <p className="text-center">Please log in to get started:</p>
-  //       <LoginButton />
-  //     </Col>
-  //   </Row>
-  //   <Row className="justify-content-md-center mt-5">
-  //     <Col xs={12} md={6}>
-  //       <h2 className="text-center mb-4">Movie Catalog</h2>
-  //       <MovieSearch />
-  //     </Col>
-  //     <Col xs={12} md={6}>
-  //       <h2 className="text-center mb-4">Book Catalog</h2>
-  //       <BookSearch />
-  //     </Col>
-  //   </Row>
-  // </Container>
-  //   );
-// };
+import { QUERY_PROFILES } from '../utils/queries';
+import Footer from '../components/Footer';
 
 
 
 
+// We define the Home component
 
-// const Home = () => {
-//     const LoginButton = () => (
-//         <Link to="/login">
-//             <Button variant="primary" size="lg" block>
-//                 Log In
-//             </Button>
-//         </Link>
-//     );
-//   return (
-//     <Container>
-//       <Row className="justify-content-md-center">
-//         <Col xs={12} md={6}>
-//           <h1 className="text-center my-4">Welcome to Movie/Book Catalog!</h1>
-//           <p className="text-center">
-//             Please log in to get started:
-//           </p>
-//           <LoginButton />
-//         </Col>
-//       </Row>
-//       <Row className="justify-content-md-center mt-5">
-//         <Col xs={12} md={6}>
-//           <h2 className="text-center mb-4">Movie Catalog</h2>
-//           <MovieSearch />
-//         </Col>
-//         <Col xs={12} md={6}>
-//           <h2 className="text-center mb-4">Book Catalog</h2>
-//           <BookSearch />
-//         </Col>
-//       </Row>
-//     </Container>
-//   );
-// };
 
-// export default Home;
+const Home = () => {
+  
+  const { loading, data } = useQuery(QUERY_PROFILES);
 
+  
+  const profiles = data?.profiles || [];
+
+return (
+  <>
+    <header style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '75px',  // Reduced height to match navbar
+      background: '#0d2264',
+      fontFamily: 'Rubik Mono One, sans-serif',
+      padding: '2rem',
+      marginBottom: '2rem',
+      marginTop: '.5rem',
+    }}>
+      <h1 style={{
+        color: '#fff',
+        fontSize: '2rem',
+        letterSpacing: '0.6rem',
+        margin: '2rem',
+        textShadow: '3px 3px 6px #000',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        fontFamily: 'Blockbuster, sans-serif',
+      }}>
+        WELCOME TO<br />BLOCKBUSTER 2024
+      </h1>
+    </header>
+    
+    <footer style={{
+      position: 'fixed',
+      left: 0,
+      bottom: 0,
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '5rem',
+      background: '#0d2264',
+      color: '#fff',
+      fontSize: '1.2rem',
+      letterSpacing: '0.4rem',
+      padding: '1rem',
+    }}>
+      
+      &copy; Blockbuster2024. All rights reserved.
+      
+    </footer>
+    <Footer />
+  </>
+);
+};
+
+// We export the Home component
+
+
+export default Home;
 

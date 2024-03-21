@@ -55,6 +55,10 @@ const Footer = () => {
                     </ul>
                 </Col>
             </Row>
+            <Row className="footer-copyright">
+                <Col className="text-center">&copy; BLOCKBUSTER 2024 &copy;
+                All Rights Reserved</Col>
+            </Row>
         </Container>
     </footer>
     </>
