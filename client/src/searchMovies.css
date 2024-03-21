@@ -81,8 +81,9 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
-.viewing-books h1 {
+.viewing-books  {
   font-family: "Oxygen", sans-serif ;
+ 
 }
 
 .italic-view-books {
@@ -95,5 +96,9 @@ button:hover {
 
 .search-now-hover:hover {
 color: #2485CC ;
+}
+
+.saved-header-card h2 {
+color:black;
 }
 

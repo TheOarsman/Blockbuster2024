@@ -67,12 +67,13 @@ const MyFavoritedMovies = () => {
                       `Viewing ${savedMovies.length} saved ${
                         savedMovies.length === 1 ? "movie" : "movies"
                       }:`
+                      
                     ) : (
                       <>
                         You have no saved movies.{" "}
-                        <span className="search-link">
-                          <Link to="/search-movies">Search now!</Link>
-                        </span>
+                   
+                          <Link to="/search-movies"><span className='search-now-hover'>Search now!</span></Link>
+                      
                       </>
                     )}
                   </h2>
@@ -83,8 +84,8 @@ const MyFavoritedMovies = () => {
           {savedMovies.map((movie) => (
             <Col
               key={movie.movieId}
-              md="2"
-              className="justify-content-center p-5"
+              md="3"
+              className="justify-content-center p-5 "
             >
               <Card border="dark" className="mb-4 poster-container">
                 {movie.image && (

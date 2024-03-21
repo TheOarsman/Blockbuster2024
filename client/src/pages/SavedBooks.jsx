@@ -6,6 +6,7 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { QUERY_ME } from "../utils/queries";
 import { REMOVE_BOOK } from "../utils/mutations";
+import '../searchMovies.css'
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_ME);
@@ -35,12 +36,16 @@ const SavedBooks = () => {
 
   return (
     <>
-   <Container fluid className='text-center p-3 bg-light viewing-books'>
-  <Row className='mb-2'>
-    <h1>Welcome to the all new Blockbuster Book Collection</h1>
-  </Row>
-  <Row>
-    <h4>
+   <Container fluid className='text-center viewing-books'>
+    <Row>
+  <Row className='justify-content-center pt-2'>
+  <Card className="saved-header-card ">
+  <Card.Header as="h5">
+  {data?.me?.username}'s Blockbuster Book Collection
+  </Card.Header>
+  <Card.Body>
+  <Card.Title>
+  <h2>
       {userData.savedBooks.length > 0 ? (
         <>
           <span className='italic-view-books'>Viewing {userData.savedBooks.length} saved books for</span>{" "}
@@ -52,7 +57,11 @@ const SavedBooks = () => {
           <Link to="/search-books" className="text-decoration-none"><span className='search-now-hover'>Search Now!</span></Link>
         </>
       )}
-    </h4>
+    </h2>
+    </Card.Title>
+    </Card.Body>
+    </Card>
+  </Row>
   </Row>
 </Container>
 

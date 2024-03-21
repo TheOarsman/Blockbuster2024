@@ -169,6 +169,11 @@ const SearchMovies = () => {
                     </Col>
                   </Row>
                   <p className="plot">{movie.Plot}</p>
+                  <Row>
+                    <Col>
+                    <p className = 'Actors'>Actors:{movie.Actors}</p>
+                    </Col>
+                  </Row>
                   <Row className=" item-row">
                     <Col>
                       <p className="item">Directed By: {movie.Director}</p>
