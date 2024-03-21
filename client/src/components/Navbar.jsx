@@ -23,7 +23,7 @@ const AppNavbar = () => {
           <div style={{ paddingLeft: '25px', paddingRight: '25px' }}>
   <Navbar.Toggle aria-controls="navbar" />
 </div>
-<Navbar.Collapse id="navbarCollapse" className="justify-content-end">
+        <Navbar.Collapse id="navbarCollapse">
             <Nav className="mr-auto">
               <Nav.Link
                 as={NavLink}

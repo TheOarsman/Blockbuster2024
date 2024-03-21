@@ -56,7 +56,8 @@ export const saveBook = (bookData) => {
   });
 };
 
-export const saveMovie = (movieData, token) => {
+export const saveMovie = (movieData) => {
+  const token = AuthService.getToken();
   return fetch("/api/users", {
     method: "PUT",
     headers: {
@@ -64,6 +65,8 @@ export const saveMovie = (movieData, token) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(movieData),
+  }).catch((error) => {
+    handleFetchError(error);
   });
 };
 

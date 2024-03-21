@@ -30,7 +30,12 @@ export const SAVE_MOVIE = gql`
       _id
       username
       email
-      savedMovies
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
     }
   }
 `;
@@ -41,7 +46,12 @@ export const REMOVE_MOVIE = gql`
       _id
       username
       email
-      savedMovies
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
     }
   }
 `;

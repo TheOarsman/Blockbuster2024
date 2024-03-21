@@ -9,10 +9,7 @@ import {
   CardBody,
   CardTitle,
 } from "react-bootstrap";
-import StarIcon from "../components/StarIcon";
-
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
-import { saveMovie } from "../utils/API";
 import { useMutation } from "@apollo/client";
 import { handleSearch } from "../utils/movieFetch";
 import Auth from "../utils/auth";
@@ -35,7 +32,7 @@ const SearchMovies = () => {
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
@@ -74,15 +71,21 @@ const SearchMovies = () => {
     }
   
     try {
-      // Call the saveMovie mutation to save the movie
       const { data } = await saveMovie({
-        variables: { movieData: { ...movieToSave } },
+        variables: {
+          movieData: {
+            movieId: movieToSave.imdbID, // Ensure movieId is provided
+            title: movieToSave.Title || "", // Assuming Title is equivalent to title in the schema
+            image: movieToSave.Poster || "", // Assuming Poster is equivalent to image in the schema
+            movieLength: movieToSave.Runtime || "" // Assuming Runtime is equivalent to movieLength in the schema
+          }
+        }
       });
-      console.log(data);
-      console.log("Movie added to favorites:", movieToSave);
+      console.log(savedMovieIds);
+     console.log(data);
   
       // Update the savedMovieIds state with the newly saved movie's ID
-      setSavedMovieIds([...savedMovieIds, movieToSave.movieID]);
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
     } catch (err) {
       console.error(err);
     }
@@ -191,10 +194,22 @@ const SearchMovies = () => {
                       <span>{getRottenTomatoesRating(movie.Ratings)}</span>
                     </Col>
                     <Col>
-                      <StarIcon
-                        onClick={() => handleSaveMovie(movie.imdbID)}
-                        isLoggedIn={isLoggedIn} 
-                      />
+                    {Auth.loggedIn() && (
+                      <Button
+                        disabled={savedMovieIds?.some(
+                          (savedMovieId) => savedMovieId === movie.movieId
+                        )}
+                        className="btn-block btn-info"
+                        onClick={() => handleSaveMovie(movie.movieId)}
+                      >
+                        {savedMovieIds?.some(
+                          (savedId) => savedId === movie.movieId
+                        )
+                          ? "This movie has already been saved!"
+                          : "Save this Movie!"}
+                      </Button>
+                    )}
+                      
                     </Col>
                   </Row>
                   <Row className="item-row pt-4">

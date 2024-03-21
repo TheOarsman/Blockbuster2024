@@ -21,12 +21,10 @@ const typeDefs = `
 
   type Movie {
     _id: ID!
-   plot: String!
    movieId: String!
    image: String
    title: String!
-   rating: Float
-   directors: [String]
+  movieLength: String!
   }
 
   type Auth {
@@ -43,6 +41,13 @@ const typeDefs = `
     title: String!
   }
 
+  input MovieInput {
+    movieId: String!
+    image: String
+    movieLength: String
+    title: String!
+  }
+
   type Query {
     me: User
     users: [User]
@@ -54,6 +59,8 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     saveBook(bookData: BookInput!): User
     removeBook(bookId: ID!): User
+    saveMovie(movieData: MovieInput!): User
+    removeMovie(movieId: ID!): User
   }
 `;
 

@@ -30,3 +30,19 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_MOVIE = gql`
+  query movie {
+    me {
+      _id
+      username
+      email
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
+    }
+  }
+`;
