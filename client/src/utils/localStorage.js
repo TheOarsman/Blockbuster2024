@@ -1,8 +1,8 @@
 // Local Storage for Books
 
 export const getSavedBookIds = () => {
-  const savedBookIds = localStorage.getItem('saved_books')
-    ? JSON.parse(localStorage.getItem('saved_books'))
+  const savedBookIds = localStorage.getItem("saved_books")
+    ? JSON.parse(localStorage.getItem("saved_books"))
     : [];
 
   return savedBookIds;
@@ -10,23 +10,25 @@ export const getSavedBookIds = () => {
 
 export const saveBookIds = (bookIdArr) => {
   if (bookIdArr.length) {
-    localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
+    localStorage.setItem("saved_books", JSON.stringify(bookIdArr));
   } else {
-    localStorage.removeItem('saved_books');
+    localStorage.removeItem("saved_books");
   }
 };
 
 export const removeBookId = (bookId) => {
-  const savedBookIds = localStorage.getItem('saved_books')
-    ? JSON.parse(localStorage.getItem('saved_books'))
+  const savedBookIds = localStorage.getItem("saved_books")
+    ? JSON.parse(localStorage.getItem("saved_books"))
     : null;
 
   if (!savedBookIds) {
     return false;
   }
 
-  const updatedSavedBookIds = savedBookIds?.filter((savedBookId) => savedBookId !== bookId);
-  localStorage.setItem('saved_books', JSON.stringify(updatedSavedBookIds));
+  const updatedSavedBookIds = savedBookIds?.filter(
+    (savedBookId) => savedBookId !== bookId
+  );
+  localStorage.setItem("saved_books", JSON.stringify(updatedSavedBookIds));
 
   return true;
 };
@@ -34,33 +36,34 @@ export const removeBookId = (bookId) => {
 // Local Storage for Movies
 
 export const getSavedMovieIds = () => {
-  const savedMovieIds = localStorage.getItem('saved_movies')
-    ? JSON.parse(localStorage.getItem('saved_movies'))
+  const savedMovieIds = localStorage.getItem("saved_movies")
+    ? JSON.parse(localStorage.getItem("saved_movies"))
     : [];
 
   return savedMovieIds;
 };
 
-
 export const saveMovieIds = (movieIdArr) => {
   if (movieIdArr.length) {
-    localStorage.setItem('saved_movies', JSON.stringify(movieIdArr));
+    localStorage.setItem("saved_movies", JSON.stringify(movieIdArr));
   } else {
-    localStorage.removeItem('saved_movies');
+    localStorage.removeItem("saved_movies");
   }
 };
 
 export const removeMovieId = (movieId) => {
-  const savedMovieIds = localStorage.getItem('saved_movies')
-    ? JSON.parse(localStorage.getItem('saved_movies'))
+  const savedMovieIds = localStorage.getItem("saved_movies")
+    ? JSON.parse(localStorage.getItem("saved_movies"))
     : null;
 
   if (!savedMovieIds) {
     return false;
   }
 
-  const updatedSavedMovieIds = savedMovieIds?.filter((savedMovieId) => savedMovieId !== movieId);
-  localStorage.setItem('saved_movies', JSON.stringify(updatedSavedMovieIds));
+  const updatedSavedMovieIds = savedMovieIds?.filter(
+    (savedMovieId) => savedMovieId !== movieId
+  );
+  localStorage.setItem("saved_movies", JSON.stringify(updatedSavedMovieIds));
 
   return true;
 };

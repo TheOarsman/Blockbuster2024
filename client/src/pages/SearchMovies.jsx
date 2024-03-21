@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { Container, Col, Form, Button, Row } from "react-bootstrap";
+import {
+  Container,
+  Col,
+  Form,
+  Button,
+  Row,
+  Card,
+  CardBody,
+  CardTitle,
+} from "react-bootstrap";
 import StarIcon from "../components/StarIcon";
 
 import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
@@ -58,26 +67,28 @@ const SearchMovies = () => {
       alert("You are not logged in. Please log in to save movies.");
       return;
     }
-  
+
     // Find the movie to save based on its IMDb ID
-    const movieToSave = searchedMovies.find((movie) => movie.imdbID === movieId);
-  
+    const movieToSave = searchedMovies.find(
+      (movie) => movie.imdbID === movieId
+    );
+
     // Get the authentication token
     const token = Auth.getToken();
     if (!token) {
       return;
     }
-  
+
     try {
       // Attempt to save the movie using the saveMovie function
       const response = await saveMovie(movieToSave, token);
-  
+
       // Check if the save operation was successful
       if (!response.ok) {
         // If not, throw an error
         throw new Error("Something went wrong!");
       }
-  
+
       // If the movie was successfully saved, update the savedMovieIds state with the new movie ID
       setSavedMovieIds([...savedMovieIds, movieToSave.imdbID]);
     } catch (err) {
@@ -106,12 +117,12 @@ const SearchMovies = () => {
                   placeholder="Search for a movie"
                 />
               </Col>
-              <Col md="auto">
+              <Col className="align-items-center" md="auto">
                 <Button
                   type="submit"
                   variant="success"
-                  size="lg"
-                  className="mb-4"
+                  size="md"
+                  className="mb-2 mt-2"
                 >
                   Search
                 </Button>
@@ -130,62 +141,86 @@ const SearchMovies = () => {
         </div>
       </Container>
 
-      <Container>
-        <Row>
-          {searchedMovies.map((movie) => (
-            <Col md="4" key={movie.imdbID}>
-              <div className="custom-card">
-                <h1 className="title">{movie.Title}</h1>
-                <Row className="item-row">
-                  <Col>
-                    <p className="item">{movie.Rated}</p>
-                  </Col>
-                  <Col>
-                    <p className="item">{movie.Year}</p>
-                  </Col>
-                  <Col>
-                    <p className="item">{movie.Genre}</p>
-                  </Col>
-                  <Col>
-                    <p className="item">{movie.Runtime}</p>
-                  </Col>
-                </Row>
-                <p className="plot">{movie.Plot}</p>
-                <Row className="item-row">
-                  <Col>
-                    <p className="item">Directed By: {movie.Director}</p>
-                  </Col>
-                  <Col>
-                    <p className="item">Written By: {movie.Writer}</p>
-                  </Col>
-                </Row>
-                <div className="social-btn">
-                  <div className="imdb-info">
-                    <button>
-                      <i className="fas fa-play"></i> View on IMDB
-                    </button>
-                    <img src={imdbLogo} alt="IMDB" />
-                    <span>{movie.imdbRating}</span>
-                    <img src={tomatoesLogo} alt="IMDB" />
-                    <span>{getRottenTomatoesRating(movie.Ratings)}</span>
-                    <StarIcon
-                      onClick={() => handleSaveMovie(movie.imdbID)}
-                      isLoggedIn={isLoggedIn} // Assuming isLoggedIn is a state that indicates whether the user is logged in
-                    />
+      <Container className="p-4">
+        {searchedMovies.map((movie) => (
+          <Card key={movie.imdbID}>
+            <CardBody className="movie-card">
+              <Row>
+                <Col md="4">
+                  <div className="poster">
+                    <img src={movie.Poster} alt={movie.Title} />
                   </div>
-                </div>
-                <div className="column">{/* Box office information */}</div>
-                <Row>
-                  <Col md={{ span: 12, offset: 12 }}>
-                    <div className="poster">
-                      <img src={movie.Poster} alt={movie.Title} />
-                    </div>
-                  </Col>
-                </Row>
-              </div>
-            </Col>
-          ))}
-        </Row>
+                </Col>
+                <Col md="8">
+                  <CardTitle className="movie-title" as="h1">
+                    {movie.Title}
+                  </CardTitle>
+                  <Row className="item-row">
+                    <Col>
+                      <p className="item">{movie.Rated}</p>
+                    </Col>
+                    <Col>
+                      <p className="item">{movie.Year}</p>
+                    </Col>
+                    <Col>
+                      <p className="item">{movie.Genre}</p>
+                    </Col>
+                    <Col>
+                      <p className="item">{movie.Runtime}</p>
+                    </Col>
+                  </Row>
+                  <p className="plot">{movie.Plot}</p>
+                  <Row className=" item-row">
+                    <Col>
+                      <p className="item">Directed By: {movie.Director}</p>
+                    </Col>
+                    <Col>
+                      <p className="item">Written By: {movie.Writer}</p>
+                    </Col>
+                  </Row>
+                  <Row className=" p-3 align-items-center icon-row">
+                    <Col>
+                      <button>
+                        <a
+                          href={`https://www.imdb.com/title/${movie.imdbID}/?ref_=fn_al_tt_1`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fas fa-play"></i> View on IMDB
+                        </a>
+                      </button>
+                    </Col>
+                    <Col>
+                      <img src={imdbLogo} alt="IMDB" />
+
+                      <span>{movie.imdbRating}</span>
+                    </Col>
+                    <Col>
+                      <img src={tomatoesLogo} alt="IMDB" />
+                      <span>{getRottenTomatoesRating(movie.Ratings)}</span>
+                    </Col>
+                    <Col>
+                      <StarIcon
+                        onClick={() => handleSaveMovie(movie.imdbID)}
+                        isLoggedIn={isLoggedIn} // Assuming isLoggedIn is a state that indicates whether the user is logged in
+                      />
+                    </Col>
+                  </Row>
+                  <Row className="item-row pt-4">
+                    <Col>
+                      <p className="item">
+                        Box Office Sales: {movie.BoxOffice}
+                      </p>
+                    </Col>
+                    <Col>
+                      <p className="item"> {movie.Awards}</p>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
+        ))}
       </Container>
     </>
   );

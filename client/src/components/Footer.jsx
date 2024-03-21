@@ -1,67 +1,129 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
 import { Container, Col, Row } from "react-bootstrap";
-
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "../footer.css";
 
 const Footer = () => {
-
   return (
-    <>
     <footer className="footer">
-        <Container fluid>
-            {/* Sections for our developer info (GitHub, LinkedIn, some third thing) */}
-            <Row className="header">The Developers</Row>
+      <Container>
+        {/* Sections for our developer info (GitHub, LinkedIn, some third thing) */}
+        <Row>
+          <Col className="text-center">
             <Row>
-                <Col>
-                    Ethan Wynne
-                    <ul>
-                        <li><a href="https://github.com/ethanfrog">GitHub</a></li>
-                        <li><a href="https://www.linkedin.com/in/ethan-wynne-b2a956161/">LinkedIn</a></li>
-                        <li></li>
-                    </ul>
-                </Col>
-                <Col>
-                    Whitney Simpson
-                    <ul>
-                        <li><a href="">GitHub</a></li>
-                        <li><a href="">LinkedIn</a></li>
-                        <li></li>
-                    </ul>
-                </Col>
-                <Col>
-                    Heinz Ulrich
-                    <ul>
-                        <li><a href="">GitHub</a></li>
-                        <li><a href="">LinkedIn</a></li>
-                        <li></li>
-                    </ul>
-                </Col>
-                <Col>
-                    Greg Greve
-                    <ul>
-                        <li><a href="">GitHub</a></li>
-                        <li><a href="">LinkedIn</a></li>
-                        <li></li>
-                    </ul>
-                </Col>
-                <Col>
-                    Nicholas Eggleston
-                    <ul>
-                        <li><a href="">GitHub</a></li>
-                        <li><a href="">LinkedIn</a></li>
-                        <li></li>
-                    </ul>
-                </Col>
+              {/* Developer 1 */}
+              <Col>
+                <Col>Ethan Wynne</Col>
+
+                <a
+                  href="https://github.com/ethanfrog"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaGithub className="icon" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/ethan-wynne-b2a956161"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaLinkedin className="icon" />
+                </a>
+              </Col>
+              <Col>
+                <Col>Whitney Simpson</Col>
+
+                <a
+                  href="https://github.com/Whitney-Simpson"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaGithub className="icon" />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/whitneysimpson/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaLinkedin className="icon" />
+                </a>
+              </Col>
+              <Col>
+                <Col>Heinz Ulrich</Col>
+
+                <a
+                  href="https://github.com/TheOarsman"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaGithub className="icon" />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/heinz-ulrich/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaLinkedin className="icon" />
+                </a>
+              </Col>
+              <Col>
+                <Col>Greg Greve</Col>
+
+                <a
+                  href="https://github.com/Goobergreve09"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaGithub className="icon" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/greg-greve/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaLinkedin className="icon" />
+                </a>
+              </Col>
+              <Col>
+                <Col>Nicholas Eggleston </Col>
+
+                <a
+                  href="https://github.com/nickegg11"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaGithub className="icon" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/greg-greve/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-light mx-2"
+                >
+                  <FaLinkedin className="icon" />
+                </a>
+              </Col>
             </Row>
-            <Row className="footer-copyright">
-                <Col className="text-center">&copy; BLOCKBUSTER 2024 &copy;
-                All Rights Reserved</Col>
-            </Row>
-        </Container>
+          </Col>
+        </Row>
+        <Row className="footer-copyright pt-4 ">
+          <Col className="d-flex justify-content-center">
+            The Developing Community &copy; BLOCKBUSTER 2024 &copy; All Rights
+            Reserved
+          </Col>
+        </Row>
+      </Container>
     </footer>
-    </>
   );
 };
 

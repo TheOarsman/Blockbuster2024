@@ -1,23 +1,25 @@
 .original-site-card {
-    text-align: center;
-    font-size: large;
+  text-align: center;
+  font-size: large;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
-
-
 .home-container {
-
-    padding-top: 25px;
-    padding-bottom: 25px;
-    border-radius: 25px;
-
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 25px;
 }
 
 .membershipCol {
-    padding-top: 25px;
+  padding-top: 25px;
+  padding-bottom: 150px;
 }
 
 .img-header-row {
   text-align: center;
   padding-bottom: 25px;
+}
+
+.card-box-shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }

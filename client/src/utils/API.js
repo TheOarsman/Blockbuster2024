@@ -40,7 +40,6 @@ export const getMe = () => {
     });
 };
 
-
 // save book data for a logged in user
 export const saveBook = (bookData) => {
   const token = AuthService.getToken();
@@ -57,12 +56,11 @@ export const saveBook = (bookData) => {
   });
 };
 
-
 export const saveMovie = (movieData, token) => {
-  return fetch('/api/users', {
-    method: 'PUT',
+  return fetch("/api/users", {
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(movieData),
@@ -101,5 +99,3 @@ export const deleteMovie = (movieId) => {
 export const searchGoogleBooks = (query) => {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };
-
-

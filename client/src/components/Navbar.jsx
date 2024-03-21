@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
@@ -23,20 +23,36 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/search-books">
+              <Nav.Link
+                as={NavLink}
+                to="/search-books"
+                activeClassName="active"
+              >
                 Book Search
               </Nav.Link>
-              <Nav.Link as={Link} to="/search-movies">
+              <Nav.Link
+                as={NavLink}
+                to="/search-movies"
+                activeClassName="active"
+              >
                 Movie Search
               </Nav.Link>
             </Nav>
             <Nav>
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved-books">
+                  <Nav.Link
+                    as={NavLink}
+                    to="/saved-books"
+                    activeClassName="active"
+                  >
                     Book Collection
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/favorite-movies">
+                  <Nav.Link
+                    as={NavLink}
+                    to="/favorite-movies"
+                    activeClassName="active"
+                  >
                     Favorite Movies
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
