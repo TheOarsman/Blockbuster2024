@@ -3,6 +3,8 @@
 }
 
 .cardText {
-  margin-top: 6.5rem;
+  margin-top: 6.75rem;
   margin-left: 4.75rem;
+  color: white;
+  font-size: 12px;
 }

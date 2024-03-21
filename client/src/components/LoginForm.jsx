@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
-
+import MemberCard from "./MemberCard";
+import "../membercard.css"; // Import the CSS file
 
 const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [login, {error}] = useMutation(LOGIN)
+  const [login, { error }] = useMutation(LOGIN);
+
+  // settings for barcode generation based on username input
+  const [paddedUsername, setPaddedUsername] = useState("");
+  useEffect(() => {
+    setPaddedUsername(
+      userFormData.username ? userFormData.username.padEnd(20, ".") : ""
+    );
+  }, [userFormData.username]);
+
+  // sets the "User Since" date on MemberCard
+  const memberSince = new Date(Date.now()).toLocaleDateString();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -28,11 +40,10 @@ const LoginForm = () => {
     }
 
     try {
-      const {data} = await login({
-        variables: {...userFormData}
-      })
+      const { data } = await login({
+        variables: { ...userFormData },
+      });
 
-      
       console.log(data);
       Auth.login(data.login.token);
     } catch (err) {
@@ -41,14 +52,18 @@ const LoginForm = () => {
     }
 
     setUserFormData({
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
   };
 
   return (
     <>
+      <div className="membership-card">
+        <MemberCard paddedUsername={paddedUsername} memberSince={memberSince} />
+      </div>
+      <br></br>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert
           dismissible
