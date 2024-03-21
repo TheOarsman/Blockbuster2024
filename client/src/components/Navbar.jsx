@@ -33,10 +33,10 @@ const AppNavbar = () => {
             <Nav>
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/saved-books">
                     Book Collection
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/favorite-movies">
                     Favorite Movies
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>

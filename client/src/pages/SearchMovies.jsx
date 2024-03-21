@@ -53,28 +53,35 @@ const SearchMovies = () => {
   };
 
   const handleSaveMovie = async (movieId) => {
+    // Check if the user is logged in
     if (!isLoggedIn) {
       alert("You are not logged in. Please log in to save movies.");
       return;
     }
   
+    // Find the movie to save based on its IMDb ID
     const movieToSave = searchedMovies.find((movie) => movie.imdbID === movieId);
   
+    // Get the authentication token
     const token = Auth.getToken();
     if (!token) {
       return;
     }
   
     try {
+      // Attempt to save the movie using the saveMovie function
       const response = await saveMovie(movieToSave, token);
   
+      // Check if the save operation was successful
       if (!response.ok) {
+        // If not, throw an error
         throw new Error("Something went wrong!");
       }
   
-      // If movie successfully saves to user's account, save movie ID to state
+      // If the movie was successfully saved, update the savedMovieIds state with the new movie ID
       setSavedMovieIds([...savedMovieIds, movieToSave.imdbID]);
     } catch (err) {
+      // If an error occurs during the save operation, log the error to the console
       console.error(err);
     }
   };

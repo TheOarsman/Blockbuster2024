@@ -2,7 +2,6 @@ import { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '../searchMovies.css';
 
-
 const StarIcon = ({ onClick, isLoggedIn }) => {
   const [isStarred, setIsStarred] = useState(false);
 
