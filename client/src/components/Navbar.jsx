@@ -28,14 +28,14 @@ const AppNavbar = () => {
               <Nav.Link
                 as={NavLink}
                 to="/search-books"
-                activeClassName="active"
+                activeclassname="active"
               >
                 Book Search
               </Nav.Link>
               <Nav.Link
                 as={NavLink}
                 to="/search-movies"
-                activeClassName="active"
+                activeclassname="active"
               >
                 Movie Search
               </Nav.Link>
@@ -46,7 +46,7 @@ const AppNavbar = () => {
                   <Nav.Link
                     as={NavLink}
                     to="/saved-books"
-                    activeClassName="active"
+                    activeclassname="active"
                   >
                     Book Collection
                     
@@ -54,7 +54,7 @@ const AppNavbar = () => {
                   <Nav.Link
                     as={NavLink}
                     to="/favorite-movies"
-                    activeClassName="active"
+                    activeclassname="active"
                   >
                     Favorite Movies
                   </Nav.Link>

@@ -76,6 +76,9 @@ class Home extends React.Component {
                   Becoming a Blockbuster member gives you access to our infinite
                   movie and book catalogs for you to save into storage!
                 </Card.Text>
+                <Button variant="primary" href="/#">
+                  Sign Up Here!
+                </Button>
               </Card.Body>
             </Card>
           </Col>

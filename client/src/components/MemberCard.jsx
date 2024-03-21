@@ -15,9 +15,9 @@ function MemberCard({ username, email, paddedUsername, memberSince }) {
         <Card.Title>Email: {email}</Card.Title>
         <Card.Text>
           <ReactBarcode
-            value={paddedUsername}
+            value={paddedUsername.padEnd(20, ".")}
             width={1.4} // Set the width of the bars
-            height={15} // Set the height of the bars
+            height={14} // Set the height of the bars
             format="CODE128" // Specify the barcode format
             displayValue={false} // Hide the human-readable text
             textPosition="none" // Hide the text completely
