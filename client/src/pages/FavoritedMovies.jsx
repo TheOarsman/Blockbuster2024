@@ -1,10 +1,10 @@
 // MyFavoritedMovies.jsx
 
-import { useState, useEffect } from 'react';
-import { Container, Card, Button, Row, Col } from 'react-bootstrap';
-import { getMe, deleteMovie } from '../utils/API'; 
-import Auth from '../utils/auth';
-import { removeMovieId } from '../utils/localStorage'; 
+import { useState, useEffect } from "react";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import { getMe, deleteMovie } from "../utils/API";
+import Auth from "../utils/auth";
+import { removeMovieId } from "../utils/localStorage";
 
 const MyFavoritedMovies = () => {
   const [userData, setUserData] = useState({});
@@ -23,7 +23,7 @@ const MyFavoritedMovies = () => {
         const response = await getMe(token);
 
         if (!response.ok) {
-          throw new Error('something went wrong!');
+          throw new Error("something went wrong!");
         }
 
         const user = await response.json();
@@ -48,27 +48,39 @@ const MyFavoritedMovies = () => {
         </Container>
       </div>
       <Container>
-        <h2 className='pt-5'>
+        <h2 className="pt-5">
           {userData.savedMovies && userData.savedMovies.length
-            ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
-            : 'You have no saved movies!'}
+            ? `Viewing ${userData.savedMovies.length} saved ${
+                userData.savedMovies.length === 1 ? "movie" : "movies"
+              }:`
+            : "You have no saved movies!"}
         </h2>
         <Row>
-          {userData.savedMovies && userData.savedMovies.map((movie) => {
-            return (
-              <Col key={movie.id} md="4">
-                <Card border='dark'>
-                  {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
-                  <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.id)}>
-                      Delete this Movie!
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
-          })}
+          {userData.savedMovies &&
+            userData.savedMovies.map((movie) => {
+              return (
+                <Col key={movie.id} md="4">
+                  <Card border="dark">
+                    {movie.image ? (
+                      <Card.Img
+                        src={movie.image}
+                        alt={`The cover for ${movie.title}`}
+                        variant="top"
+                      />
+                    ) : null}
+                    <Card.Body>
+                      <Card.Title>{movie.title}</Card.Title>
+                      <Button
+                        className="btn-block btn-danger"
+                        onClick={() => handleDeleteMovie(movie.id)}
+                      >
+                        Delete this Movie!
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
         </Row>
       </Container>
     </>
@@ -76,4 +88,3 @@ const MyFavoritedMovies = () => {
 };
 
 export default MyFavoritedMovies;
-

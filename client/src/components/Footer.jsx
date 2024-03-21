@@ -7,8 +7,8 @@ const Footer = () => {
     <footer className="footer">
       <Container>
         {/* Sections for our developer info (GitHub, LinkedIn, some third thing) */}
-        <Row>
-          <Col className="text-center">
+        <Row className="text-center" style={{ flexWrap: 'wrap' }}>
+          <Col>
             <Row>
               {/* Developer 1 */}
               <Col>

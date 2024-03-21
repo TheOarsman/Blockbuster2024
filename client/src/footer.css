@@ -12,10 +12,6 @@
   margin-top: auto;
 }
 
-.footer .header {
-  font-size: 1.2rem;
-}
-
 .footer-copyright {
   font-size: small;
   font-style: italic;
@@ -28,4 +24,12 @@
 .icon:hover {
   color: #f9ba1f;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .footer {
+    height: auto; /* Adjust height for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+    font-size: 14px;
+  }
 }

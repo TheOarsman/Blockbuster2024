@@ -8,3 +8,9 @@
 .navbar-logo {
   width: 200px;
 }
+
+@media (max-width: 450px) {
+  .custom-navbar {
+    width: 450px; /* Set a fixed width for screens smaller than 450px */
+  }
+}

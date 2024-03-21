@@ -11,7 +11,7 @@ import "../home.css";
 class Home extends React.Component {
   render() {
     return (
-      <Container className="home-container">
+      <Container className="home-container align-items-center">
         <Row className="img-header-row">
           <Col className="justify-content-center">
             <img
@@ -21,8 +21,8 @@ class Home extends React.Component {
             />
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row className="originalRow">
+          <Col className="originalCol">
             <Card className="original-site-card">
               <Card.Header>Take a Step back in time!</Card.Header>
               <Card.Body>
@@ -50,8 +50,8 @@ class Home extends React.Component {
             </Card>
           </Col>
         </Row>
-        <Row className="justify-content-center">
-          <Col className="d-flex justify-content-center pt-4">
+        <Row className="youtubeRow pt-4">
+          <Col>
             <div className="youtube-container">
               <YouTube videoId="rTVkUHrprk8" />
             </div>

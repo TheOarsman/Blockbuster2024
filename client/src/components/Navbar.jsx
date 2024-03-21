@@ -20,8 +20,10 @@ const AppNavbar = () => {
           <Navbar.Brand as={Link} to="/">
             <img src={Logo} alt="Blockbuster 2024" className="navbar-logo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar" />
-          <Navbar.Collapse id="navbar">
+          <div style={{ paddingLeft: '25px', paddingRight: '25px' }}>
+  <Navbar.Toggle aria-controls="navbar" />
+</div>
+<Navbar.Collapse id="navbarCollapse" className="justify-content-end">
             <Nav className="mr-auto">
               <Nav.Link
                 as={NavLink}
