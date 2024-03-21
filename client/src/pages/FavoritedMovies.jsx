@@ -1,15 +1,37 @@
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
+
+// Utils and Query imports
+
 import { QUERY_MOVIE } from "../utils/queries";
 import { removeMovieId } from "../utils/localStorage";
 import { REMOVE_MOVIE } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
-import { Badge } from "react-bootstrap";
+
+// Icon and design imports
+
+import { Container, Card, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaVideo } from "react-icons/fa";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import "../myFavoritedmovies.css";
 
 const MyFavoritedMovies = () => {
   const { loading, data } = useQuery(QUERY_MOVIE);
   const [removeMovieMutation] = useMutation(REMOVE_MOVIE);
+  const [savedMovies, setSavedMovies] = useState([]);
+
+  useEffect(() => {
+    if (!loading && data) {
+      // Sort saved movies alphabetically
+      const sortedMovies = [...data.me.savedMovies].sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+      setSavedMovies(sortedMovies);
+    }
+  }, [loading, data]);
 
   const handleDeleteMovie = async (movieId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -20,8 +42,8 @@ const MyFavoritedMovies = () => {
       await removeMovieMutation({
         variables: { movieId: movieId },
       });
-      // Upon success, remove movie's id from localStorage
       removeMovieId(movieId);
+      setSavedMovies(savedMovies.filter((movie) => movie.movieId !== movieId));
     } catch (err) {
       console.error(err);
     }
@@ -29,66 +51,81 @@ const MyFavoritedMovies = () => {
 
   if (loading) return <h2>Loading...</h2>;
 
-  const userData = data?.me || {};
-
-  console.log("UserData:", userData);
-  console.log("Saved Movies:", userData.savedMovies);
-
   return (
     <>
-      <div className="text-light bg-dark p-5">
-        <Container fluid className="text-center p-3 bg-light viewing-books">
-          <Row className="mb-2">
-            <h1>All-Time-Movie Collection for</h1>
+      <Container fluid className="full-container">
+        <Row>
+          <Row className="justify-content-center pt-2">
+            <Card className="saved-header-card ">
+              <Card.Header as="h5">
+                {data?.me?.username}'s All-Time-Favorite-Movie-Collection
+              </Card.Header>
+              <Card.Body>
+                <Card.Title>
+                  <h2 className="saved-movie-header">
+                    {savedMovies.length ? (
+                      `Viewing ${savedMovies.length} saved ${
+                        savedMovies.length === 1 ? "movie" : "movies"
+                      }:`
+                    ) : (
+                      <>
+                        You have no saved movies.{" "}
+                        <span className="search-link">
+                          <Link to="/search-movies">Search now!</Link>
+                        </span>
+                      </>
+                    )}
+                  </h2>
+                </Card.Title>
+              </Card.Body>
+            </Card>
           </Row>
-          <Row>
-            <h4>
-              {userData.savedMovies.length > 0 ? (
-                <>
-                  <span className="italic-view-books">Viewing {userData.savedMovies.length} saved movies for</span>{" "}
-                  <Badge bg="primary">{userData.username}</Badge>
-                </>
-              ) : (
-                <>
-                  You have no saved movies.{" "}
-                  <Link to="/search-movies" className="text-decoration-none">
-                    <span className="search-now-hover">Search Now!</span>
-                  </Link>
-                </>
-              )}
-            </h4>
-          </Row>
-        </Container>
-      </div>
-      <Container style={{ marginBottom: "150px", padding: "10px" }}>
-  <Row>
-    {userData.savedMovies && userData.savedMovies.length > 0 && userData.savedMovies.map((movie) => (
-      <Col key={movie.movieId} md="2">
-        <Card border="dark">
-          {movie.image ? (
-            <Card.Img
-              src={movie.image}
-              alt={`The cover for ${movie.title}`}
-              variant="top"
-              style={{ height: "300px"}} // Set maximum height here
-            />
-          ) : null}
-          <Card.Body>
-            <Button
-              className="btn-block btn-danger"
-              onClick={() => handleDeleteMovie(movie.movieId)}
+          {savedMovies.map((movie) => (
+            <Col
+              key={movie.movieId}
+              md="2"
+              className="justify-content-center p-5"
             >
-              Delete this Movie!
-            </Button>
-          </Card.Body>
-        </Card>
-      </Col>
-    ))}
-  </Row>
-</Container>
+              <Card border="dark" className="mb-4 poster-container">
+                {movie.image && (
+                  <div className="card-image-container">
+                    <a
+                      href={`https://www.imdb.com/title/${movie.movieId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="imdb-link"
+                    >
+                      <div className="icon-container">
+                        <FaVideo className="video-icon" />
+                      </div>
+                    </a>
+                    <Card.Img
+                      src={movie.image}
+                      alt={`The cover for ${movie.title}`}
+                      variant="top"
+                      style={{ height: "400px" }}
+                    />
+                    <div className="delete-icon-container">
+                      <div className="icon-container">
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className="delete-icon"
+                          onClick={() => handleDeleteMovie(movie.movieId)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <Card.Body>
+                  <Card.Title>{movie.title}</Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </>
   );
 };
 
 export default MyFavoritedMovies;
-

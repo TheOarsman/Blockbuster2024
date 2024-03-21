@@ -1,4 +1,15 @@
 import { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+
+// import utils
+
+import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
+import { handleSearch } from "../utils/movieFetch";
+import Auth from "../utils/auth";
+import { SAVE_MOVIE } from "../utils/mutations";
+
+// import Logos and Css
+
 import {
   Container,
   Col,
@@ -9,15 +20,9 @@ import {
   CardBody,
   CardTitle,
 } from "react-bootstrap";
-import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
-import { useMutation } from "@apollo/client";
-import { handleSearch } from "../utils/movieFetch";
-import Auth from "../utils/auth";
-import { SAVE_MOVIE } from "../utils/mutations";
 import "../searchMovies.css";
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
-
 import "@fortawesome/fontawesome-free/css/all.css";
 
 const getRottenTomatoesRating = (ratings) => {
@@ -32,7 +37,6 @@ const SearchMovies = () => {
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
-
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
@@ -58,18 +62,17 @@ const SearchMovies = () => {
     } catch (err) {
       console.error(err);
     }
-  };const handleSaveMovie = async (movieId) => {
-    // Find the movie to save based on its IMDb ID
+  };
+  const handleSaveMovie = async (movieId) => {
     const movieToSave = searchedMovies.find(
       (movie) => movie.movieID === movieId
     );
-  
-    // Get the authentication token
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
     }
-  
+
     try {
       const { data } = await saveMovie({
         variables: {
@@ -77,15 +80,17 @@ const SearchMovies = () => {
             movieId: movieToSave.imdbID, // Ensure movieId is provided
             title: movieToSave.Title || "", // Assuming Title is equivalent to title in the schema
             image: movieToSave.Poster || "", // Assuming Poster is equivalent to image in the schema
-            movieLength: movieToSave.Runtime || "" // Assuming Runtime is equivalent to movieLength in the schema
-          }
-        }
+            movieLength: movieToSave.Runtime || "", // Assuming Runtime is equivalent to movieLength in the schema
+          },
+        },
       });
-      console.log(savedMovieIds);
-     console.log(data);
-  
+
       // Update the savedMovieIds state with the newly saved movie's ID
-      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+      const updatedSavedMovieIds = [...savedMovieIds, movieToSave.movieId];
+      setSavedMovieIds(updatedSavedMovieIds);
+
+      // Update local storage with the updated savedMovieIds array
+      saveMovieIds(updatedSavedMovieIds);
     } catch (err) {
       console.error(err);
     }
@@ -194,22 +199,21 @@ const SearchMovies = () => {
                       <span>{getRottenTomatoesRating(movie.Ratings)}</span>
                     </Col>
                     <Col>
-                    {Auth.loggedIn() && (
-                      <Button
-                        disabled={savedMovieIds?.some(
-                          (savedMovieId) => savedMovieId === movie.movieId
-                        )}
-                        className="btn-block btn-info"
-                        onClick={() => handleSaveMovie(movie.movieId)}
-                      >
-                        {savedMovieIds?.some(
-                          (savedId) => savedId === movie.movieId
-                        )
-                          ? "This movie has already been saved!"
-                          : "Save this Movie!"}
-                      </Button>
-                    )}
-                      
+                      {Auth.loggedIn() && (
+                        <Button
+                          disabled={savedMovieIds?.some(
+                            (savedMovieId) => savedMovieId === movie.movieId
+                          )}
+                          className="btn-block btn-info"
+                          onClick={() => handleSaveMovie(movie.movieId)}
+                        >
+                          {savedMovieIds?.some(
+                            (savedId) => savedId === movie.movieId
+                          )
+                            ? "This movie has already been saved!"
+                            : "Save this Movie!"}
+                        </Button>
+                      )}
                     </Col>
                   </Row>
                   <Row className="item-row pt-4">

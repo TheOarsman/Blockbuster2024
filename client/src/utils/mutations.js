@@ -93,3 +93,20 @@ export const REMOVE_BOOK = gql`
     }
   }
 `;
+
+
+export const UPDATE_MOVIE_ORDER = gql`
+  mutation updateMovieOrder($movieIds: [ID]!) {
+    updateMovieOrder(movieIds: $movieIds) {
+      _id
+      username
+      email
+      savedMovies {
+        movieId
+        title
+        image
+        movieLength
+      }
+    }
+  }
+`;

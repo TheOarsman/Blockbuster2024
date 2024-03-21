@@ -61,6 +61,7 @@ const typeDefs = `
     removeBook(bookId: ID!): User
     saveMovie(movieData: MovieInput!): User
     removeMovie(movieId: ID!): User
+    updateMovieOrder(movieIds: [ID]!): User
   }
 `;
 
