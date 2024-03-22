@@ -9,6 +9,7 @@ import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
 
 import bookImage from "../assets/images/noWifibook.png";
+import '../styles/searchMovies.css'
 
 const SearchBooks = () => {
   // create state for holding returned google api data

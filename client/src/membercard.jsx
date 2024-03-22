@@ -1,6 +1,6 @@
-import React from "react";
+
 import useState from "NeedsToBeMade";
-import "./MembershipCard.css"; // Import CSS file for styling
+import "./styles/MembershipCard.css"; // Import CSS file for styling
 
 const MembershipCard = () => {
   const [userInfo, setUserInfo] = useState({

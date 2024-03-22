@@ -81,28 +81,13 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
-.viewing-books  {
-  font-family: "Oxygen", sans-serif ;
- 
+
+.poster-container {
+  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.9);
 }
 
-.italic-view-books {
-  font-style: italic;
-}
 
-.search-now-hover{
-  color:#57A3DB ;
-}
-
-.search-now-hover:hover {
-color: #2485CC ;
-}
-
-.saved-header-card h2 {
-color:black;
-}
-
-.background-image{
+.search-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -110,18 +95,15 @@ color:black;
   height: 100%;
   padding: 0;
   margin: 0;
- background-image: url(https://images.alphacoders.com/132/1326370.png);
+ background-image: url(https://i.ytimg.com/vi/_tOW_LCB23I/maxresdefault.jpg);
  background-position: center;
+ background-size: cover;
  background-repeat: no-repeat;
   overflow-y: auto;
-  margin-top: 100px
+  margin-top: 100px;
 }
 
-.poster-container {
-  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.9);
-}
-
-.book-card {
-  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.3);
+.card-margin {
+  margin-bottom: 265px;
 }
 
