@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaVideo } from "react-icons/fa";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import "../myFavoritedmovies.css";
+import "../css/myFavoritedmovies.css";
 
 const MyFavoritedMovies = () => {
   const { loading, data } = useQuery(QUERY_MOVIE);

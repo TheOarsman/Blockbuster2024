@@ -1,5 +1,5 @@
 import blockbusterLogo from "../assets/images/BlockbusterOriginalLogo.png";
-import "../ErrorPage.css"; // Import CSS file for styling
+import "../css/ErrorPage.css"; // Import CSS file for styling
 
 const ErrorPage = () => {
   return (
