@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { Container, Row, Col } from "react-bootstrap";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";

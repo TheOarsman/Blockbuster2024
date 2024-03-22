@@ -20,7 +20,7 @@ import {
   CardBody,
   CardTitle,
 } from "react-bootstrap";
-
+import "../css/searchMovies.css";
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
 import blockbusterLogo from '../assets/images/BlockbusterOriginalLogo.png'

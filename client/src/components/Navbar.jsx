@@ -4,7 +4,7 @@ import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-import "../styles/nav.css";
+import "../css/nav.css";
 import Logo from "../assets/images/BlockbusterNoBackground.png";
 
 import Auth from "../utils/auth";

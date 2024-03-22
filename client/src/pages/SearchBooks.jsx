@@ -9,7 +9,7 @@ import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
 
 import blockbusterLogo from "../assets/images/BlockbusterOriginalLogo.png";
-import "../styles/searchBooks.css";
+import "../css/searchBooks.css";
 
 const SearchBooks = () => {
   // create state for holding returned google api data

@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 import MemberCard from "./MemberCard";
-import "../styles/membercard.css"; 
+import "../css/membercard.css"; 
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({
