@@ -102,3 +102,26 @@ color: #2485CC ;
 color:black;
 }
 
+.background-image{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+ background-image: url(https://images.alphacoders.com/132/1326370.png);
+ background-position: center;
+ background-repeat: no-repeat;
+  overflow-y: auto;
+  margin-top: 100px
+}
+
+.poster-container {
+  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.9);
+}
+
+.book-card {
+  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.3);
+}
+

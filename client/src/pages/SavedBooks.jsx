@@ -36,9 +36,10 @@ const SavedBooks = () => {
 
   return (
     <>
-   <Container fluid className='text-center viewing-books'>
+   <Container fluid className='background-image'>
+    <Container>
     <Row>
-  <Row className='justify-content-center pt-2'>
+  <Row className='justify-content-center pt-2 pb-4'>
   <Card className="saved-header-card ">
   <Card.Header as="h5">
   {data?.me?.username}'s Blockbuster Book Collection
@@ -64,13 +65,12 @@ const SavedBooks = () => {
   </Row>
   </Row>
 </Container>
-
-      <Container style={{ marginBottom: "150px", padding: "10px" }}>
-        <Row>
+      <Container style={{ marginBottom:'300px', padding: "10px" }}>
+        <Row className = 'p-5 bookRow'>
           {userData.savedBooks.map((book) => {
             return (
-              <Col md="4" key={book.bookId}>
-                <Card border="dark">
+              <Col md="4" className = 'p-3' key={book.bookId}>
+                <Card className = 'book-card' border="light">
                   {book.image ? (
                     <Card.Img
                       src={book.image}
@@ -94,6 +94,7 @@ const SavedBooks = () => {
             );
           })}
         </Row>
+      </Container>
       </Container>
     </>
   );
