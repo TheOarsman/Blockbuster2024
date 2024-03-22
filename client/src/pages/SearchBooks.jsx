@@ -147,12 +147,12 @@ const SearchBooks = () => {
           </Row>
         </Container>
 
-        <Container style={{ marginBottom: "150px" }}>
+        <Container style={{ marginBottom: "250px" }}>
           <Row>
             {searchedBooks.map((book) => {
               return (
-                <Col md="4" key={book.bookId} style={{ paddingTop: "25px" }}>
-                  <Card className="card-box-shadow " border="dark">
+                <Col className = 'p-4'md="4" key={book.bookId} style={{ paddingTop: "25px" }}>
+                  <Card className="card-box-shadow-books " border="light">
                     {book.image ? (
                       <Card.Img
                         src={book.image}

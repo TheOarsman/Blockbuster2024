@@ -54,7 +54,6 @@ const MyFavoritedMovies = () => {
   return (
     <>
       <Container fluid className="full-container">
-        <Row>
           <Row className="justify-content-center pt-2">
             <Card className="saved-header-card ">
               <Card.Header as="h5">
@@ -77,17 +76,18 @@ const MyFavoritedMovies = () => {
                       </>
                     )}
                   </h2>
+                  <Card.Text><p>Movies are shown in alphabetical order from a to z</p></Card.Text>
                 </Card.Title>
               </Card.Body>
             </Card>
           </Row>
+          <Container className = 'movies-container' style={{ marginBottom: '200px' }} >
+          <Row className= 'movie-row'  >
           {savedMovies.map((movie) => (
-            <Col
-              key={movie.movieId}
-              md="3"
-              className="justify-content-center p-5 "
-            >
-              <Card border="dark" className="mb-4 poster-container">
+    
+            
+         <Col  key={movie.movieId} xs={12} sm={6} md={4} lg={3} xl={2} className="movie-column" >
+              <Card border="light" className="mb-4 poster-container" style={{ minWidth: '300px' }}>
                 {movie.image && (
                   <div className="card-image-container">
                     <a
@@ -122,8 +122,10 @@ const MyFavoritedMovies = () => {
                 </Card.Body>
               </Card>
             </Col>
+                        
           ))}
-        </Row>
+</Row>
+                        </Container>
       </Container>
     </>
   );
