@@ -9,6 +9,7 @@ import SearchMovies from "./pages/SearchMovies";
 import FavoriteMovies from "./pages/FavoritedMovies";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/favorite-movies",
         element: <FavoriteMovies />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

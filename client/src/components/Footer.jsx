@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer">
       <Container>
         {/* Sections for our developer info (GitHub, LinkedIn, some third thing) */}
-        <Row className="text-center" style={{ flexWrap: 'wrap' }}>
+        <Row className="text-center" style={{ flexWrap: "wrap" }}>
           <Col>
             <Row>
               {/* Developer 1 */}
@@ -65,7 +65,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/heinz-ulrich/"
+                  href="https://www.linkedin.com/in/heinz-ulrich-v-3a3486a0/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-light mx-2"
