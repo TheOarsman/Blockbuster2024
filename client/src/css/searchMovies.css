@@ -93,3 +93,7 @@ button:hover {
 .card-margin {
   margin-bottom: 265px;
 }
+
+.fa-heart {
+  font-size: 48px; 
+}

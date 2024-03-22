@@ -3,41 +3,19 @@
 }
 
 .delete-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   color:#E74C3C;
-  opacity: 0;
   font-size: 36px;
-  transition: opacity 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.3);
   padding:5px;
   border-radius: 10px;
 }
 
-
-
-.card-image-container:hover .delete-icon {
-  opacity: 1;
-}
-
-.card-image-container:hover .video-icon {
-  opacity: 1;
-}
-
-.card-image-container:hover {
+.delete-icon:hover{
   cursor: pointer;
 }
 
 .video-icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  opacity: 0;
   color: #5DADE2; 
   font-size: 50px; 
-  transition: opacity 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.3);
   padding:5px;
   border-radius: 10px;
 }

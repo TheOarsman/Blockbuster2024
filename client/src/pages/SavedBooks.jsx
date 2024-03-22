@@ -6,7 +6,7 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { QUERY_ME } from "../utils/queries";
 import { REMOVE_BOOK } from "../utils/mutations";
-import '../styles/savedBooks.css'
+import '../css/savedBooks.css'
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_ME);
