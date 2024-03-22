@@ -20,10 +20,10 @@ const AppNavbar = () => {
           <Navbar.Brand as={Link} to="/">
             <img src={Logo} alt="Blockbuster 2024" className="navbar-logo" />
           </Navbar.Brand>
-          <div style={{ paddingLeft: '25px', paddingRight: '25px' }}>
-  <Navbar.Toggle aria-controls="navbar" />
-</div>
-        <Navbar.Collapse id="navbarCollapse">
+          <div style={{ paddingLeft: "25px", paddingRight: "25px" }}>
+            <Navbar.Toggle aria-controls="navbar" />
+          </div>
+          <Navbar.Collapse id="navbarCollapse">
             <Nav className="mr-auto">
               <Nav.Link
                 as={NavLink}
@@ -49,7 +49,6 @@ const AppNavbar = () => {
                     activeclassname="active"
                   >
                     Book Collection
-                    
                   </Nav.Link>
                   <Nav.Link
                     as={NavLink}
@@ -57,6 +56,9 @@ const AppNavbar = () => {
                     activeclassname="active"
                   >
                     Favorite Movies
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/profile" activeclassname="active">
+                    Profile
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
