@@ -58,7 +58,7 @@ const MyFavoritedMovies = () => {
           <Row className="justify-content-center pt-2">
             <Card className="saved-header-card ">
               <Card.Header as="h5">
-                {data?.me?.username}'s All-Time-Favorite-Movie-Collection
+               🎬 {data?.me?.username}'s All Time Favorite Movie Collection! 🎬
               </Card.Header>
               <Card.Body>
                 <Card.Title>
