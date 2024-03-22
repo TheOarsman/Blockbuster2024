@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import membershipCardImage from "../assets/images/BlockbusterMembership02.jpg";
 import vintageLogo from "../assets/images/BlockbusterLogo1985.png";
 import magicBooks from "../assets/images/magicBooks.jpg";
+import instore from "../assets/images/instore_picture.png";
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 import YouTube from "react-youtube";
@@ -25,8 +26,17 @@ class Home extends React.Component {
           <Col className="originalCol">
             <Card className="original-site-card">
               <Card.Header>Take a Step back in time!</Card.Header>
-              <Card.Body>
-                <Card.Title>Original Blockbuster</Card.Title>
+              <Card.Body style={{ 
+                backgroundImage: `url(${instore})`, 
+                backgroundSize: 'auto', 
+                backgroundPosition: 'center',
+                WebkitFilter: 'sepia(50%)', 
+                MozFilter: 'sepia(50%)', 
+                OFilter: 'sepia(50%)', 
+                msFilter: 'sepia(50%)', 
+                 
+              }}>
+                <Card.Title style={{ color: 'rgba(0, 0, 255, 0.82)', fontWeight: 'bold', fontSize: '58px', fontFamily: 'Blockbuster, Helvetica, sans-serif'}}>Original Blockbuster</Card.Title>
                 <Col>
                   <img
                     src={vintageLogo}
@@ -34,7 +44,11 @@ class Home extends React.Component {
                     style={{ width: "150px", marginLeft: "10px" }}
                   />
                 </Col>
-                <Card.Text>
+                <Card.Text style={{ 
+                  color: 'rgba(255, 255, 0, 0.75)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                  padding: '10px'
+                }}>
                   Take a step back into history and view the original
                   Blockbuster website. It may not be up and running, but it is
                   for sure going to induce some nostalgia.
@@ -43,6 +57,7 @@ class Home extends React.Component {
                   variant="primary"
                   href="https://www.blockbuster.com/"
                   target="_blank"
+                  style={{ color: 'white' }}
                 >
                   Go to Original Site
                 </Button>
