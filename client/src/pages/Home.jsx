@@ -136,9 +136,7 @@ class Home extends React.Component {
                 </Card.Subtitle>
                 <Card.Text>
                   Try out our movie catalog with any movie you can think of.
-                  Find a large variety of information with each movie! You can
-                  also save the movie to your favorites list so you never forget
-                  about them!
+                  Find a large variety of information with each movie that you'll never forget.
                 </Card.Text>
                 <Button variant="primary" href="/search-movies">
                   Search Movie Catalog
