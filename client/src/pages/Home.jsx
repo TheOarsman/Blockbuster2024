@@ -7,7 +7,7 @@ import instore from "../assets/images/instore_picture.png";
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 import YouTube from "react-youtube";
-import "../home.css";
+import "../css/home.css";
 
 class Home extends React.Component {
   render() {
