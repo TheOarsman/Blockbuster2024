@@ -9,7 +9,6 @@ import Auth from "../utils/auth";
 import { SAVE_MOVIE } from "../utils/mutations";
 
 // import Logos and Css
-// comment
 
 import {
   Container,
@@ -24,6 +23,7 @@ import {
 
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
+import blockbusterLogo from '../assets/images/BlockbusterOriginalLogo.png'
 import "@fortawesome/fontawesome-free/css/all.css";
 import "../styles/searchMovies.css";
 
@@ -115,7 +115,7 @@ const SearchMovies = () => {
    <Container>
       <Row className='justify-content-center pt-2 pb-4'>
         <Card className="saved-header-card">
-          <Card.Header as="h5">Search Movie Collection:</Card.Header>
+          <Card.Header as="h5"><img src={blockbusterLogo} alt="Blockbuster Logo" style={{ width: "50px", marginRight: "10px" }} />Blockbuster Movie Archive</Card.Header>
           <Card.Body>
             <Card.Title>
               <Form onSubmit={handleFormSubmit}>
@@ -137,7 +137,7 @@ const SearchMovies = () => {
                   <Col className="align-items-center" md="auto">
                     <Button
                       type="submit"
-                      variant="success"
+                      variant="primary"
                       size="lg"
                       className="mt-2"
                     >

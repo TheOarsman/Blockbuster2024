@@ -1,5 +1,5 @@
 export const searchOMDBMovies = async (searchTerm, apiKey) => {
-  const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchTerm)}`;
+  const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchTerm)}`;
 
   try {
       const response = await fetch(apiUrl);
@@ -17,7 +17,7 @@ export const searchOMDBMovies = async (searchTerm, apiKey) => {
           // Fetch detailed information for each movie using the IMDb IDs
           const detailedMovieData = await Promise.all(
               movieIds.map(async (imdbID) => {
-                  const detailUrl = `http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
+                  const detailUrl = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
                   const detailResponse = await fetch(detailUrl);
                   const detailData = await detailResponse.json();
                   return detailData;

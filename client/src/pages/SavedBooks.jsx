@@ -47,7 +47,7 @@ const SavedBooks = () => {
   <Card.Body>
   <Card.Title>
   <h2>
-      {userData.savedBooks.length > 0 ? (
+  {userData.savedBooks && userData.savedBooks.length > 0 ? (
         <>
           <span className='italic-view-books'>Viewing {userData.savedBooks.length} saved books for</span>{" "}
           <Badge bg="primary">{userData.username}</Badge>
