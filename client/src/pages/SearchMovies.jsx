@@ -50,7 +50,7 @@ const getRottenTomatoesRating = (ratings) => {
     return "N/A";
   }
 };
-
+// comment
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
