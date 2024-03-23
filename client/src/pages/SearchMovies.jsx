@@ -3,11 +3,16 @@ import { useMutation } from "@apollo/client";
 
 // import utils
 
-import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
+import {
+  saveMovieIds,
+  getSavedMovieIds,
+  saveWatchlistIds,
+  getSavedWatchlistIds,
+} from "../utils/localStorage";
 
 import { handleSearch } from "../utils/movieFetch";
 import Auth from "../utils/auth";
-import { SAVE_MOVIE } from "../utils/mutations";
+import { SAVE_MOVIE, ADD_WATCHLIST } from "../utils/mutations";
 
 // import Logos and Css
 
@@ -29,17 +34,15 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-// import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import "../css/searchMovies.css";
 
 const getRottenTomatoesRating = (ratings) => {
   if (ratings && Array.isArray(ratings)) {
-    console.log("All Ratings:", ratings);
     const rottenTomatoesRating = ratings.find(
       (rating) => rating.Source === "Rotten Tomatoes"
     );
-    console.log("Rotten Tomatoes Rating:", rottenTomatoesRating);
     return rottenTomatoesRating ? rottenTomatoesRating.Value : "N/A";
   } else {
     return "N/A";
@@ -52,21 +55,21 @@ const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
-  // const [savedWatchlistIds, setSavedWatchlistIds] = useState(
-  //   getSavedWatchlistIds()
-  // );
+  const [savedWatchlistIds, setSavedWatchlistIds] = useState(
+    getSavedWatchlistIds()
+  );
   const [isSaved, setIsSaved] = useState(false);
-  // const [setIsWatchlist] = useState(false);
+  const [setIsWatchlist] = useState(false);
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
-  // const [saveWatchlist] = useMutation(ADD_WATCHLIST);
+  const [saveWatchlist] = useMutation(ADD_WATCHLIST);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
   });
 
-  // useEffect(() => {
-  //   return () => saveWatchlistIds(savedWatchlistIds);
-  // });
+  useEffect(() => {
+    return () => saveWatchlistIds(savedWatchlistIds);
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -124,61 +127,54 @@ const SearchMovies = () => {
       saveMovieIds(updatedSavedMovieIds);
       console.log("Movie saved successfully:", data);
 
-      // Update saved status for the saved movie
       setIsSaved((prevSaved) => ({
         ...prevSaved,
         [movieId]: true,
       }));
     } catch (err) {
       console.error("Error saving movie:", err);
-      // Optionally, you can also handle errors here and update isSaved state accordingly
     }
   };
 
-  // const handleSaveWatchlist = async (movieId) => {
-  //   const movieToWatchlist = searchedMovies.find(
-  //     (movie) => movie.imdbID === movieId
-  //   );
+  const handleSaveWatchlist = async (movieId) => {
+    const movieToWatchlist = searchedMovies.find(
+      (movie) => movie.imdbID === movieId
+    );
 
-  //   console.log("Movie to watchlist:", movieToWatchlist); // Log the movieToWatchlist object
+    if (!movieToWatchlist) {
+      console.error("Movie to save not found.");
+      return;
+    }
 
-  //   if (!movieToWatchlist) {
-  //     console.error("Movie to save not found.");
-  //     return;
-  //   }
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
 
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
+    try {
+      const { data } = await saveWatchlist({
+        variables: {
+          movieData: {
+            movieId: movieToWatchlist.imdbID,
+            title: movieToWatchlist.Title || "",
+            image: movieToWatchlist.Poster || "",
+            movieLength: movieToWatchlist.Runtime || "",
+            createdAt: new Date().toISOString(),
+          },
+        },
+      });
 
-  //   try {
-  //     console.log("Attempting to save movie to watchlist...");
+      const updatedSavedWatchlistIds = [
+        ...savedWatchlistIds,
+        movieToWatchlist.imdbID,
+      ];
+      setSavedWatchlistIds(updatedSavedWatchlistIds);
 
-  //     const { data } = await saveWatchlist({
-  //       variables: {
-  //         movieData: {
-  //           movieId: movieToWatchlist.imdbID,
-  //           title: movieToWatchlist.Title || "",
-  //           image: movieToWatchlist.Poster || "",
-  //           movieLength: movieToWatchlist.Runtime || "",
-  //         },
-  //       },
-  //     });
 
-  //     console.log("Movie saved to watchlist successfully:", data);
-
-  //     const updatedSavedWatchlistIds = [
-  //       ...savedWatchlistIds,
-  //       movieToWatchlist.imdbID,
-  //     ];
-  //     setSavedWatchlistIds(updatedSavedWatchlistIds);
-
-  //     console.log("Updated saved watchlist IDs:", updatedSavedWatchlistIds);
-  //   } catch (err) {
-  //     console.error("Error saving movie to watchlist:", err);
-  //   }
-  // };
+    } catch (err) {
+      console.error("Error saving movie to watchlist:", err);
+    }
+  };
 
   return (
     <>
@@ -243,8 +239,8 @@ const SearchMovies = () => {
 
         <Container className="pt-5 card-margin">
           {searchedMovies.map((movie) => (
-            <Card key={movie.imdbID} className="mb-4">
-              <CardBody className="movie-card ">
+            <Card key={movie.imdbID} className="mb-4 movie-box-shadow">
+              <CardBody className="movie-card">
                 <Row>
                   <Col md="4">
                     <div className="poster">
@@ -298,7 +294,7 @@ const SearchMovies = () => {
                       </Col>
                     </Row>
                     <Row className="p-3 align-items-center icon-row">
-                      <Col>
+                      <Col md={3} className="text-center">
                         <button>
                           <a
                             href={`https://www.imdb.com/title/${movie.imdbID}/?ref_=fn_al_tt_1`}
@@ -309,7 +305,7 @@ const SearchMovies = () => {
                           </a>
                         </button>
                       </Col>
-                      <Col>
+                      <Col md={3} className="text-center">
                         {movie.imdbRating && (
                           <>
                             <img src={imdbLogo} alt="IMDB" />
@@ -317,7 +313,7 @@ const SearchMovies = () => {
                           </>
                         )}
                       </Col>
-                      <Col>
+                      <Col md={3} className="text-center">
                         {movie.Ratings && (
                           <>
                             <img src={tomatoesLogo} alt="Rotten Tomatoes" />
@@ -327,14 +323,14 @@ const SearchMovies = () => {
                           </>
                         )}
                       </Col>
-                      <Col>
-                        {Auth.loggedIn() && (
+                      {Auth.loggedIn() && (
+                        <Col md={3} className="text-center">
                           <div>
                             <Button
                               disabled={savedMovieIds?.some(
                                 (savedMovieId) => savedMovieId === movie.imdbID
                               )}
-                              className="btn-block btn-info"
+                              className="btn-block btn-info mr-2"
                               style={{
                                 backgroundColor: "#cbc9bc",
                                 borderColor: "#cbc9bc",
@@ -364,7 +360,7 @@ const SearchMovies = () => {
                                 }}
                               />
                             </Button>
-                            {/* <Button
+                            <Button
                               disabled={savedWatchlistIds?.some(
                                 (savedWatchlistId) =>
                                   savedWatchlistId === movie.imdbID
@@ -373,6 +369,7 @@ const SearchMovies = () => {
                               style={{
                                 backgroundColor: "#cbc9bc",
                                 borderColor: "#cbc9bc",
+                                marginLeft: "10px",
                               }}
                               onClick={() => {
                                 handleSaveWatchlist(movie.imdbID);
@@ -385,15 +382,16 @@ const SearchMovies = () => {
                                   color: savedWatchlistIds?.some(
                                     (savedId) => savedId === movie.imdbID
                                   )
-                                    ? "red"
+                                    ? "green"
                                     : "black",
                                 }}
                               />
-                            </Button> */}
+                            </Button>
                           </div>
-                        )}
-                      </Col>
+                        </Col>
+                      )}
                     </Row>
+
                     <Row className="item-row pt-4">
                       <Col>
                         {movie.BoxOffice && (

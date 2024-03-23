@@ -27,6 +27,7 @@ export const QUERY_USER = gql`
       email
       savedBooks
       savedMovies
+      savedWatchlist
     }
   }
 `;
@@ -58,6 +59,7 @@ export const QUERY_WATCHLIST = gql`
         image
         title
         movieLength
+        createdAt
       }
     }
   }
