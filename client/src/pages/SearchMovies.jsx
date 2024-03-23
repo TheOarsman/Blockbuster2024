@@ -169,8 +169,6 @@ const SearchMovies = () => {
         movieToWatchlist.imdbID,
       ];
       setSavedWatchlistIds(updatedSavedWatchlistIds);
-
-
     } catch (err) {
       console.error("Error saving movie to watchlist:", err);
     }

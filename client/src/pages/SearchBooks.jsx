@@ -103,7 +103,7 @@ const SearchBooks = () => {
                     onSubmit={handleFormSubmit}
                     style={{ textAlign: "center" }}
                   >
-                    <Row className=" justify-content-md-center align-items-center">
+                    <Row className="justify-content-md-center align-items-center">
                       <Col md="auto">
                         <h2>Search Book Collection:</h2>{" "}
                       </Col>
@@ -151,7 +151,12 @@ const SearchBooks = () => {
           <Row>
             {searchedBooks.map((book) => {
               return (
-                <Col className = 'p-4'md="4" key={book.bookId} style={{ paddingTop: "25px" }}>
+                <Col
+                  className="p-4"
+                  md="4"
+                  key={book.bookId}
+                  style={{ paddingTop: "25px" }}
+                >
                   <Card className="card-box-shadow-books " border="light">
                     {book.image ? (
                       <Card.Img
