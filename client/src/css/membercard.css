@@ -8,3 +8,17 @@
   color: white;
   font-size: 12px;
 }
+
+.card .cardText-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+  margin-top: 10.5rem;
+  color: white;
+  font-size: 14px;
+}
+
+.card .cardText-profile .card-title,
+.card .cardText-profile .card-text {
+  padding-left: 7.45rem; /* Override default padding */
+}

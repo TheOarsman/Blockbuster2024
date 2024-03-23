@@ -53,7 +53,7 @@ const Footer = () => {
                 </a>
               </Col>
               <Col>
-                <Col>Heinz Ulrich</Col>
+                <Col>Heinz Ulrich V</Col>
 
                 <a
                   href="https://github.com/TheOarsman"
