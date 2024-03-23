@@ -2,24 +2,13 @@ import Card from "react-bootstrap/Card";
 import ReactBarcode from "react-barcode";
 import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; // Import the MembershipCard component
 
-function MemberCardProfile({ username, email, paddedUsername, memberSince }) {
+function MemberCardLogIn({ username, email, paddedUsername, memberSince }) {
   return (
-    <Card
-      style={{
-        border: "none",
-        backgroundColor: "transparent",
-      }}
-    >
-      <Card.Img
-        src={MembershipCardImg}
-        alt="Membership Card"
-        className="totalMemberCard"
-      />
-      <Card.ImgOverlay className="d-flex flex-column justify-content-center align-items-start">
+    <Card style={{ width: "35rem", border: "none", margin: "auto" }}>
+      <Card.Img src={MembershipCardImg} alt="Membership Card" />
+      <Card.ImgOverlay className="cardText">
         <Card.Title>Username: {username}</Card.Title>
-        <Card.Title>Email: {email}</Card.Title>
-        <Card.Title>Hours Watch: {"MathToBeDone!"}</Card.Title>
-        <Card.Text className="d-flex justify-content-center">
+        <Card.Text>
           <ReactBarcode
             value={paddedUsername.padEnd(20, ".")}
             width={1.4} // Set the width of the bars
@@ -36,4 +25,4 @@ function MemberCardProfile({ username, email, paddedUsername, memberSince }) {
   );
 }
 
-export default MemberCardProfile;
+export default MemberCardLogIn;

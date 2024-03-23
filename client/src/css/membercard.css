@@ -2,6 +2,10 @@
   font-family: "American Typewriter", serif;
 }
 
+.totalMemberCard {
+  flex: auto;
+}
+
 .cardText {
   margin-top: 6.75rem;
   margin-left: 4.75rem;
