@@ -26,17 +26,12 @@ class Home extends React.Component {
           <Col className="originalCol">
             <Card className="original-site-card">
               <Card.Header>Take a Step back in time!</Card.Header>
-              <Card.Body style={{ 
-                backgroundImage: `url(${instore})`, 
-                backgroundSize: 'auto', 
-                backgroundPosition: 'center',
-                WebkitFilter: 'sepia(50%)', 
-                MozFilter: 'sepia(50%)', 
-                OFilter: 'sepia(50%)', 
-                msFilter: 'sepia(50%)', 
-                 
-              }}>
-                <Card.Title style={{ color: 'rgba(0, 0, 255, 0.82)', fontWeight: 'bold', fontSize: '58px', fontFamily: 'Blockbuster, Helvetica, sans-serif'}}>Original Blockbuster</Card.Title>
+              <Card.Body
+              >
+                <Card.Title
+                >
+                  Original Blockbuster
+                </Card.Title>
                 <Col>
                   <img
                     src={vintageLogo}
@@ -44,11 +39,8 @@ class Home extends React.Component {
                     style={{ width: "150px", marginLeft: "10px" }}
                   />
                 </Col>
-                <Card.Text style={{ 
-                  color: 'rgba(255, 255, 0, 0.75)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.75)',
-                  padding: '10px'
-                }}>
+                <Card.Text
+                >
                   Take a step back into history and view the original
                   Blockbuster website. It may not be up and running, but it is
                   for sure going to induce some nostalgia.
@@ -57,7 +49,7 @@ class Home extends React.Component {
                   variant="primary"
                   href="https://www.blockbuster.com/"
                   target="_blank"
-                  style={{ color: 'white' }}
+                  style={{ color: "white" }}
                 >
                   Go to Original Site
                 </Button>
@@ -136,7 +128,8 @@ class Home extends React.Component {
                 </Card.Subtitle>
                 <Card.Text>
                   Try out our movie catalog with any movie you can think of.
-                  Find a large variety of information with each movie that you'll never forget.
+                  Find a large variety of information with each movie that
+                  you'll never forget.
                 </Card.Text>
                 <Button variant="primary" href="/search-movies">
                   Search Movie Catalog
