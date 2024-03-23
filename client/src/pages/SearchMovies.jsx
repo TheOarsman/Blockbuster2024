@@ -3,10 +3,16 @@ import { useMutation } from "@apollo/client";
 
 // import utils
 
-import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
+import {
+  saveMovieIds,
+  getSavedMovieIds,
+  saveWatchlistIds,
+  getSavedWatchlistIds,
+} from "../utils/localStorage";
+
 import { handleSearch } from "../utils/movieFetch";
 import Auth from "../utils/auth";
-import { SAVE_MOVIE } from "../utils/mutations";
+import { SAVE_MOVIE, ADD_WATCHLIST } from "../utils/mutations";
 
 // import Logos and Css
 
@@ -28,6 +34,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import "../css/searchMovies.css";
 
@@ -43,16 +50,25 @@ const getRottenTomatoesRating = (ratings) => {
     return "N/A";
   }
 };
-
+// comment
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+  const [savedWatchlistIds, setSavedWatchlistIds] = useState(
+    getSavedWatchlistIds()
+  );
   const [isSaved, setIsSaved] = useState(false);
+  const [setIsWatchlist] = useState(false);
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
+  const [saveWatchlist] = useMutation(ADD_WATCHLIST);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
+  });
+
+  useEffect(() => {
+    return () => saveWatchlistIds(savedWatchlistIds);
   });
 
   const handleFormSubmit = async (event) => {
@@ -114,6 +130,50 @@ const SearchMovies = () => {
       console.error("Error saving movie:", err);
     }
   };
+
+  const handleSaveWatchlist = async (movieId) => {
+    const movieToWatchlist = searchedMovies.find(
+      (movie) => movie.imdbID === movieId
+    );
+  
+    console.log("Movie to watchlist:", movieToWatchlist); // Log the movieToWatchlist object
+  
+    if (!movieToWatchlist) {
+      console.error("Movie to save not found.");
+      return;
+    }
+  
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+  
+    try {
+      console.log("Attempting to save movie to watchlist...");
+
+  
+      const { data } = await saveWatchlist({
+        variables: {
+          movieData: {
+            movieId: movieToWatchlist.imdbID,
+            title: movieToWatchlist.Title || "",
+            image: movieToWatchlist.Poster || "",
+            movieLength: movieToWatchlist.Runtime || "",
+          },
+        },
+      });
+  
+      console.log("Movie saved to watchlist successfully:", data);
+  
+      const updatedSavedWatchlistIds = [...savedWatchlistIds, movieToWatchlist.imdbID];
+      setSavedWatchlistIds(updatedSavedWatchlistIds);
+  
+      console.log("Updated saved watchlist IDs:", updatedSavedWatchlistIds);
+    } catch (err) {
+      console.error("Error saving movie to watchlist:", err);
+    }
+  };
+  
 
   return (
     <>
@@ -264,37 +324,68 @@ const SearchMovies = () => {
                       </Col>
                       <Col>
                         {Auth.loggedIn() && (
-                          <Button
-                            disabled={savedMovieIds?.some(
-                              (savedMovieId) => savedMovieId === movie.imdbID
-                            )}
-                            className="btn-block btn-info"
-                            style={{ backgroundColor: '#cbc9bc', borderColor: '#cbc9bc' }}
-                            onClick={() => {
-                              handleSaveMovie(movie.imdbID);
-                              setIsSaved(true); // Update isSaved state to true after saving the movie
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              icon={
-                                isSaved ||
-                                savedMovieIds?.some(
-                                  (savedId) => savedId === movie.imdbID
-                                )
-                                  ? solidHeart
-                                  : regularHeart
-                              }
+                          <div>
+                            <Button
+                              disabled={savedMovieIds?.some(
+                                (savedMovieId) => savedMovieId === movie.imdbID
+                              )}
+                              className="btn-block btn-info"
                               style={{
-                                color:
+                                backgroundColor: "#cbc9bc",
+                                borderColor: "#cbc9bc",
+                              }}
+                              onClick={() => {
+                                handleSaveMovie(movie.imdbID);
+                                setIsSaved(true); 
+                              }}
+                            >
+                              <FontAwesomeIcon
+                                icon={
                                   isSaved ||
                                   savedMovieIds?.some(
                                     (savedId) => savedId === movie.imdbID
                                   )
+                                    ? solidHeart
+                                    : regularHeart
+                                }
+                                style={{
+                                  color:
+                                    isSaved ||
+                                    savedMovieIds?.some(
+                                      (savedId) => savedId === movie.imdbID
+                                    )
+                                      ? "red"
+                                      : "black",
+                                }}
+                              />
+                            </Button>
+                            <Button
+                              disabled={savedWatchlistIds?.some(
+                                (savedWatchlistId) =>
+                                  savedWatchlistId === movie.imdbID
+                              )}
+                              className="btn-block btn-info"
+                              style={{
+                                backgroundColor: "#cbc9bc",
+                                borderColor: "#cbc9bc",
+                              }}
+                              onClick={() => {
+                                handleSaveWatchlist(movie.imdbID);
+                                setIsWatchlist(true); 
+                              }}
+                            >
+                              <FontAwesomeIcon
+                                icon={faEye} 
+                                style={{
+                                  color: savedWatchlistIds?.some(
+                                    (savedId) => savedId === movie.imdbID
+                                  )
                                     ? "red"
                                     : "black",
-                              }}
-                            />
-                          </Button>
+                                }}
+                              />
+                            </Button>
+                          </div>
                         )}
                       </Col>
                     </Row>

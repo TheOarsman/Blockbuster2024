@@ -1,11 +1,13 @@
 const typeDefs = `
-  type User {
+
+type User {
     _id: ID!
     username: String!
     email: String!
     savedBooks: [Book]
     bookCount: Int
     savedMovies: [Movie]
+    savedWatchlist: [Watchlist]
   }
 
   type Book {
@@ -25,6 +27,14 @@ const typeDefs = `
    image: String
    title: String!
   movieLength: String!
+  }
+
+  type Watchlist {
+    _id: ID!
+    movieId: String!
+    image: String
+    title: String!
+   movieLength: String!
   }
 
   type Auth {
@@ -61,7 +71,8 @@ const typeDefs = `
     removeBook(bookId: ID!): User
     saveMovie(movieData: MovieInput!): User
     removeMovie(movieId: ID!): User
-    updateMovieOrder(movieIds: [ID]!): User
+    saveWatchlist(movieData: MovieInput!): User
+    removeWatchlist(movieId: ID!): User
   }
 `;
 

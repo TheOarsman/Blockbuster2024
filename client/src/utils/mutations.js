@@ -94,17 +94,32 @@ export const REMOVE_BOOK = gql`
   }
 `;
 
-
-export const UPDATE_MOVIE_ORDER = gql`
-  mutation updateMovieOrder($movieIds: [ID]!) {
-    updateMovieOrder(movieIds: $movieIds) {
+export const ADD_WATCHLIST = gql`
+  mutation saveWatchlist($movieData: movieInput!) {
+    saveWatchlist(movieData: $movieData) {
       _id
       username
       email
-      savedMovies {
+      savedWatchlist {
         movieId
-        title
         image
+        title
+        movieLength
+      }
+    }
+  }
+`;
+
+export const REMOVE_WATCHLIST = gql`
+  mutation removeWatchlist($movie: ID!) {
+    removeWatchlist(movieId: $movieId) {
+      _id
+      username
+      email
+      savedWatchlist {
+        movieId
+        image
+        title
         movieLength
       }
     }

@@ -98,5 +98,33 @@ module.exports = {
       return res.status(404).json({ message: "Couldn't find user with this id!" });
     }
     return res.json(updatedUser);
+  },
+
+
+async removeWatchlist({ user, params }, res) {
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: user._id },
+    { $pull: { savedWatchlist: { movieId: params.movieId } } },
+    { new: true }
+  );
+  if (!updatedUser) {
+    return res.status(404).json({ message: "Couldn't find user with this id!" });
   }
+  return res.json(updatedUser);
+},
+
+async saveWatchlist({ user, body }, res) {
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $addToSet: { savedWatchlist: body } },
+      { new: true, runValidators: true }
+    );
+    return res.json(updatedUser);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json(err);
+  }
+},
+
 };

@@ -46,3 +46,19 @@ export const QUERY_MOVIE = gql`
     }
   }
 `;
+
+export const QUERY_WATCHLIST = gql`
+  query watchlist {
+    me {
+      _id
+      username
+      email
+      savedWatchlist {
+        movieId
+        image
+        title
+        movieLength
+      }
+    }
+  }
+`;
