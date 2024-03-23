@@ -3,16 +3,11 @@ import { useMutation } from "@apollo/client";
 
 // import utils
 
-import {
-  saveMovieIds,
-  getSavedMovieIds,
-  saveWatchlistIds,
-  getSavedWatchlistIds,
-} from "../utils/localStorage";
+import { saveMovieIds, getSavedMovieIds } from "../utils/localStorage";
 
 import { handleSearch } from "../utils/movieFetch";
 import Auth from "../utils/auth";
-import { SAVE_MOVIE, ADD_WATCHLIST } from "../utils/mutations";
+import { SAVE_MOVIE } from "../utils/mutations";
 
 // import Logos and Css
 
@@ -34,7 +29,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+// import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import "../css/searchMovies.css";
 
@@ -50,26 +45,28 @@ const getRottenTomatoesRating = (ratings) => {
     return "N/A";
   }
 };
+
 // comment
+
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
-  const [savedWatchlistIds, setSavedWatchlistIds] = useState(
-    getSavedWatchlistIds()
-  );
+  // const [savedWatchlistIds, setSavedWatchlistIds] = useState(
+  //   getSavedWatchlistIds()
+  // );
   const [isSaved, setIsSaved] = useState(false);
-  const [setIsWatchlist] = useState(false);
+  // const [setIsWatchlist] = useState(false);
   const [saveMovie, { error }] = useMutation(SAVE_MOVIE);
-  const [saveWatchlist] = useMutation(ADD_WATCHLIST);
+  // const [saveWatchlist] = useMutation(ADD_WATCHLIST);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
   });
 
-  useEffect(() => {
-    return () => saveWatchlistIds(savedWatchlistIds);
-  });
+  // useEffect(() => {
+  //   return () => saveWatchlistIds(savedWatchlistIds);
+  // });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -126,54 +123,62 @@ const SearchMovies = () => {
 
       saveMovieIds(updatedSavedMovieIds);
       console.log("Movie saved successfully:", data);
+
+      // Update saved status for the saved movie
+      setIsSaved((prevSaved) => ({
+        ...prevSaved,
+        [movieId]: true,
+      }));
     } catch (err) {
       console.error("Error saving movie:", err);
+      // Optionally, you can also handle errors here and update isSaved state accordingly
     }
   };
 
-  const handleSaveWatchlist = async (movieId) => {
-    const movieToWatchlist = searchedMovies.find(
-      (movie) => movie.imdbID === movieId
-    );
-  
-    console.log("Movie to watchlist:", movieToWatchlist); // Log the movieToWatchlist object
-  
-    if (!movieToWatchlist) {
-      console.error("Movie to save not found.");
-      return;
-    }
-  
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-    if (!token) {
-      return false;
-    }
-  
-    try {
-      console.log("Attempting to save movie to watchlist...");
+  // const handleSaveWatchlist = async (movieId) => {
+  //   const movieToWatchlist = searchedMovies.find(
+  //     (movie) => movie.imdbID === movieId
+  //   );
 
-  
-      const { data } = await saveWatchlist({
-        variables: {
-          movieData: {
-            movieId: movieToWatchlist.imdbID,
-            title: movieToWatchlist.Title || "",
-            image: movieToWatchlist.Poster || "",
-            movieLength: movieToWatchlist.Runtime || "",
-          },
-        },
-      });
-  
-      console.log("Movie saved to watchlist successfully:", data);
-  
-      const updatedSavedWatchlistIds = [...savedWatchlistIds, movieToWatchlist.imdbID];
-      setSavedWatchlistIds(updatedSavedWatchlistIds);
-  
-      console.log("Updated saved watchlist IDs:", updatedSavedWatchlistIds);
-    } catch (err) {
-      console.error("Error saving movie to watchlist:", err);
-    }
-  };
-  
+  //   console.log("Movie to watchlist:", movieToWatchlist); // Log the movieToWatchlist object
+
+  //   if (!movieToWatchlist) {
+  //     console.error("Movie to save not found.");
+  //     return;
+  //   }
+
+  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
+  //   if (!token) {
+  //     return false;
+  //   }
+
+  //   try {
+  //     console.log("Attempting to save movie to watchlist...");
+
+  //     const { data } = await saveWatchlist({
+  //       variables: {
+  //         movieData: {
+  //           movieId: movieToWatchlist.imdbID,
+  //           title: movieToWatchlist.Title || "",
+  //           image: movieToWatchlist.Poster || "",
+  //           movieLength: movieToWatchlist.Runtime || "",
+  //         },
+  //       },
+  //     });
+
+  //     console.log("Movie saved to watchlist successfully:", data);
+
+  //     const updatedSavedWatchlistIds = [
+  //       ...savedWatchlistIds,
+  //       movieToWatchlist.imdbID,
+  //     ];
+  //     setSavedWatchlistIds(updatedSavedWatchlistIds);
+
+  //     console.log("Updated saved watchlist IDs:", updatedSavedWatchlistIds);
+  //   } catch (err) {
+  //     console.error("Error saving movie to watchlist:", err);
+  //   }
+  // };
 
   return (
     <>
@@ -336,12 +341,12 @@ const SearchMovies = () => {
                               }}
                               onClick={() => {
                                 handleSaveMovie(movie.imdbID);
-                                setIsSaved(true); 
+                                setIsSaved(true);
                               }}
                             >
                               <FontAwesomeIcon
                                 icon={
-                                  isSaved ||
+                                  isSaved[movie.imdbID] ||
                                   savedMovieIds?.some(
                                     (savedId) => savedId === movie.imdbID
                                   )
@@ -350,7 +355,7 @@ const SearchMovies = () => {
                                 }
                                 style={{
                                   color:
-                                    isSaved ||
+                                    isSaved[movie.imdbID] ||
                                     savedMovieIds?.some(
                                       (savedId) => savedId === movie.imdbID
                                     )
@@ -359,7 +364,7 @@ const SearchMovies = () => {
                                 }}
                               />
                             </Button>
-                            <Button
+                            {/* <Button
                               disabled={savedWatchlistIds?.some(
                                 (savedWatchlistId) =>
                                   savedWatchlistId === movie.imdbID
@@ -371,11 +376,11 @@ const SearchMovies = () => {
                               }}
                               onClick={() => {
                                 handleSaveWatchlist(movie.imdbID);
-                                setIsWatchlist(true); 
+                                setIsWatchlist(true);
                               }}
                             >
                               <FontAwesomeIcon
-                                icon={faEye} 
+                                icon={faEye}
                                 style={{
                                   color: savedWatchlistIds?.some(
                                     (savedId) => savedId === movie.imdbID
@@ -384,7 +389,7 @@ const SearchMovies = () => {
                                     : "black",
                                 }}
                               />
-                            </Button>
+                            </Button> */}
                           </div>
                         )}
                       </Col>
