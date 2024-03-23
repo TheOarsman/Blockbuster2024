@@ -70,6 +70,20 @@ export const saveMovie = (movieData) => {
   });
 };
 
+export const saveWatchlist = (movieData) => {
+  const token = AuthService.getToken();
+  return fetch("/api/users", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(movieData),
+  }).catch((error) => {
+    handleFetchError(error);
+  });
+};
+
 // remove saved book data for a logged in user
 export const deleteBook = (bookId) => {
   const token = AuthService.getToken();
@@ -87,7 +101,20 @@ export const deleteBook = (bookId) => {
 export const deleteMovie = (movieId) => {
   const token = AuthService.getToken();
   console.log("Using token:", token);
-  return fetch(`/api/users/movies/${movieId}`, {
+  return fetch(`/api/users/watchlist/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).catch((error) => {
+    handleFetchError(error);
+  });
+};
+
+export const removeWatchlist = (movieId) => {
+  const token = AuthService.getToken();
+  console.log("Using token:", token);
+  return fetch(`/api/users/watchlist/${movieId}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,

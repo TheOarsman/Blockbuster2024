@@ -67,3 +67,37 @@ export const removeMovieId = (movieId) => {
 
   return true;
 };
+
+export const removeWatchlistId = (movieId) => {
+  const savedWatchlistIds = localStorage.getItem("saved_watchlist")
+    ? JSON.parse(localStorage.getItem("saved_watchlist"))
+    : null;
+
+  if (!savedWatchlistIds) {
+    return false;
+  }
+
+  const updatedSavedWatchlistIds = savedWatchlistIds?.filter(
+    (savedWatchlistId) => savedWatchlistId !== movieId
+  );
+  localStorage.setItem("saved_watchlist", JSON.stringify(updatedSavedWatchlistIds));
+
+  return true;
+};
+
+
+export const getSavedWatchlistIds = () => {
+  const savedWatchlistIds = localStorage.getItem("saved_watchlist")
+    ? JSON.parse(localStorage.getItem("saved_watchlist"))
+    : [];
+
+  return savedWatchlistIds;
+};
+
+export const saveWatchlistIds = (movieIdArr) => {
+  if (movieIdArr.length) {
+    localStorage.setItem("saved_watchlist", JSON.stringify(movieIdArr));
+  } else {
+    localStorage.removeItem("saved_watchlist");
+  }
+};

@@ -4,6 +4,8 @@ const {
   getSingleUser,
   saveBook,
   saveMovie,
+  saveWatchlist,
+  removeWatchlist,
   deleteBook,
   deleteMovie,
   login,
@@ -24,5 +26,9 @@ router.route("/movies").post(authMiddleware, saveMovie);
 router.route("/books/:bookId").delete(authMiddleware, deleteBook);
 
 router.route("/movies/:movieId").delete(authMiddleware, deleteMovie);
+
+router.route("/watchlist").post(authMiddleware, saveWatchlist);
+
+router.route("/watchlist/:movieId").delete(authMiddleware, removeWatchlist); 
 
 module.exports = router;

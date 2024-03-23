@@ -57,6 +57,13 @@ const AppNavbar = () => {
                   >
                     Favorite Movies
                   </Nav.Link>
+                  <Nav.Link
+                    as={NavLink}
+                    to="/watchlist"
+                    activeclassname="active"
+                  >
+                    Watchlist
+                  </Nav.Link>
                   <Nav.Link as={NavLink} to="/profile" activeclassname="active">
                     Profile
                   </Nav.Link>

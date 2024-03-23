@@ -88,6 +88,32 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+    saveWatchlist: async (parent, { movieData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedWatchlist: movieData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw AuthenticationError;
+    },
+    removeWatchlist: async (parent, { movieId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedWatchlist: { movieId } } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw AuthenticationError;
+    },
   },
 };
 
