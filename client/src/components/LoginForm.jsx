@@ -3,8 +3,8 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
-import MemberCard from "./MemberCard";
-import "../css/membercard.css"; 
+import MemberCardLogIn from "./MemberCardLogIn";
+import "../css/membercard.css";
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({
@@ -63,7 +63,7 @@ const LoginForm = () => {
   return (
     <>
       <div className="membership-card">
-        <MemberCard
+        <MemberCardLogIn
           username={userFormData.username}
           email="me@example.com"
           paddedUsername={paddedUsername}
