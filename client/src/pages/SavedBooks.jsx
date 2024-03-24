@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@apollo/client";
-import { Container, Card, Button, Row, Col, Badge } from "react-bootstrap";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import Auth from "../utils/auth";
@@ -49,10 +49,11 @@ const SavedBooks = () => {
                     <h2>
                       {userData.savedBooks && userData.savedBooks.length > 0 ? (
                         <>
-                          <span className="italic-view-books">
-                            Viewing {userData.savedBooks.length} saved books for
-                          </span>{" "}
-                          <Badge bg="primary">{userData.username}</Badge>
+                     {userData.savedBooks.length
+            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+            : 'You have no saved books!'}
+                            
+                    
                         </>
                       ) : (
                         <>

@@ -110,7 +110,7 @@ const MyFavoritedMovies = () => {
                   )}
                   <Card.Body>
                     <Card.Title>
-                      <h3>{movie.title}</h3>
+                      {movie.title}
                     </Card.Title>
                     <Row>
                       <Col xs={6}>

@@ -4,10 +4,26 @@
   height: 100px;
   font-family: "Oxygen", sans-serif;
   z-index: 100;
+  justify-content: center;
+  display:flex;
 }
+
+
 
 .navbar-logo {
   width: 200px;
+  padding-left: 25px;
+}
+
+#navbarCollapse {
+  background-color: rgba(13, 34, 100, 0.9);
+  margin-top: -30px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  text-align: center;
+  padding-left: 50px;
+
+
 }
 
 @media (max-width: 450px) {

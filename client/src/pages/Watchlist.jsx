@@ -67,7 +67,7 @@ const Watchlist = () => {
                     }:`
                   ) : (
                     <>
-                      You have no saved movies.{" "}
+                      You have no movies added to your watchlist.{" "}
                       <Link to="/search-movies">
                         <span className="search-now-hover">Search now!</span>
                       </Link>
