@@ -40,17 +40,17 @@ import "../css/searchMovies.css";
 
 const getRottenTomatoesRating = (ratings) => {
   if (ratings && Array.isArray(ratings)) {
-    console.log("All Ratings:", ratings);
     const rottenTomatoesRating = ratings.find(
       (rating) => rating.Source === "Rotten Tomatoes"
     );
-    console.log("Rotten Tomatoes Rating:", rottenTomatoesRating);
     return rottenTomatoesRating ? rottenTomatoesRating.Value : "N/A";
   } else {
     return "N/A";
   }
 };
+
 // comment
+
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -126,6 +126,11 @@ const SearchMovies = () => {
 
       saveMovieIds(updatedSavedMovieIds);
       console.log("Movie saved successfully:", data);
+
+      setIsSaved((prevSaved) => ({
+        ...prevSaved,
+        [movieId]: true,
+      }));
     } catch (err) {
       console.error("Error saving movie:", err);
     }
@@ -135,23 +140,18 @@ const SearchMovies = () => {
     const movieToWatchlist = searchedMovies.find(
       (movie) => movie.imdbID === movieId
     );
-  
-    console.log("Movie to watchlist:", movieToWatchlist); // Log the movieToWatchlist object
-  
+
     if (!movieToWatchlist) {
       console.error("Movie to save not found.");
       return;
     }
-  
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
       return false;
     }
-  
-    try {
-      console.log("Attempting to save movie to watchlist...");
 
-  
+    try {
       const { data } = await saveWatchlist({
         variables: {
           movieData: {
@@ -159,21 +159,20 @@ const SearchMovies = () => {
             title: movieToWatchlist.Title || "",
             image: movieToWatchlist.Poster || "",
             movieLength: movieToWatchlist.Runtime || "",
+            createdAt: new Date().toISOString(),
           },
         },
       });
-  
-      console.log("Movie saved to watchlist successfully:", data);
-  
-      const updatedSavedWatchlistIds = [...savedWatchlistIds, movieToWatchlist.imdbID];
+
+      const updatedSavedWatchlistIds = [
+        ...savedWatchlistIds,
+        movieToWatchlist.imdbID,
+      ];
       setSavedWatchlistIds(updatedSavedWatchlistIds);
-  
-      console.log("Updated saved watchlist IDs:", updatedSavedWatchlistIds);
     } catch (err) {
       console.error("Error saving movie to watchlist:", err);
     }
   };
-  
 
   return (
     <>
@@ -238,8 +237,8 @@ const SearchMovies = () => {
 
         <Container className="pt-5 card-margin">
           {searchedMovies.map((movie) => (
-            <Card key={movie.imdbID} className="mb-4">
-              <CardBody className="movie-card ">
+            <Card key={movie.imdbID} className="mb-4 movie-box-shadow">
+              <CardBody className="movie-card">
                 <Row>
                   <Col md="4">
                     <div className="poster">
@@ -293,7 +292,7 @@ const SearchMovies = () => {
                       </Col>
                     </Row>
                     <Row className="p-3 align-items-center icon-row">
-                      <Col>
+                      <Col md={3} className="text-center">
                         <button>
                           <a
                             href={`https://www.imdb.com/title/${movie.imdbID}/?ref_=fn_al_tt_1`}
@@ -304,7 +303,7 @@ const SearchMovies = () => {
                           </a>
                         </button>
                       </Col>
-                      <Col>
+                      <Col md={3} className="text-center">
                         {movie.imdbRating && (
                           <>
                             <img src={imdbLogo} alt="IMDB" />
@@ -312,7 +311,7 @@ const SearchMovies = () => {
                           </>
                         )}
                       </Col>
-                      <Col>
+                      <Col md={3} className="text-center">
                         {movie.Ratings && (
                           <>
                             <img src={tomatoesLogo} alt="Rotten Tomatoes" />
@@ -322,26 +321,26 @@ const SearchMovies = () => {
                           </>
                         )}
                       </Col>
-                      <Col>
-                        {Auth.loggedIn() && (
+                      {Auth.loggedIn() && (
+                        <Col md={3} className="text-center">
                           <div>
                             <Button
                               disabled={savedMovieIds?.some(
                                 (savedMovieId) => savedMovieId === movie.imdbID
                               )}
-                              className="btn-block btn-info"
+                              className="btn-block btn-info mr-2"
                               style={{
                                 backgroundColor: "#cbc9bc",
                                 borderColor: "#cbc9bc",
                               }}
                               onClick={() => {
                                 handleSaveMovie(movie.imdbID);
-                                setIsSaved(true); 
+                                setIsSaved(true);
                               }}
                             >
                               <FontAwesomeIcon
                                 icon={
-                                  isSaved ||
+                                  isSaved[movie.imdbID] ||
                                   savedMovieIds?.some(
                                     (savedId) => savedId === movie.imdbID
                                   )
@@ -350,7 +349,7 @@ const SearchMovies = () => {
                                 }
                                 style={{
                                   color:
-                                    isSaved ||
+                                    isSaved[movie.imdbID] ||
                                     savedMovieIds?.some(
                                       (savedId) => savedId === movie.imdbID
                                     )
@@ -368,27 +367,29 @@ const SearchMovies = () => {
                               style={{
                                 backgroundColor: "#cbc9bc",
                                 borderColor: "#cbc9bc",
+                                marginLeft: "10px",
                               }}
                               onClick={() => {
                                 handleSaveWatchlist(movie.imdbID);
-                                setIsWatchlist(true); 
+                                setIsWatchlist(true);
                               }}
                             >
                               <FontAwesomeIcon
-                                icon={faEye} 
+                                icon={faEye}
                                 style={{
                                   color: savedWatchlistIds?.some(
                                     (savedId) => savedId === movie.imdbID
                                   )
-                                    ? "red"
+                                    ? "green"
                                     : "black",
                                 }}
                               />
                             </Button>
                           </div>
-                        )}
-                      </Col>
+                        </Col>
+                      )}
                     </Row>
+
                     <Row className="item-row pt-4">
                       <Col>
                         {movie.BoxOffice && (

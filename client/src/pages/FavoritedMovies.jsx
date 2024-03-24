@@ -109,32 +109,34 @@ const MyFavoritedMovies = () => {
                     </div>
                   )}
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Title>
+                      <h3>{movie.title}</h3>
+                    </Card.Title>
                     <Row>
                       <Col xs={6}>
-                    <div className="delete-icon-container">
-                        <div className="icon-container justify-content-end">
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            className="delete-icon"
-                            onClick={() => handleDeleteMovie(movie.movieId)}
-                          />
+                        <div className="delete-icon-container">
+                          <div className="icon-container justify-content-end">
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              className="delete-icon"
+                              onClick={() => handleDeleteMovie(movie.movieId)}
+                            />
+                          </div>
                         </div>
-                      </div>
                       </Col>
                       <Col>
-                      <a
-                        href={`https://www.imdb.com/title/${movie.movieId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="imdb-link"
-                      >
-                        <div className="icon-container">
-                          <FaVideo className="video-icon" />
-                        </div>
-                      </a>
-                     </Col>
-                      </Row>
+                        <a
+                          href={`https://www.imdb.com/title/${movie.movieId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="imdb-link"
+                        >
+                          <div className="icon-container">
+                            <FaVideo className="video-icon" />
+                          </div>
+                        </a>
+                      </Col>
+                    </Row>
                   </Card.Body>
                 </Card>
               </Col>

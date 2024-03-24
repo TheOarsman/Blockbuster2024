@@ -95,7 +95,7 @@ export const REMOVE_BOOK = gql`
 `;
 
 export const ADD_WATCHLIST = gql`
-  mutation saveWatchlist($movieData: movieInput!) {
+  mutation saveWatchlist($movieData: WatchlistInput!) {
     saveWatchlist(movieData: $movieData) {
       _id
       username
@@ -105,13 +105,14 @@ export const ADD_WATCHLIST = gql`
         image
         title
         movieLength
+        createdAt
       }
     }
   }
 `;
 
 export const REMOVE_WATCHLIST = gql`
-  mutation removeWatchlist($movie: ID!) {
+  mutation removeWatchlist($movieId: ID!) {
     removeWatchlist(movieId: $movieId) {
       _id
       username
@@ -121,6 +122,7 @@ export const REMOVE_WATCHLIST = gql`
         image
         title
         movieLength
+        createdAt
       }
     }
   }

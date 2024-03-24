@@ -62,12 +62,9 @@ button:hover {
 }
 
 .movie-card {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.3);
 }
 
-.poster-container {
-  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.9);
-}
 
 .search-background {
   position: fixed;
@@ -90,5 +87,9 @@ button:hover {
 }
 
 .fa-heart {
-  font-size: 48px;
+  font-size: 32px;
+}
+
+.fa-eye {
+  font-size: 32px;
 }

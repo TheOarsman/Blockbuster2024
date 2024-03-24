@@ -1,5 +1,7 @@
 const typeDefs = `
 
+scalar DateTime
+
 type User {
     _id: ID!
     username: String!
@@ -34,7 +36,8 @@ type User {
     movieId: String!
     image: String
     title: String!
-   movieLength: String!
+   movieLength: String
+   createdAt: DateTime
   }
 
   type Auth {
@@ -58,6 +61,14 @@ type User {
     title: String!
   }
 
+  input WatchlistInput {
+    movieId: String!
+    image: String
+    title: String!
+   movieLength: String
+   createdAt: DateTime!
+  }
+
   type Query {
     me: User
     users: [User]
@@ -71,7 +82,7 @@ type User {
     removeBook(bookId: ID!): User
     saveMovie(movieData: MovieInput!): User
     removeMovie(movieId: ID!): User
-    saveWatchlist(movieData: MovieInput!): User
+    saveWatchlist(movieData: WatchlistInput!): User
     removeWatchlist(movieId: ID!): User
   }
 `;

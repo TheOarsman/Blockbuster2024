@@ -3,28 +3,26 @@
 }
 
 .delete-icon {
-  color:#E74C3C;
+  color: #e74c3c;
   font-size: 36px;
-  padding:5px;
+  padding: 5px;
   border-radius: 10px;
 }
 
-.delete-icon:hover{
+.delete-icon:hover {
   cursor: pointer;
 }
 
 .video-icon {
-  color: #5DADE2; 
-  font-size: 50px; 
-  padding:5px;
+  color: #5dade2;
+  font-size: 50px;
+  padding: 5px;
   border-radius: 10px;
 }
 
 .poster-container {
   box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.6);
- text-align: center;
- font-family:Georgia, 'Times New Roman', Times, serif
- 
+  text-align: center;
 }
 
 .full-container {
@@ -35,17 +33,17 @@
   height: 100%;
   padding: 0;
   margin: 0;
- background-image: url(https://hdqwalls.com/wallpapers/star-wars-poster-4k-af.jpg);
- background-position: center;
- background-repeat: no-repeat;
+  background-image: url(https://hdqwalls.com/wallpapers/star-wars-poster-4k-af.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
   overflow-y: auto;
   margin-top: 100px;
 }
 
 .saved-header-card {
   text-align: center;
-  width:75%;
-  background-color: #E5E8E8;
+  width: 75%;
+  background-color: #e5e8e8;
 }
 
 .saved-movie-header {
@@ -57,21 +55,21 @@
   font-style: italic;
 }
 
-.search-now-hover{
-  color:#57A3DB ;
+.search-now-hover {
+  color: #57a3db;
 }
 
 .search-now-hover:hover {
-color: #2485CC ;
+  color: #2485cc;
 }
 
 .movie-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-top: 20px; 
-    gap:30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  gap: 30px;
 }
 
 .movie-column {
