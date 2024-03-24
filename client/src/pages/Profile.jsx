@@ -1,8 +1,8 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { Container, Row, Col } from "react-bootstrap";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
-import MemberCard from "../components/MemberCard";
+import MemberCardProfile from "../components/MemberCardProfile";
 import { QUERY_MOVIE } from "../utils/queries";
 
 const Profile = () => {
@@ -38,9 +38,9 @@ const Profile = () => {
             style={{ width: "30%" }}
           />
           <div className="membership-card">
-            <MemberCard
+            <MemberCardProfile
               username={userData.username}
-              email="me@example.com"
+              email={userData.email}
               paddedUsername={paddedUsername}
               memberSince={memberSince}
             />

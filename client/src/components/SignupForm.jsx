@@ -3,7 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import MemberCard from "./MemberCard";
+import MemberCardSignUp from "./MemberCardSignUp";
 import "../css/membercard.css"; // Import the CSS file
 
 const SignupForm = () => {
@@ -72,12 +72,12 @@ const SignupForm = () => {
   return (
     <>
       <div className="membership-card">
-        <MemberCard
+        <MemberCardSignUp
           username={userFormData.username}
           email={userFormData.email}
           paddedUsername={paddedUsername}
           memberSince={memberSince}
-        ></MemberCard>
+        ></MemberCardSignUp>
       </div>
       <br></br>
       {/* This is needed for the validation functionality above */}
