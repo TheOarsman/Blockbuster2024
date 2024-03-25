@@ -85,7 +85,7 @@ const Footer = () => {
                   <FaGithub className="icon" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/greg-greve/"
+                  href="https://www.linkedin.com/in/gregory-greve-b48463300/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-light mx-2"
