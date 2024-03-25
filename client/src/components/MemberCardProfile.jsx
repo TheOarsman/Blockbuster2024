@@ -15,9 +15,9 @@ function MemberCardProfile({ username, email, paddedUsername, memberSince }) {
         alt="Membership Card"
         className="totalMemberCard"
       />
-      <Card.ImgOverlay className="d-flex flex-column justify-content-center align-items-start">
-        <Card.Title>Username: {username}</Card.Title>
-        <Card.Title>Email: {email}</Card.Title>
+      <Card.ImgOverlay className="d-flex flex-column justify-content-center align-items-start ">
+        <Card.Title className = 'username-profile'>Username: {username}</Card.Title>
+        <Card.Title classname = 'email-profile'>Email: {email}</Card.Title>
         <Card.Title>Hours Watch: {"MathToBeDone!"}</Card.Title>
         <Card.Text className="d-flex justify-content-center">
           <ReactBarcode

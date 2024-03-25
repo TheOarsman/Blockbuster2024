@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -62,7 +62,8 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className="membership-card">
+      
+      <div className="membership-card mb-3">
         <MemberCardLogIn
           username={userFormData.username}
           email="me@example.com"
