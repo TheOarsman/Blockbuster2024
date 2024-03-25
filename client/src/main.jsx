@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
 import Watchlist from './pages/Watchlist.jsx';
+import ForgotPassword from "./pages/ForgotPassword";
+import Feedback from "./pages/Feedback.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +51,14 @@ const router = createBrowserRouter([
         path: "/watchlist",
         element: <Watchlist />,
       },
-      
+      {
+        path: "/forgotpassword",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/feedback",
+        element: <Feedback/>,
+      },
     ],
   },
 ]);

@@ -1,4 +1,4 @@
-const { signToken, AuthenticationError } = require("../utils/auth.js");
+const { signToken, AuthenticationError, generateResetToken } = require("../utils/auth.js");
 const { User } = require("../models");
 
 const resolvers = {
@@ -36,6 +36,27 @@ const resolvers = {
 
       return { token, user };
     },
+
+    resetPassword: async (parent, {email}) => {
+
+    try{
+      const user = await User.findOne({ email: email });
+
+        if (!user) {
+          return false;
+        }
+
+        const token = generateResetToken(user);
+       
+        return {user, token };
+
+
+    }
+    catch(error) {
+      throw AuthenticationError;
+    }
+    },
+
     saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(

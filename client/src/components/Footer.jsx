@@ -1,4 +1,4 @@
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Button, Card } from "react-bootstrap";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "../css/footer.css";
 
@@ -121,6 +121,16 @@ const Footer = () => {
             The Developing Community &copy; BLOCKBUSTER 2024 &copy; All Rights
             Reserved
           </Col>
+         <Container >
+          <Button
+          type="button"
+          variant="danger"
+          href='/feedback'
+          className="d-flex justify-content-center"
+        >
+          Feedback
+        </Button>
+        </Container>
         </Row>
       </Container>
     </footer>
