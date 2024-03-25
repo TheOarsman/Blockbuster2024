@@ -2,7 +2,13 @@ import Card from "react-bootstrap/Card";
 import ReactBarcode from "react-barcode";
 import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; // Import the MembershipCard component
 
-function MemberCardProfile({ username, email, paddedUsername, memberSince }) {
+function MemberCardProfile({
+  username,
+  email,
+  hoursWatched,
+  paddedUsername,
+  memberSince,
+}) {
   return (
     <div className="d-flex flex-column">
       <Card
@@ -23,7 +29,7 @@ function MemberCardProfile({ username, email, paddedUsername, memberSince }) {
           </div>
           <div className="hoursWatched-container">
             <Card.Title className="hoursWatched">
-              Hours Watched: {email}
+              Hours Watched: {hoursWatched}
             </Card.Title>
           </div>
 
