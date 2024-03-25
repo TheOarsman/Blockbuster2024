@@ -9,7 +9,11 @@
 
 .cardText {
   color: white;
-  font-size: large;
+  font-size: 2vw; /* Use relative units like vw (viewport width) for font size */
+}
+
+.cardText * {
+  font-size: inherit; /* Inherit font size from parent (.cardText) */
 }
 
 .barcode-container {
