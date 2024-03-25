@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Alert, Container } from "react-bootstrap";
+
 import { useMutation } from "@apollo/client";
+
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 import MemberCardLogIn from "./MemberCardLogIn";
+
 import "../css/membercard.css";
 
 const LoginForm = () => {
+
   const [userFormData, setUserFormData] = useState({
     username: "",
     password: "",
@@ -16,7 +20,7 @@ const LoginForm = () => {
 
   const [login, { error }] = useMutation(LOGIN);
 
-  // settings for barcode generation based on username input
+  // Settings for barcode generation are based on username input
   const [paddedUsername, setPaddedUsername] = useState("");
   useEffect(() => {
     setPaddedUsername(
@@ -24,7 +28,7 @@ const LoginForm = () => {
     );
   }, [userFormData.username]);
 
-  // sets the "User Since" date on MemberCard
+  // Sets the "User Since" date on MemberCard
   const memberSince = new Date(Date.now()).toLocaleDateString();
 
   const handleInputChange = (event) => {
@@ -35,7 +39,7 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+    // Check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -49,7 +53,8 @@ const LoginForm = () => {
 
       console.log(data);
       Auth.login(data.login.token);
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
       setShowAlert(true);
     }
@@ -62,7 +67,6 @@ const LoginForm = () => {
 
   return (
     <>
-      
       <div className="membership-card mb-3">
         <MemberCardLogIn
           username={userFormData.username}
@@ -71,7 +75,9 @@ const LoginForm = () => {
           memberSince={memberSince}
         />
       </div>
+
       <br></br>
+
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert
           dismissible
@@ -111,6 +117,7 @@ const LoginForm = () => {
             Password is required!
           </Form.Control.Feedback>
         </Form.Group>
+        
         <Button
           disabled={!(userFormData.username && userFormData.password)}
           type="submit"
