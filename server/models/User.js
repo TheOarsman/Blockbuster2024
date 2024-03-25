@@ -31,11 +31,7 @@ const userSchema = new Schema(
     savedWatchlist: [watchlistSchema],
 
     memberSince: {
-      type: String,
-      required: true,
-      default: function () {
-        return new Date(Date.now()).toLocaleDateString();
-      },
+      type: Date,
     },
   },
   // set this to use virtual below
@@ -51,6 +47,11 @@ userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  // Set memberSince only if it's a new user
+  if (this.isNew) {
+    this.memberSince = Date.now();
   }
 
   next();

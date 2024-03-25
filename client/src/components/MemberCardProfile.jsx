@@ -32,7 +32,11 @@ function MemberCardProfile({
               Hours Watched: {hoursWatched}
             </Card.Title>
           </div>
-
+          <div className="memberSince-container">
+            <Card.Text className="memberSince">
+              Member Since: {memberSince}
+            </Card.Text>
+          </div>
           <div className="barcode-container">
             <div className="barcode">
               <ReactBarcode
@@ -42,14 +46,9 @@ function MemberCardProfile({
                 format="CODE128" // Specify the barcode format
                 displayValue={false} // Hide the human-readable text
                 textPosition="none" // Hide the text completely
-                background="#2556A5" // Set the background color
+                background="transparent" // Set the background color
               />
             </div>
-          </div>
-          <div className="memberSince-container">
-            <Card.Text className="memberSince">
-              Member Since: {memberSince}
-            </Card.Text>
           </div>
         </Card.ImgOverlay>
       </Card>
