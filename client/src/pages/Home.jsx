@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import membershipCardImage from "../assets/images/BlockbusterMembership02.jpg";
 import vintageLogo from "../assets/images/BlockbusterLogo1985.png";
 import magicBooks from "../assets/images/magicBooks.jpg";
-import instore from "../assets/images/instore_picture.png";
+
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 import YouTube from "react-youtube";
