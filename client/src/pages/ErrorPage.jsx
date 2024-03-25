@@ -1,34 +1,36 @@
 import blockbusterLogo from "../assets/images/BlockbusterOriginalLogo.png";
-import "../css/ErrorPage.css"; // Import CSS file for styling
+import "../css/ErrorPage.css";
+import { Container, Col, Row } from "react-bootstrap";
 
 const ErrorPage = () => {
   return (
-    <div
-      className="error-page-container"
-      style={{
-        backgroundColor: "#0D2264 ",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <Container
+      fluid
+      className="d-flex justify-content-center align-items-center errorPage"
     >
-      <div className="error-page-content">
-        <img
-          src={blockbusterLogo}
-          alt="Blockbuster Logo"
-          className="blockbuster-logo-small"
-        />{" "}
-        {/* Apply class for smaller size */}
-        <p className="error-page-message">
-          Sorry for the inconvenience, we are still working on rewinding your
-          movie.
-        </p>
-        <a href="/" className="error-page-link">
-          Go to Home Page
-        </a>
+      <div className="text-center">
+        <Row>
+          <Col>
+            <img
+              src={blockbusterLogo}
+              alt="Blockbuster Logo"
+              className="img-fluid blockbuster-logo-small"
+            />
+          </Col>
+        </Row>
+        <Row>
+          <p className="error-page-message">
+            Sorry for the inconvenience, we are still working on rewinding your
+            movie.
+          </p>
+        </Row>
+        <Row>
+          <a href="/" className="error-page-link">
+            Go to Home Page
+          </a>
+        </Row>
       </div>
-    </div>
+    </Container>
   );
 };
 

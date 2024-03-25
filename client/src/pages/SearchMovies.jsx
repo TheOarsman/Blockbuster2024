@@ -49,7 +49,7 @@ const getRottenTomatoesRating = (ratings) => {
   }
 };
 
-// comment
+
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
@@ -254,7 +254,7 @@ const SearchMovies = () => {
                     <Row className="item-row">
                       {movie.Rated && (
                         <Col>
-                          <p className="item">Rated: {movie.Rated}</p>
+                          <p className="item"> {movie.Rated}</p>
                         </Col>
                       )}
                       <Col>
@@ -262,12 +262,12 @@ const SearchMovies = () => {
                       </Col>
                       {movie.Genre && (
                         <Col>
-                          <p className="item">Genre: {movie.Genre}</p>
+                          <p className="item">{movie.Genre}</p>
                         </Col>
                       )}
                       {movie.Runtime && (
                         <Col>
-                          <p className="item">Runtime: {movie.Runtime}</p>
+                         <p className="item">{(movie.Runtime)}</p>
                         </Col>
                       )}
                     </Row>

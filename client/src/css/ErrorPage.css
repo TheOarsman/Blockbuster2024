@@ -3,6 +3,26 @@
   height: auto; /* Maintain aspect ratio */
 }
 
-.error-page-message {
-  color: yellow;
+
+
+.errorPage {
+  background-color: #0d2264;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  color:whitesmoke;
+  font-size: xx-large;
 }
+
+.error-page-link {
+color:#57A3DB ;
+}
+
+.error-page-link:hover {
+  color: #2485CC ;
+} 
