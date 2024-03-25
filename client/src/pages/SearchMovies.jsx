@@ -6,7 +6,6 @@ import { useMutation } from "@apollo/client";
 import {
   saveMovieIds,
   getSavedMovieIds,
-  savedWatchlistIds,
   getSavedWatchlistIds,
 } from "../utils/localStorage";
 
