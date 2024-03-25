@@ -19,7 +19,9 @@ const AppNavbar = () => {
   };
 
   const handleLinkClick = () => {
+    if (expanded) {
     setExpanded(false);
+    }
   };
 
   return (
@@ -36,7 +38,7 @@ const AppNavbar = () => {
             src={Logo}
             alt="Blockbuster 2024"
             className="navbar-logo"
-            onClick={handleNavbarToggle}
+            onClick={handleLinkClick}
           />
         </Navbar.Brand>
         <Navbar.Toggle onClick={handleNavbarToggle} />
