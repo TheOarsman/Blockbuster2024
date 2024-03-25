@@ -15,16 +15,13 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
-        <Container fluid>
-          <Navbar.Brand as={Link} to="/">
+      <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar d-flex">
+          <Navbar.Brand background = 'dark' as={Link} to="/">
             <img src={Logo} alt="Blockbuster 2024" className="navbar-logo" />
-          </Navbar.Brand>
-          <div style={{ paddingLeft: "25px", paddingRight: "25px" }}>
-            <Navbar.Toggle aria-controls="navbar" />
-          </div>
+          </Navbar.Brand >
+            <Navbar.Toggle aria-controls="navbar"  />
           <Navbar.Collapse id="navbarCollapse">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto ">
               <Nav.Link
                 as={NavLink}
                 to="/search-books"
@@ -78,7 +75,6 @@ const AppNavbar = () => {
               )}
             </Nav>
           </Navbar.Collapse>
-        </Container>
       </Navbar>
       <Modal
         size="lg"

@@ -1,5 +1,6 @@
 .membership-card {
   font-family: "American Typewriter", serif;
+  width: 100%;
 }
 
 .totalMemberCard {
@@ -7,22 +8,34 @@
 }
 
 .cardText {
-  margin-top: 6.75rem;
-  margin-left: 4.75rem;
   color: white;
-  font-size: 12px;
+  font-size: large;
 }
 
-.card .cardText-profile {
+.barcode-container,
+.username-container,
+.memberSince-container,
+.email-container {
+  width: 70%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the start (left) */
-  margin-top: 10.5rem;
-  color: white;
-  font-size: 14px;
+  justify-content: flex-start;
 }
 
-.card .cardText-profile .card-title,
-.card .cardText-profile .card-text {
-  padding-left: 7.45rem; /* Override default padding */
+.barcode,
+.username,
+.email,
+.memberSince {
+  margin-right: auto;
+}
+
+.username,
+.email {
+  margin-top: -5px;
+}
+
+.username-container {
+  margin-top: 12px;
+}
+.memberSince-container {
+  margin-top: -7px;
 }
