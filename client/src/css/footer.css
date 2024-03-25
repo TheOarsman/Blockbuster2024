@@ -1,5 +1,5 @@
 .footer {
-  background-color: #0d2264 !important;
+  background-color: rgba(13, 34, 100, 0.9)!important;
   color: #fff;
   font-family: "Oxygen", sans-serif;
   font-size: 20px;
@@ -12,17 +12,17 @@
 }
 
 .footer-copyright {
-  font-size: small;
   font-style: italic;
-  font-family: "Courier New", Courier, monospace;
 }
 
-.icon {
-  transition: 0.2s ease;
+
+.footer-icon {
+  margin-left: 15px;
+  transition: .2s ease;
 }
-.icon:hover {
-  color: #f9ba1f;
-  cursor: pointer;
+
+.footer-icon:hover {
+  color:#14AAAA;
 }
 
 @media (max-width: 500px) {

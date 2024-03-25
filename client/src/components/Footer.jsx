@@ -1,130 +1,105 @@
-import { Container, Col, Row } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Col, Row, Dropdown, DropdownButton, Modal, Button } from "react-bootstrap";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "../css/footer.css";
 
+const DeveloperModal = ({ developer, onHide }) => {
+  return (
+    <Modal show={true} onHide={onHide} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>
+          {developer.name}
+          <a href={developer.github} target="_blank" rel="noopener noreferrer">
+          <FaGithub className="footer-icon" />
+          </a>
+          <a href={developer.linkedin} target="_blank" rel="noopener noreferrer">
+          <FaLinkedin className="footer-icon" />
+          </a>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onHide}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
 const Footer = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [currentDeveloper, setCurrentDeveloper] = useState(null);
+
+  const developers = [
+    {
+      name: "Ethan Wynne",
+      github: "https://github.com/ethanfrog",
+      linkedin: "https://linkedin.com/in/ethan-wynne-b2a956161"
+    },
+    {
+      name: "Whitney Simpson",
+      github: "https://github.com/Whitney-Simpson",
+      linkedin: "https://www.linkedin.com/in/whitneysimpson/"
+    },
+    {
+      name: "Heinz Ulrich V",
+      github: "https://github.com/TheOarsman",
+      linkedin: "https://www.linkedin.com/in/heinz-ulrich-v-3a3486a0/"
+    },
+    {
+      name: "Greg Greve",
+      github: "https://github.com/Goobergreve09",
+      linkedin: "https://www.linkedin.com/in/gregory-greve-b48463300/"
+    },
+    {
+      name: "Nicholas Eggleston",
+      github: "https://github.com/nickegg11",
+      linkedin: "https://www.linkedin.com/in/nicholas-eggleston-9780a7270/"
+    }
+  ];
+
+  const handleShowModal = (developer) => {
+    setCurrentDeveloper(developer);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCurrentDeveloper(null);
+  };
+
   return (
     <footer className="footer">
       <Container>
-        {/* Sections for our developer info (GitHub, LinkedIn, some third thing) */}
         <Row className="text-center" style={{ flexWrap: "wrap" }}>
           <Col>
             <Row>
-              {/* Developer 1 */}
               <Col>
-                <Col>Ethan Wynne</Col>
-
-                <a
-                  href="https://github.com/ethanfrog"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaGithub className="icon" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/ethan-wynne-b2a956161"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaLinkedin className="icon" />
-                </a>
-              </Col>
-              <Col>
-                <Col>Whitney Simpson</Col>
-
-                <a
-                  href="https://github.com/Whitney-Simpson"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaGithub className="icon" />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/whitneysimpson/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaLinkedin className="icon" />
-                </a>
-              </Col>
-              <Col>
-                <Col>Heinz Ulrich V</Col>
-
-                <a
-                  href="https://github.com/TheOarsman"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaGithub className="icon" />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/heinz-ulrich-v-3a3486a0/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaLinkedin className="icon" />
-                </a>
-              </Col>
-              <Col>
-                <Col>Greg Greve</Col>
-
-                <a
-                  href="https://github.com/Goobergreve09"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaGithub className="icon" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/gregory-greve-b48463300/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaLinkedin className="icon" />
-                </a>
-              </Col>
-              <Col>
-                <Col>Nicholas Eggleston </Col>
-
-                <a
-                  href="https://github.com/nickegg11"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaGithub className="icon" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/nicholas-eggleston-9780a7270/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-light mx-2"
-                >
-                  <FaLinkedin className="icon" />
-                </a>
+                <DropdownButton id="dropdown-basic-button" title="Developers">
+                  {developers.map((developer, index) => (
+                    <Dropdown.Item key={index} onClick={() => handleShowModal(developer)}>
+                      {developer.name}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
               </Col>
             </Row>
           </Col>
         </Row>
-        <Row className="footer-copyright pt-4 ">
-          <Col className="d-flex justify-content-center">
-            The Developing Community &copy; BLOCKBUSTER 2024 &copy; All Rights
-            Reserved
-          </Col>
-        </Row>
       </Container>
+      {currentDeveloper && (
+        <DeveloperModal developer={currentDeveloper} onHide={handleCloseModal} />
+      )}
+         <div className="text-center mt-3 footer-copyright">
+        <p>&copy; BLOCKBUSTER 2024 &copy; All Rights Reserved</p>
+      </div>
     </footer>
   );
 };
 
 export default Footer;
+
+
+
+
+
