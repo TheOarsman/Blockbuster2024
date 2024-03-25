@@ -1,6 +1,8 @@
 import Card from "react-bootstrap/Card";
 import ReactBarcode from "react-barcode";
-import MembershipCardImg from "../assets/images/BlockbusterMembership03.png"; // Import the MembershipCard component
+
+// Import the MembershipCard component
+import MembershipCardImg from "../assets/images/BlockbusterMembership03.png";
 
 function MemberCardProfile({
   username,
@@ -24,29 +26,33 @@ function MemberCardProfile({
           <div className="username-container">
             <Card.Title className="username">Username: {username}</Card.Title>
           </div>
+
           <div className="email-container">
             <Card.Title className="email">Email: {email}</Card.Title>
           </div>
+
           <div className="hoursWatched-container">
             <Card.Title className="hoursWatched">
               Hours Watched: {hoursWatched}
             </Card.Title>
           </div>
+
           <div className="memberSince-container">
             <Card.Text className="memberSince">
               Member Since: {memberSince}
             </Card.Text>
           </div>
+
           <div className="barcode-container">
             <div className="barcode">
               <ReactBarcode
                 value={paddedUsername.padEnd(20, ".")}
-                width={1.0} // Set the width of the bars
-                height={14} // Set the height of the bars
-                format="CODE128" // Specify the barcode format
-                displayValue={false} // Hide the human-readable text
-                textPosition="none" // Hide the text completely
-                background="transparent" // Set the background color
+                width={1.0}               // Set bar width
+                height={14}               // Set bar height
+                format="CODE128"          // Specify barcode format
+                displayValue={false}      // Hide human-readable text
+                textPosition="none"       // Hide text completely
+                background="transparent"  // Set background color
               />
             </div>
           </div>
