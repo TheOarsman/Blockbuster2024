@@ -9,16 +9,19 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+
     users: async () => {
       return User.find({});
     },
   },
+
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
     },
+
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
 
@@ -36,6 +39,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
@@ -49,6 +53,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     saveMovie: async (parent, { movieData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
@@ -62,6 +67,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
@@ -75,6 +81,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     removeMovie: async (parent, { movieId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
@@ -88,6 +95,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+
     saveWatchlist: async (parent, { movieData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
@@ -101,6 +109,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
+    
     removeWatchlist: async (parent, { movieId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(

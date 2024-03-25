@@ -10,6 +10,7 @@ module.exports = {
       code: "UNAUTHENTICATED",
     },
   }),
+
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -30,6 +31,7 @@ module.exports = {
 
     return req;
   },
+  
   signToken: function ({ username,  _id }) {
     const payload = { username,  _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });

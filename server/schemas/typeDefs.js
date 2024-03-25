@@ -74,7 +74,6 @@ type User {
     users: [User]
   }
 
-
   type Mutation {
    login(username: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
