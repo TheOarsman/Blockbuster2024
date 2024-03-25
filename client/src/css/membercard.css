@@ -12,7 +12,11 @@
   font-size: large;
 }
 
-.barcode-container,
+.barcode-container {
+  display: flex;
+}
+
+.hoursWatched-container,
 .username-container,
 .memberSince-container,
 .email-container {
