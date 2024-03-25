@@ -6,13 +6,14 @@ import { useMutation } from "@apollo/client";
 import {
   saveMovieIds,
   getSavedMovieIds,
-  saveWatchlistIds,
+  savedWatchlistIds,
   getSavedWatchlistIds,
 } from "../utils/localStorage";
 
 import { handleSearch } from "../utils/movieFetch";
 import Auth from "../utils/auth";
 import { SAVE_MOVIE, ADD_WATCHLIST } from "../utils/mutations";
+import AuthService from "../utils/auth";
 
 // import Logos and Css
 
@@ -64,12 +65,13 @@ const SearchMovies = () => {
   const [saveWatchlist] = useMutation(ADD_WATCHLIST);
 
   useEffect(() => {
-    return () => saveMovieIds(savedMovieIds);
-  });
-
-  useEffect(() => {
-    return () => saveWatchlistIds(savedWatchlistIds);
-  });
+ 
+    if (AuthService.loggedIn()) {
+      const profile = AuthService.getProfile();
+      setSavedMovieIds(profile.savedMovieIds || []);
+      setSavedWatchlistIds(profile.savedWatchlistIds || []);
+    }
+  }, []);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
