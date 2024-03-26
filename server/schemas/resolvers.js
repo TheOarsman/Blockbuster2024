@@ -1,5 +1,7 @@
-const { signToken, AuthenticationError } = require("../utils/auth.js");
+const { signToken, AuthenticationError, generateResetToken } = require("../utils/auth.js");
 const { User } = require("../models");
+
+
 
 const resolvers = {
   Query: {
@@ -38,92 +40,113 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    },
 
-    saveBook: async (parent, { bookData }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedBooks: bookData } },
-          { new: true }
-        );
+      resetPassword: async (parent, { email }) => {
 
-        return updatedUser;
+        try {
+          const user = await User.findOne({ email: email });
+
+          if (!user) {
+            return false;
+          }
+
+          const token = generateResetToken(user);
+
+          return { user, token };
+
+
+        }
+        catch (error) {
+          throw AuthenticationError;
+        }
       }
-
-      throw AuthenticationError;
     },
 
-    saveMovie: async (parent, { movieData }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedMovies: movieData } },
-          { new: true }
-        );
 
-        return updatedUser;
-      }
+        saveBook: async (parent, { bookData }, context) => {
+          if (context.user) {
+            const updatedUser = await User.findByIdAndUpdate(
+              { _id: context.user._id },
+              { $push: { savedBooks: bookData } },
+              { new: true }
+            );
 
-      throw AuthenticationError;
-    },
+            return updatedUser;
+          }
 
-    removeBook: async (parent, { bookId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedBooks: { bookId } } },
-          { new: true }
-        );
+          throw AuthenticationError;
+        },
 
-        return updatedUser;
-      }
+          saveMovie: async (parent, { movieData }, context) => {
+            if (context.user) {
+              const updatedUser = await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $push: { savedMovies: movieData } },
+                { new: true }
+              );
 
-      throw AuthenticationError;
-    },
+              return updatedUser;
+            }
 
-    removeMovie: async (parent, { movieId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedMovies: { movieId } } },
-          { new: true }
-        );
+            throw AuthenticationError;
+          },
 
-        return updatedUser;
-      }
+            removeBook: async (parent, { bookId }, context) => {
+              if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                  { _id: context.user._id },
+                  { $pull: { savedBooks: { bookId } } },
+                  { new: true }
+                );
 
-      throw AuthenticationError;
-    },
+                return updatedUser;
+              }
 
-    saveWatchlist: async (parent, { movieData }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedWatchlist: movieData } },
-          { new: true }
-        );
+              throw AuthenticationError;
+            },
 
-        return updatedUser;
-      }
+              removeMovie: async (parent, { movieId }, context) => {
+                if (context.user) {
+                  const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savedMovies: { movieId } } },
+                    { new: true }
+                  );
 
-      throw AuthenticationError;
-    },
-    
-    removeWatchlist: async (parent, { movieId }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedWatchlist: { movieId } } },
-          { new: true }
-        );
+                  return updatedUser;
+                }
 
-        return updatedUser;
-      }
+                throw AuthenticationError;
+              },
 
-      throw AuthenticationError;
-    },
+                saveWatchlist: async (parent, { movieData }, context) => {
+                  if (context.user) {
+                    const updatedUser = await User.findByIdAndUpdate(
+                      { _id: context.user._id },
+                      { $push: { savedWatchlist: movieData } },
+                      { new: true }
+                    );
+
+                    return updatedUser;
+                  }
+
+                  throw AuthenticationError;
+                },
+
+                  removeWatchlist: async (parent, { movieId }, context) => {
+                    if (context.user) {
+                      const updatedUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $pull: { savedWatchlist: { movieId } } },
+                        { new: true }
+                      );
+
+                      return updatedUser;
+                    }
+
+                    throw AuthenticationError;
+                  },
   },
-};
+  };
 
-module.exports = resolvers;
+  module.exports = resolvers;

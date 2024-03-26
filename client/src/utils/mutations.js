@@ -25,6 +25,20 @@ export const ADD_USER = gql`
   }
 `;
 
+
+export const RESET_PASSWORD = gql`
+mutation resetPassword($email:String!){
+  resetPassword(email:$email) {
+    token
+    user{
+      _id
+      username
+      email
+    }
+  }
+}
+  `
+
 export const SAVE_MOVIE = gql`
   mutation saveMovie($movieData: MovieInput!) {
     saveMovie(movieData: $movieData) {
