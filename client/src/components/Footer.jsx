@@ -90,35 +90,45 @@ const Footer = () => {
       <Container fluid>
         <Row style={{ flexWrap: "wrap" }} className="text-center ">
           <Col>
-            <DropdownButton
-              id="dropdown-basic-button"
-              title="Developers"
-              className="d-flex p-3 "
-            >
-              {developers.map((developer, index) => (
-                <Dropdown.Item
-                  key={index}
-                  onClick={() => handleShowModal(developer)}
-                >
-                  {developer.name}
-                </Dropdown.Item>
-              ))}
-            </DropdownButton>
+            <Row>
+              <DropdownButton
+                id="dropdown-basic-button"
+                title="Developers"
+                className="d-flex p-3 "
+              >
+                {developers.map((developer, index) => (
+                  <Dropdown.Item
+                    key={index}
+                    onClick={() => handleShowModal(developer)}
+                  >
+                    {developer.name}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
+            </Row>
+          </Col>
+          <Col md={{ span: 2 }} className="d-flex p-3">
+            <Row className="feedback">
+              <Col >
+                <Button type="button" variant="danger" href="/feedback">
+                  Feedback Link
+                </Button>
+              </Col>
+            </Row>
           </Col>
 
           <div className="">
             <p>&copy; BLOCKBUSTER 2024 &copy; All Rights Reserved</p>
           </div>
         </Row>
-      </Container>
-      
-      {currentDeveloper && (
-        <DeveloperModal
-          developer={currentDeveloper}
-          onHide={handleCloseModal}
-        />
-      )}
-    </footer>
+        </Container>
+        {currentDeveloper && (
+          <DeveloperModal
+            developer={currentDeveloper}
+            onHide={handleCloseModal}
+          />
+        )}
+    </footer >
   );
 };
 
