@@ -69,8 +69,8 @@
   background-color: none;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
   .home-container {
-    margin-bottom: 180px;
+    margin-bottom: 200px;
   }
 }

@@ -147,7 +147,7 @@ const SearchBooks = () => {
           </Row>
         </Container>
 
-        <Container style={{ marginBottom: "250px" }}>
+        <Container className="bookSearch-margin" style={{ marginBottom: "250px" }}>
           <Row>
             {searchedBooks.map((book) => {
               return (

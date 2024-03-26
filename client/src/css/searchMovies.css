@@ -98,3 +98,9 @@ button:hover {
 .fa-eye {
   font-size: 32px;
 }
+
+@media (max-width: 500px) {
+.card-margin {
+margin-bottom: 315px;
+}
+}
