@@ -9,6 +9,8 @@ import "./css/App.css";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import React from "react";
+
 
 
 const httpLink = createHttpLink({
@@ -34,8 +36,11 @@ const client = new ApolloClient({
 });
 
 function App() {
+  
+
   return (
     <ApolloProvider client={client}>
+      
       <Navbar />
       <Outlet />
       <Footer />

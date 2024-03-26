@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, Modal, Tab } from "react-bootstrap";
+
+import Auth from "../utils/auth";
+
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-import "../css/nav.css";
 import Logo from "../assets/images/BlockbusterNoBackground.png";
 
-import Auth from "../utils/auth";
+import "../css/nav.css";
 
 const AppNavbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -41,6 +43,7 @@ const AppNavbar = () => {
             onClick={handleLinkClick}
           />
         </Navbar.Brand>
+
         <Navbar.Toggle onClick={handleNavbarToggle} />
         <Navbar.Collapse id="navbarCollapse">
           <Nav className="mr-auto ">
@@ -61,6 +64,7 @@ const AppNavbar = () => {
               Movie Search
             </Nav.Link>
           </Nav>
+
           <Nav>
             {Auth.loggedIn() ? (
               <>
@@ -72,6 +76,7 @@ const AppNavbar = () => {
                 >
                   Book Collection
                 </Nav.Link>
+
                 <Nav.Link
                   as={NavLink}
                   to="/favorite-movies"
@@ -80,6 +85,7 @@ const AppNavbar = () => {
                 >
                   Favorite Movies
                 </Nav.Link>
+
                 <Nav.Link
                   as={NavLink}
                   to="/watchlist"
@@ -88,6 +94,7 @@ const AppNavbar = () => {
                 >
                   Watchlist
                 </Nav.Link>
+
                 <Nav.Link
                   as={NavLink}
                   to="/profile"
@@ -108,6 +115,7 @@ const AppNavbar = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
       <Modal
         size="lg"
         show={showModal}
@@ -127,6 +135,7 @@ const AppNavbar = () => {
               </Nav>
             </Modal.Title>
           </Modal.Header>
+          
           <Modal.Body>
             <Tab.Content>
               <Tab.Pane eventKey="login">
