@@ -1,6 +1,5 @@
 
 import useState from "NeedsToBeMade";
-import "./styles/MembershipCard.css"; // Import CSS file for styling
 
 const MembershipCard = () => {
   const [userInfo, setUserInfo] = useState({
@@ -43,6 +42,7 @@ const MembershipCard = () => {
           onChange={handleChange}
         />
       </div>
+
       <div>
         <label>Username:</label>
         <input
@@ -52,6 +52,7 @@ const MembershipCard = () => {
           onChange={handleChange}
         />
       </div>
+
       <div>
         <label>Email:</label>
         <input
@@ -61,6 +62,7 @@ const MembershipCard = () => {
           onChange={handleChange}
         />
       </div>
+
       <div>
         <label>Movie Hours Watched:</label>
         <input
@@ -70,6 +72,7 @@ const MembershipCard = () => {
           onChange={handleChange}
         />
       </div>
+      
       <div>
         <label>UPC:</label>
         <span>{generateUPC()}</span>
