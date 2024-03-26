@@ -5,6 +5,7 @@ import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 import MemberCardLogIn from "./MemberCardLogIn";
 import "../css/membercard.css";
+import '../pages/ForgotPassword'
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({
