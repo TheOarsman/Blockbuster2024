@@ -55,6 +55,7 @@ class Home extends React.Component {
                   "src/assets/images/Slide21.jpg",
                   "src/assets/images/Slide22.jpg",
                   "src/assets/images/Slide23.jpg",
+                  "src/assets/images/Slide24.jpg",
                 ]} />
           </Col>
         </Row>
