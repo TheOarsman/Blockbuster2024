@@ -9,7 +9,7 @@
 
 .cardText {
   color: white;
-  font-size: 2vw; /* Use relative units like vw (viewport width) for font size */
+  font-size: 1.75vw; /* Use relative units like vw (viewport width) for font size */
 }
 
 .cardText * {

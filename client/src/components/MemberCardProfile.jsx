@@ -15,7 +15,7 @@ function MemberCardProfile({
     <div className="d-flex flex-column">
       <Card
         style={{
-          width: "100%",
+          width: "70%",
           border: "none",
           margin: "auto",
           background: "transparent",

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Alert, Container } from "react-bootstrap";
+
+import { Form, Button, Alert} from "react-bootstrap";
 
 import { useMutation } from "@apollo/client";
 
@@ -9,6 +10,7 @@ import Auth from "../utils/auth";
 import MemberCardLogIn from "./MemberCardLogIn";
 
 import "../css/membercard.css";
+import '../pages/ForgotPassword'
 
 const LoginForm = () => {
 
@@ -125,6 +127,13 @@ const LoginForm = () => {
           variant="success"
         >
           Submit
+        </Button>
+        <Button
+          type="button"
+          variant="danger"
+          href='/forgotpassword'
+        >
+          Forgot Password
         </Button>
       </Form>
     </>

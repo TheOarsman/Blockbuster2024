@@ -100,10 +100,37 @@ const Footer = () => {
                   key={index}
                   onClick={() => handleShowModal(developer)}
                 >
+
+                  {developers.map((developer, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      onClick={() => handleShowModal(developer)}
+                    >
+                      {developer.name}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+              </Col>
+              <Col  md={{ span: 2}} className="d-flex p-3">
+                <Row className="feedback">
+                  <Col >
+                  <Button type="button" variant="danger" href="/feedback">
+                    Feedback Link
+                  </Button>
+                  </Col>
+                </Row>
+              </Col>
+
+              <div className="">
+                <p>&copy; BLOCKBUSTER 2024 &copy; All Rights Reserved</p>
+              </div>
+            </Row>
+
                   {developer.name}
                 </Dropdown.Item>
               ))}
             </DropdownButton>
+
           </Col>
 
           <div className="">
@@ -111,7 +138,7 @@ const Footer = () => {
           </div>
         </Row>
       </Container>
-      
+
       {currentDeveloper && (
         <DeveloperModal
           developer={currentDeveloper}
