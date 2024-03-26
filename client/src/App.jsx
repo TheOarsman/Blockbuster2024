@@ -10,7 +10,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import React from "react";
-import Slides from "./components/Carousel";
+
 
 
 const httpLink = createHttpLink({
@@ -36,28 +36,13 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const images = [
-    
-    "src/assets/images/Slide1.jpg",
-    "src/assets/images/Slide2.jpg",
-    "src/assets/images/Slide3.jpg",
-    "src/assets/images/Slide4.jpg",
-    "src/assets/images/Slide5.jpg",
-    "src/assets/images/Slide6.jpg",
-    "src/assets/images/Slide7.jpg",
-    "src/assets/images/Slide8.jpg",
-    "src/assets/images/Slide9.png",
-    "src/assets/images/Slide10.jpg",
-    
-    
-  ];
+  
 
   return (
     <ApolloProvider client={client}>
       
       <Navbar />
       <Outlet />
-      <Slides images={images} />
       <Footer />
     </ApolloProvider>
   );
