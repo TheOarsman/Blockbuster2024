@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import membershipCardImage from "../assets/images/BlockbusterMembership02.jpg";
-import vintageLogo from "../assets/images/BlockbusterLogo1985.png";
 import magicBooks from "../assets/images/magicBooks.jpg";
 
 import Slides from "../components/Carousel";
@@ -30,17 +29,36 @@ class Home extends React.Component {
               <Card.Header>Take a Step back in time!</Card.Header>
               <Card.Body
               >
-                <Card.Title
-                >
-                  Original Blockbuster
-                </Card.Title>
-                <Col>
-                  <img
-                    src={vintageLogo}
-                    alt="Vintage Logo"
-                    style={{ width: "150px", marginLeft: "10px" }}
-                  />
-                </Col>
+                <Row className="originalRow">
+        <Col className="originalCol pb-3">
+            <Slides images={[
+                  "src/assets/images/Slide1.jpg",
+                  "src/assets/images/Slide2.jpg",
+                  "src/assets/images/Slide3.jpg",
+                  "src/assets/images/Slide4.jpg",
+                  "src/assets/images/Slide5.jpg",
+                  "src/assets/images/Slide6.jpg",
+                  "src/assets/images/Slide7.jpg",
+                  "src/assets/images/Slide8.jpg",
+                  "src/assets/images/Slide9.jpg",
+                  "src/assets/images/Slide10.jpg",
+                  "src/assets/images/Slide11.jpg",
+                  "src/assets/images/Slide12.jpg",
+                  "src/assets/images/Slide13.jpg",
+                  "src/assets/images/Slide14.jpg",
+                  "src/assets/images/Slide15.jpg",
+                  "src/assets/images/Slide16.jpg",
+                  "src/assets/images/Slide17.jpg",
+                  "src/assets/images/Slide18.jpg",
+                  "src/assets/images/Slide19.jpg",
+                  "src/assets/images/Slide20.jpg",
+                  "src/assets/images/Slide21.jpg",
+                  "src/assets/images/Slide22.jpg",
+                  "src/assets/images/Slide23.jpg",
+                ]} />
+          </Col>
+        </Row>
+        <Card.Footer className="cardFooter" style={{ background: 'none'}}>
                 <Card.Text
                 >
                   Take a step back into history and view the original
@@ -55,6 +73,7 @@ class Home extends React.Component {
                 >
                   Go to Original Site
                 </Button>
+                </Card.Footer>
               </Card.Body>
             </Card>
           </Col>
@@ -124,34 +143,20 @@ class Home extends React.Component {
                 style={{ height: "200px" }}
               />
               <Card.Body>
-                <Card.Title>Movie Catalog</Card.Title>
+                <Card.Title>Movie Archive</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   Looking for a movie? We got it!
                 </Card.Subtitle>
                 <Card.Text>
-                  Try out our movie catalog with any movie you can think of.
+                  Try out our movie archive with any movie you can think of.
                   Find a large variety of information with each movie that
                   you'll never forget.
                 </Card.Text>
                 <Button variant="primary" href="/search-movies">
-                  Search Movie Catalog
+                  Search Movie Archive
                 </Button>
               </Card.Body>
             </Card>
-          </Col>
-        </Row>
-        <Row className="carouselRow">
-        <Col className="carouselCol">
-            <Slides images={[
-                  "src/assets/images/Slide1.jpg",
-                  "src/assets/images/Slide2.jpg",
-                  "src/assets/images/Slide3.jpg",
-                  "src/assets/images/Slide4.jpg",
-                  "src/assets/images/Slide5.jpg",
-                  "src/assets/images/Slide6.jpg",
-                  "src/assets/images/Slide7.jpg",
-                  "src/assets/images/Slide8.jpg",
-                ]} />
           </Col>
         </Row>
       </Container>
