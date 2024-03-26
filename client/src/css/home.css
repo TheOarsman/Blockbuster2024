@@ -23,11 +23,26 @@
   padding-top: 50px;
 }
 
+.carouselRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+
+.carouselCol {
+  padding: 0 10px; /* Add some horizontal padding */
+  flex: 0 0 300px ; /* Set a fixed width for each column */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
 .membershipCol {
   padding: 0 10px; /* Add some horizontal padding */
   flex: 0 0 300px; /* Set a fixed width for each column */
   margin-bottom: 20px; /* Add some bottom margin for spacing */
 }
+
 .img-header-row {
   text-align: center;
   padding-bottom: 25px;

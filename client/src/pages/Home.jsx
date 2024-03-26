@@ -140,8 +140,8 @@ class Home extends React.Component {
             </Card>
           </Col>
         </Row>
-        <Row className="membershipRow">
-          <Col className="membershipCol">
+        <Row className="carouselRow">
+        <Col className="carouselCol">
             <Slides images={[
                   "src/assets/images/Slide1.jpg",
                   "src/assets/images/Slide2.jpg",
@@ -151,7 +151,7 @@ class Home extends React.Component {
                   "src/assets/images/Slide6.jpg",
                   "src/assets/images/Slide7.jpg",
                   "src/assets/images/Slide8.jpg",
-                ]} style={{ maxWidth: "100%", height: "100%" }}/>
+                ]} />
           </Col>
         </Row>
       </Container>

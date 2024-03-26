@@ -2,8 +2,8 @@
 .carousel {
   position: static center;
   display: block;
-  width: 250px;
   height: 350px;
+  max-width: 100%;
   margin: auto;
   overflow: hidden;
   border-radius: 12px;
