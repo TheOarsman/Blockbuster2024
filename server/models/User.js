@@ -25,13 +25,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    memberSince: {
+      type: Date,
+    },
+
     // Set savedBooks to be an array of data that adheres to bookSchema
     savedBooks: [bookSchema],
     savedMovies: [movieSchema],
     savedWatchlist: [watchlistSchema],
-    memberSince: {
-      type: Date,
-    },
   },
   // Set this to use virtual below
   {
@@ -50,7 +51,7 @@ userSchema.pre("save", async function (next) {
 
   // Set memberSince only if it's a new user
   if (this.isNew) {
-    this.memberSince = Date.now();
+    this.memberSince = new Date();
   }
 
   next();

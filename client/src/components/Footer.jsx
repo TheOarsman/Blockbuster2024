@@ -9,6 +9,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 import "../css/footer.css";
 
 const DeveloperModal = ({ developer, onHide }) => {
@@ -20,6 +21,7 @@ const DeveloperModal = ({ developer, onHide }) => {
           <a href={developer.github} target="_blank" rel="noopener noreferrer">
             <FaGithub className="footer-icon" />
           </a>
+
           <a
             href={developer.linkedin}
             target="_blank"
@@ -29,6 +31,7 @@ const DeveloperModal = ({ developer, onHide }) => {
           </a>
         </Modal.Title>
       </Modal.Header>
+
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
           Close
@@ -85,13 +88,17 @@ const Footer = () => {
       <Container fluid>
         <Row style={{ flexWrap: "wrap" }} className="text-center ">
           <Col>
-            <Row>
-              <Col>
-                <DropdownButton
-                  id="dropdown-basic-button"
-                  title="Developers"
-                  className="d-flex p-3 "
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Developers"
+              className="d-flex p-3 "
+            >
+              {developers.map((developer, index) => (
+                <Dropdown.Item
+                  key={index}
+                  onClick={() => handleShowModal(developer)}
                 >
+
                   {developers.map((developer, index) => (
                     <Dropdown.Item
                       key={index}
@@ -116,7 +123,17 @@ const Footer = () => {
                 <p>&copy; BLOCKBUSTER 2024 &copy; All Rights Reserved</p>
               </div>
             </Row>
+
+                  {developer.name}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+
           </Col>
+
+          <div className="">
+            <p>&copy; BLOCKBUSTER 2024 &copy; All Rights Reserved</p>
+          </div>
         </Row>
       </Container>
 
