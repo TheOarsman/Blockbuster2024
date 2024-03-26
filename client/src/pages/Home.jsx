@@ -3,6 +3,9 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import membershipCardImage from "../assets/images/BlockbusterMembership02.jpg";
 import vintageLogo from "../assets/images/BlockbusterLogo1985.png";
 import magicBooks from "../assets/images/magicBooks.jpg";
+
+import Slides from "../components/Carousel";
+
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 import YouTube from "react-youtube";
@@ -135,6 +138,20 @@ class Home extends React.Component {
                 </Button>
               </Card.Body>
             </Card>
+          </Col>
+        </Row>
+        <Row className="membershipRow">
+          <Col className="membershipCol">
+            <Slides images={[
+                  "src/assets/images/Slide1.jpg",
+                  "src/assets/images/Slide2.jpg",
+                  "src/assets/images/Slide3.jpg",
+                  "src/assets/images/Slide4.jpg",
+                  "src/assets/images/Slide5.jpg",
+                  "src/assets/images/Slide6.jpg",
+                  "src/assets/images/Slide7.jpg",
+                  "src/assets/images/Slide8.jpg",
+                ]} style={{ maxWidth: "100%", height: "100%" }}/>
           </Col>
         </Row>
       </Container>
