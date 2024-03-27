@@ -4,12 +4,25 @@
 
 [Blockbuster 2024](https://blockbuster2024.onrender.com)<br>
 
-<!-- <img src="Blockbuster_logo.svg.png" width="275" height="175"> -->
+![Blockbuster Logo](client/src/assets/images/BlockbusterLogo1985.png)
 
-<!-- <video controls>
-  <source src="client/src/assets/video/README Test Video.mp4" title="Title">
-  Your browser does not support the video tag.
-</video> -->
+![Blockbuster2024 Main Page](client/src/assets/images/blockbuster2024site.png)
+
+![Signup Form](client/src/assets/images/signupIMG.png)
+
+![Book Search](client/src/assets/images/bookSearchIMG.png)
+
+![Movie Search](client/src/assets/images/movieSearchIMG.png)
+
+![Book Collection](client/src/assets/images/bookCollectionIMG.png)
+
+![Favorite Movies](client/src/assets/images/favoriteMoviesIMG.png)
+
+![Watch List](client/src/assets/images/watchlistIMG.png)
+
+![alt text](client/src/assets/images/profileIMG.png)
+
+<img src="Blockbuster_logo.svg.png" width="275" height="175">
 
 ## Description
 
