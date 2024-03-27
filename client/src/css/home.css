@@ -28,6 +28,7 @@
   flex: 0 0 300px; /* Set a fixed width for each column */
   margin-bottom: 20px; /* Add some bottom margin for spacing */
 }
+
 .img-header-row {
   text-align: center;
   padding-bottom: 25px;

@@ -8,8 +8,6 @@
   display:flex;
 }
 
-
-
 .navbar-logo {
   width: 200px;
   padding-left: 25px;
@@ -20,8 +18,6 @@
   margin-top: -30px;
   text-align: center;
   padding-left: 50px;
-
-
 }
 
 @media (max-width: 450px) {
