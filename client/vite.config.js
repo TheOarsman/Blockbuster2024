@@ -11,20 +11,8 @@ export default defineConfig({
       "/graphql": {
         target: "http://localhost:3001",
         secure: false,
-        changeOrigin: true,
-      },
-    },
-  },
-  build: {
-    chunkSizeWarningLimit: 1000, // Adjust chunk size warning limit as needed
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            return "vendor";
-          }
-        },
-      },
-    },
-  },
+        changeOrigin: true
+      }
+    }
+  }
 });
