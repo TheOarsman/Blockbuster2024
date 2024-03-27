@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-import { Form, Row, Container } from "react-bootstrap";
+import { Form, Row, Container, Card, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import emailjs from "@emailjs/browser";
@@ -49,76 +49,81 @@ export default function Contact() {
   };
 
   return (
-    <div>
-      <h1 className="text-center">Tell us what you loved or think could be improved</h1>
+<Container fluid className="d-flex justify-content-center feedback-container">
+  <Card className=" flex-column mt-3 feedback-card" style={{ width: '70%' }}>
+    <Card.Header className="text-center">Feedback Form</Card.Header>
+    <Card.Title className="text-center p-4 feedbackTitle">Tell us what we can improve on or change and our developers will get back to you momentarily. We appreciate your feedback and patience.</Card.Title>
 
-      <Form ref={form} onSubmit={handleFormSubmit} className="text-center">
-        <Container>
-          <Row className="mb-3">
-            <Form.Group>
-              <Form.Label column="lg" lg={2}>
-                Full Name
-              </Form.Label>
+    <Form ref={form} onSubmit={handleFormSubmit} className="feedback-form">
+      <Row className="mb-3">
+        <Col className="d-flex justify-content-center">
+          <Form.Label><h5>Full Name</h5></Form.Label>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col className="d-flex justify-content-center">
+          <Form.Control
+            className="text-center feedback-input"
+            value={fullName}
+            name="fullName"
+            onChange={handleInputChange}
+            type="text"
+            placeholder="Enter Name"
+            style={{ width: '70%' }}
+          />
+        </Col>
+      </Row>
 
-              <Form.Control
-                className="text-center"
-                value={fullName}
-                name="fullName"
-                onChange={handleInputChange}
-                type="text"
-                placeholder="Enter Name"
-              />
-            </Form.Group>
-          </Row>
-        </Container>
+      <Row className="mb-3">
+        <Col className="d-flex justify-content-center">
+          <Form.Label className="mb-2"><h5>Email address</h5></Form.Label>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col className="d-flex justify-content-center">
+          <Form.Control
+            className="text-center feedback-input"
+            value={email}
+            name="email"
+            onChange={handleInputChange}
+            type="email"
+            placeholder="Enter email"
+            style={{ width: '70%' }}
+          />
+        </Col>
+      </Row>
 
-        <Container>
-          <Row>
-            <Form.Group className="mb-3" controlId="formHorizontalEmail">
-              <Form.Label column="lg" lg={2}>
-                Email address
-              </Form.Label>
+      <Row className="mb-3">
+        <Col className="d-flex justify-content-center">
+          <Form.Label className="text-center mb-2"><h5>Message</h5></Form.Label>
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col className="d-flex justify-content-center">
+          <Form.Control
+            className="text-center p-3 feedback-textarea"
+            value={message}
+            name="message"
+            onChange={handleInputChange}
+            type="text"
+            as="textarea"
+            placeholder="Write your Message..."
+            style={{ width: '70%' }}
+          />
+        </Col>
+      </Row>
 
-              <Form.Control
-                className="text-center"
-                value={email}
-                name="email"
-                onChange={handleInputChange}
-                type="email"
-                placeholder="Enter email"
-              />
-            </Form.Group>
-          </Row>
-        </Container>
+      <Row className="mb-3 text-center">
+        <Col>
+          <Button variant="outline-primary" size="lg" type="submit" className="w-25 feedback-btn">
+            Submit
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+  </Card>
+</Container>
 
-        <Container>
-          <Row>
-            <Form.Group className="mb-3" controlId="formHorizontalMessage">
-              <Form.Label column="lg" lg={2}>
-                Leave Message Here
-              </Form.Label>
 
-              <Form.Control
-                className="text-center"
-                value={message}
-                name="message"
-                onChange={handleInputChange}
-                type="text"
-                as="textarea"
-                placeholder="Message Here"
-              />
-            </Form.Group>
-          </Row>
-        </Container>
-
-        <Container>
-          <Row>
-            <Button  variant="outline-primary" size="lg" type="submit">
-              Submit
-            </Button>
-          </Row>
-        </Container>
-      </Form>
-    </div>
   );
 }
