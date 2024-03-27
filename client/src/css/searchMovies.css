@@ -67,6 +67,7 @@ button:hover {
 
 .movie-card {
   box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.3);
+  background-color: #e5e8e8;
 }
 
 
@@ -96,4 +97,10 @@ button:hover {
 
 .fa-eye {
   font-size: 32px;
+}
+
+@media (max-width: 500px) {
+.card-margin {
+margin-bottom: 315px;
+}
 }

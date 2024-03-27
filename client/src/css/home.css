@@ -2,6 +2,7 @@
   text-align: center;
   font-size: large;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  background-color:#e5e8e8 ;
 }
 
 .home-container {
@@ -23,11 +24,15 @@
   padding-top: 50px;
 }
 
+
+
+
 .membershipCol {
   padding: 0 10px; /* Add some horizontal padding */
   flex: 0 0 300px; /* Set a fixed width for each column */
   margin-bottom: 20px; /* Add some bottom margin for spacing */
 }
+
 .img-header-row {
   text-align: center;
   padding-bottom: 25px;
@@ -35,6 +40,8 @@
 
 .card-box-shadow {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  background-color: #e5e8e8;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .youtube-container {
@@ -58,8 +65,12 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
-@media (max-width: 450px) {
+.cardFooter {
+  background-color: none;
+}
+
+@media (max-width: 500px) {
   .home-container {
-    margin-bottom: 180px;
+    margin-bottom: 200px;
   }
 }

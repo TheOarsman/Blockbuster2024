@@ -31,7 +31,6 @@ const Slides = ({ images, interval = 3500 }) => {
         <div style={{ 
           position: 'static', 
           bottom: 0,
-          
           zIndex: 1
         }}
         >
