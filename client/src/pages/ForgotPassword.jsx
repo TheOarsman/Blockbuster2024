@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+
 import { useMutation } from "@apollo/client";
+
 import { RESET_PASSWORD} from '../utils/mutations.js'
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +12,7 @@ const ForgotPassword = () => {
   const handleInputChange = (e) => {
     setEmail(e.target.value);
   };
+
   // const [validated] = useState(false);
   const [resetPassword, { error }] = useMutation(RESET_PASSWORD);
   const handleFormSubmit = async (event) => {
@@ -37,7 +40,6 @@ const ForgotPassword = () => {
   };
 
   return (
-   
       <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mb-3">
           <Form.Label htmlFor="email">Email</Form.Label>
@@ -53,6 +55,7 @@ const ForgotPassword = () => {
             Email is required!
           </Form.Control.Feedback>
         </Form.Group>
+        
         <Button
           disabled={!email}
           type="submit"
@@ -62,7 +65,6 @@ const ForgotPassword = () => {
           Submit
         </Button>
       </Form>
-  
   );
 };
 

@@ -1,9 +1,8 @@
 import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
 import { Form, Row, Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
-
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const [email, setEmail] = useState("");
@@ -27,6 +26,7 @@ export default function Contact() {
       setMessage(inputValue);
     }
   };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -46,9 +46,11 @@ export default function Contact() {
     setMessage("");
     setEmail("");
   };
+
   return (
     <div>
       <h1 className="text-center">Tell us what you loved or think could be improved</h1>
+
       <Form ref={form} onSubmit={handleFormSubmit} className="text-center">
         <Container>
           <Row className="mb-3">
@@ -56,6 +58,7 @@ export default function Contact() {
               <Form.Label column="lg" lg={2}>
                 Full Name
               </Form.Label>
+              
               <Form.Control
                 className="text-center"
                 value={fullName}
@@ -67,12 +70,14 @@ export default function Contact() {
             </Form.Group>
           </Row>
         </Container>
+
         <Container>
           <Row>
             <Form.Group className="mb-3" controlId="formHorizontalEmail">
               <Form.Label column="lg" lg={2}>
                 Email address
               </Form.Label>
+
               <Form.Control
                 className="text-center"
                 value={email}
@@ -84,12 +89,14 @@ export default function Contact() {
             </Form.Group>
           </Row>
         </Container>
+
         <Container>
           <Row>
             <Form.Group className="mb-3" controlId="formHorizontalMessage">
               <Form.Label column="lg" lg={2}>
                 Leave Message Here
               </Form.Label>
+
               <Form.Control
                 className="text-center"
                 value={message}
@@ -102,6 +109,7 @@ export default function Contact() {
             </Form.Group>
           </Row>
         </Container>
+
         <Container>
           <Row>
             <Button  variant="outline-primary" size="lg" type="submit">
