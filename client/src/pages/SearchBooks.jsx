@@ -55,8 +55,7 @@ const SearchBooks = () => {
 
       setSearchedBooks(bookData);
       setSearchInput("");
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -66,7 +65,6 @@ const SearchBooks = () => {
     // Find the book in `searchedBooks` state by the matching ID
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
-    // Get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -75,11 +73,14 @@ const SearchBooks = () => {
 
     try {
       const { data } = await saveBook({
-        variables: { bookData: { ...bookToSave } },
-        description: bookToSave.description || "",
+        variables: {
+          bookData: {
+            ...bookToSave,
+            description: bookToSave.description || "", // Include description field
+          },
+        },
       });
       console.log(savedBookIds);
-      console.log(data);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     }
     catch (err) {
@@ -135,7 +136,7 @@ const SearchBooks = () => {
                           Search
                         </Button>
                       </Col>
-                      
+
                       <Col xs={12} md="auto" className="text-center mt-2">
                         <h5>
                           {searchedBooks.length ? (
@@ -155,14 +156,17 @@ const SearchBooks = () => {
           </Row>
         </Container>
 
-        <Container className="bookSearch-margin" style={{ marginBottom: "250px" }}>
+        <Container
+          className="bookSearch-margin"
+          style={{ marginBottom: "250px" }}
+        >
           <Row>
             {searchedBooks.map((book) => {
               return (
                 <Col
                   className="p-4"
                   md="4"
-                  key={book.bookId}
+                  key={book.bookId} // Ensure each key is unique
                   style={{ paddingTop: "25px" }}
                 >
                   <Card className="card-box-shadow-books " border="light">
