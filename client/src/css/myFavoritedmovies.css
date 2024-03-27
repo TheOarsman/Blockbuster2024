@@ -79,7 +79,7 @@
 }
 
 @media (max-width: 500px) {
-.movies-container {
-  margin-bottom: 275px !important;
-}
+  .movies-container {
+    margin-bottom: 275px !important;
+  }
 }
