@@ -2,27 +2,25 @@
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-[Blockbuster 2024](https://blockbuster2024.onrender.com)<br>
+[Blockbuster 2024](https://blockbuster2024.onrender.com)
 
-![Blockbuster Logo](client/src/assets/images/BlockbusterLogo1985.png)
+<img src="client/src/assets/images/BlockbusterLogo1985.png" alt="Blockbuster Logo" width="150"><br>
 
-![Blockbuster2024 Main Page](client/src/assets/images/blockbuster2024site.png)
+<img src="client/src/assets/images/blockbuster2024site.png" alt="Blockbuster2024 Main Page" width="500"><br>
 
-![Signup Form](client/src/assets/images/signupIMG.png)
+<img src="client/src/assets/images/signupIMG.png" alt="Signup Form" width="300"><br>
 
-![Book Search](client/src/assets/images/bookSearchIMG.png)
+<img src="client/src/assets/images/bookSearchIMG.png" alt="Book Search" width="500"><br>
 
-![Movie Search](client/src/assets/images/movieSearchIMG.png)
+<img src="client/src/assets/images/movieSearchIMG.png" alt="Movie Search" width="500"><br>
 
-![Book Collection](client/src/assets/images/bookCollectionIMG.png)
+<img src="client/src/assets/images/bookCollectionIMG.png" alt="Book Collection" width="500"><br>
 
-![Favorite Movies](client/src/assets/images/favoriteMoviesIMG.png)
+<img src="client/src/assets/images/favoriteMoviesIMG.png" alt="Favorite Movies" width="500"><br>
 
-![Watch List](client/src/assets/images/watchlistIMG.png)
+<img src="client/src/assets/images/watchlistIMG.png" alt="Watch List" width="500"><br>
 
-![alt text](client/src/assets/images/profileIMG.png)
-
-<img src="Blockbuster_logo.svg.png" width="275" height="175">
+<img src="client/src/assets/images/profileIMG.png" alt="Profile" width="500">
 
 ## Description
 
