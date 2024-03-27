@@ -2,9 +2,14 @@
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-[PLACEHOLDER LINK](https://jate-just-another-text-editor-ql4f.onrender.com)<br>
+[Blockbuster 2024](https://blockbuster2024.onrender.com)<br>
 
-<img src="Blockbuster_logo.svg.png" width="275" height="175">
+<!-- <img src="Blockbuster_logo.svg.png" width="275" height="175"> -->
+
+<!-- <video controls>
+  <source src="client/src/assets/video/README Test Video.mp4" title="Title">
+  Your browser does not support the video tag.
+</video> -->
 
 ## Description
 
@@ -41,75 +46,90 @@ book for the win!
 
 **I WANT** to visit a database/platform <br>
 
-**SO THAT** I can search movies, and add them to a list of watched and want to watch.
+**SO THAT** I can search movies & books, and add them to a Book Collection, Favorite Movies, or Watchlist
 
 ## Acceptance Criteria
 
 **GIVEN** a webpage/movie platform
 
-**WHEN** I log in<br>
+**WHEN** I visit the webpage<br>
+**THEN** I am presented with the home screen
+**AND** able to search for books and movies, as well as login or sign up
+
+**WHEN** I am not logged in
+**THEN** I can search books and movies, seeing their poster/cover and a brief description
+**BUT** cannot add them to my favorites or watch list
+
+**WHEN** I login<br>
+**THEN** I am presented with a reactive membership card which displays my username
+**AND** a reactive barcode based on the username input
+
+**WHEN** I sign up<br>
+**THEN** I am presented with a reactive membership card which displays my username & email
+**AND** a reactive barcode based on the username input
+
+**WHEN** I am logged in<br>
 **THEN** I am presented with a more integrative/reactive website
 
-**WHEN** I view a user profile<br>
-**THEN** The user information is displayed, similar to that of an old Blockbuster card
+**WHEN** I view my user profile<br>
+**THEN** a membership card is displayed with my username, email, hours (of movies) watched, member-since date, and a barcode reflective of the username
 
-**WHEN** I view a movie<br>
-**THEN** I can see it's poster
+**WHEN** I search a movie<br>
+**THEN** I can see it's poster with a description of the movie
+**AND** can add the movie to my "Favorite Movies" and/or "Watchlist"
 
-**WHEN** I select a movie<br>
-**THEN** can add it to a list
-**WHICH** can be movies seen, or want to see
+**WHEN** I search a book<br>
+**THEN** I can see it's cover with a description of the book
+**AND** can add the book to my "Book Collection"
 
 **WHEN** Viewing a movie<br>
 **THEN** can see if there is also a book about the movie, or that the movie was based on
 
-**WHEN** Looking up movie times<br>
-**THEN** I am able to purchase tickets
-
-**WHEN** I am presented with the About Me section<br>
-**THEN** I see a recent photo or avatar of the developer and a short bio about them
-
-**WHEN** I am presented with the Portfolio section<br>
-**THEN** I see titled images of six of the developer’s applications with links to both the deployed applications and the corresponding GitHub repositories
+**WHEN** viewing the footer<br>
+**THEN** I am given a dropdown box to view all developers, with links to their individual GitHub & LinkedIn profiles
+**AND** click on the "Feedback Link" to give feedback about the website
 
 **WHEN** I am presented with the Contact section<br>
 **THEN** I see a contact form with fields for a name, an email address, and a message
 
-**WHEN** I move my cursor out of one of the form fields without entering text<br>
-**THEN** I receive a notification that this field is required
-
-**WHEN** I enter text into the email address field<br>
-**THEN** I receive a notification if I have entered an invalid email address
-
-**WHEN** I am presented with the Resume section<br>
-**THEN** I see a link to a downloadable resume and a list of the developer’s proficiencies
-
-**WHEN** I view the footer<br>
-**THEN** I am presented with text or icon links to the developer’s GitHub and LinkedIn profiles, and their profile on a third platform (Stack Overflow, Twitter)
+**WHEN** I view the webpage on smaller screens and/or flex the page<br>
+**THEN** I see a responsive webpage
 
 ## Installation
 
-1. Clone the repository to your local machine: `git clone https://github.com/TheOarsman/Blockbuster2024.git`
+1. Clone the repository to your local machine: `git clone https://github.com/TheOarsman/Blockbuster2024`
 
-2. Navigate to the project directory: `cd HUV-Portfolio`
-
-3. Install dependencies: `npm install`
-
-**THIS IS ALL FILLER FOR NOW!!!**
+2. Install server dependencies:
+   1. `cd server`
+   2. `npm install`
+3. Install client dependencies:
+   1. `cd client`
+   2. `npm install`
 
 ## Development
 
-To start the development server and run the project locally, execute the following command: `DEVELOP THIS!!!`
+To run the application in development mode, use the following commands:: `npm run develop`
 
-Then later the real information will go here!!!
-
-**THIS IS ALL FILLER FOR NOW!!!**
+This command will start both the server and client in watch mode, enabling hot-reloading for development.
 
 ## Usage
 
-Use it!
+Once the development server is running, you can access the application at http://localhost:3000 in your web browser.
 
-**THIS IS ALL FILLER FOR NOW!!!**
+Seed Database (Optional)
+If you want to populate the database with sample data, you can run the following command: `npm run seed`
+
+**Building for Production**
+
+To build the application for production, use the following command: `npm run build`
+
+This command will build the client-side application and optimize it for production use. The bundled files will be generated in the `client/dist` directory.
+
+**Notes**
+
+- Ensure that MongoDB is installed and running locally or provide the appropriate connection URI in the server's .env file.
+
+- Adjust any configuration settings as needed, such as port numbers or environment variables.
 
 ## Technologies
 

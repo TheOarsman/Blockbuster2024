@@ -77,3 +77,9 @@
   flex: 0 0 300px; /* Set a fixed width for each column */
   margin-bottom: 20px;
 }
+
+@media (max-width: 500px) {
+  .movies-container {
+    margin-bottom: 275px !important;
+  }
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Form, Button, Alert} from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 import { useMutation } from "@apollo/client";
 
@@ -10,10 +10,9 @@ import Auth from "../utils/auth";
 import MemberCardLogIn from "./MemberCardLogIn";
 
 import "../css/membercard.css";
-import '../pages/ForgotPassword'
+import "../pages/ForgotPassword";
 
 const LoginForm = () => {
-
   const [userFormData, setUserFormData] = useState({
     username: "",
     password: "",
@@ -56,8 +55,7 @@ const LoginForm = () => {
 
       console.log(data);
       Auth.login(data.login.token);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
@@ -121,21 +119,23 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Button
-          disabled={!(userFormData.username && userFormData.password)}
-          type="submit"
-          variant="success"
-        >
-          Submit
-        </Button>
-        <Button
-          type="button"
-          variant="danger"
-          href='/forgotpassword'
-        >
-          Forgot Password
-        </Button>
-      </Form>
+        <div style={{ display: 'flex',  alignItems: 'center' }}>
+  <Button
+    disabled={!(userFormData.username && userFormData.password)}
+    type="submit"
+    variant="success"
+    className="m-3"
+  >
+    Submit
+  </Button>
+  <div>
+    <a href="/forgotpassword" className="forgot-password-link p-3 justify-content-center ">
+      Forgot Password? Reset Password.
+    </a>
+  </div>
+</div>
+
+</Form>
     </>
   );
 };
