@@ -41,11 +41,11 @@ const ForgotPassword = () => {
    <Card className="original-site-card">
       <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label  htmlFor="email">Email</Form.Label>
+          <Form.Label  htmlFor="email">Forgot Password</Form.Label>
           <Form.Control
           className="text-center"
             type="text"
-            placeholder="Your email"
+            placeholder="Enter email"
             name="email"
             value={email}
             onChange={handleInputChange}
