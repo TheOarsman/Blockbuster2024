@@ -2,6 +2,7 @@ export const UPDATE_LIST = 'UPDATE_LIST';
 export const ADD_TO_LIST = 'ADD_TO_LIST';
 export const REMOVE_FROM_LIST = 'REMOVE_FROM_LIST';
 export const UPDATE_LIST_QUANTITY = 'UPDATE_LIST_QUANTITY';
+
 export const CLEAR_CART = 'CLEAR_LIST';
 export const TOGGLE_CART = 'TOGGLE_LIST';
 

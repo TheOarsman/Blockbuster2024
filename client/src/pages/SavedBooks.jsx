@@ -1,11 +1,14 @@
-import { useQuery, useMutation } from "@apollo/client";
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import { useQuery, useMutation } from "@apollo/client";
+
 import Auth from "../utils/auth";
+
 import { removeBookId } from "../utils/localStorage";
 import { QUERY_ME } from "../utils/queries";
 import { REMOVE_BOOK } from "../utils/mutations";
+
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import "../css/savedBooks.css";
 
 const SavedBooks = () => {
@@ -23,7 +26,8 @@ const SavedBooks = () => {
       });
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
@@ -44,6 +48,7 @@ const SavedBooks = () => {
                 <Card.Header as="h5">
                   {data?.me?.username}'s Blockbuster Book Collection
                 </Card.Header>
+
                 <Card.Body>
                   <Card.Title>
                     <h2>
@@ -52,8 +57,6 @@ const SavedBooks = () => {
                      {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
-                            
-                    
                         </>
                       ) : (
                         <>
@@ -75,7 +78,12 @@ const SavedBooks = () => {
             </Row>
           </Row>
         </Container>
+
+
+        <Container style={{ marginBottom: "300px", padding: "10px" }}>
+
         <Container className="bookSearch-margin" style={{ marginBottom: "300px", padding: "10px" }}>
+
           <Row className="p-5 bookRow">
             {userData.savedBooks.map((book) => {
               return (

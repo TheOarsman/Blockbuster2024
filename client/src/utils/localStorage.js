@@ -33,6 +33,8 @@ export const removeBookId = (bookId) => {
   return true;
 };
 
+
+
 // Local Storage for Movies
 
 export const getSavedMovieIds = () => {
@@ -84,7 +86,6 @@ export const removeWatchlistId = (movieId) => {
 
   return true;
 };
-
 
 export const getSavedWatchlistIds = () => {
   const savedWatchlistIds = localStorage.getItem("saved_watchlist")
