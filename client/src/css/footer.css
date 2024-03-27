@@ -15,7 +15,6 @@
   font-style: italic;
 }
 
-
 .footer-icon {
   margin-left: 15px;
   transition: .2s ease;
@@ -24,9 +23,6 @@
 .footer-icon:hover {
   color:#14AAAA;
 }
-
-
-
 
 @media (max-width: 500px) {
   .footer {

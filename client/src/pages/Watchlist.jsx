@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+
 import { useQuery, useMutation } from "@apollo/client";
 
 // Utils and Query imports
-
 import { QUERY_WATCHLIST } from "../utils/queries";
 import { removeWatchlistId } from "../utils/localStorage";
 import { REMOVE_WATCHLIST } from "../utils/mutations";
@@ -10,7 +10,6 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 // Icon and design imports
-
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaVideo } from "react-icons/fa";
@@ -43,7 +42,8 @@ const Watchlist = () => {
       setSavedWatchlist((prevWatchlist) =>
         prevWatchlist.filter((movie) => movie.movieId !== movieId)
       );
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
@@ -58,6 +58,7 @@ const Watchlist = () => {
             <Card.Header as="h5">
               {data?.me?.username}'s Current Watchlist
             </Card.Header>
+
             <Card.Body>
               <Card.Title>
                 <h2 className="saved-movie-header">
@@ -74,6 +75,7 @@ const Watchlist = () => {
                     </>
                   )}
                 </h2>
+
                 <Card.Text>
                   <p>Movies are shown in the order they were added</p>
                 </Card.Text>
@@ -81,6 +83,7 @@ const Watchlist = () => {
             </Card.Body>
           </Card>
         </Row>
+
         <Container
           className="movies-container"
           style={{ marginBottom: "200px" }}
@@ -124,6 +127,7 @@ const Watchlist = () => {
                             </div>
                           </div>
                         </Col>
+                        
                         <Col>
                           <a
                             href={`https://www.imdb.com/title/${movie.movieId}`}
@@ -137,6 +141,7 @@ const Watchlist = () => {
                           </a>
                         </Col>
                       </Row>
+
                       <Row>
                         <Col className="mt-2">
                           <p>

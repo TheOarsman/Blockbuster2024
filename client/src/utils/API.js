@@ -29,15 +29,15 @@ export const getMe = () => {
       authorization: `Bearer ${token}`,
     },
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      handleFetchError(error);
-    });
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    handleFetchError(error);
+  });
 };
 
 // save book data for a logged in user
@@ -51,7 +51,8 @@ export const saveBook = (bookData) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(bookData),
-  }).catch((error) => {
+  })
+  .catch((error) => {
     handleFetchError(error);
   });
 };
@@ -65,7 +66,8 @@ export const saveMovie = (movieData) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(movieData),
-  }).catch((error) => {
+  })
+  .catch((error) => {
     handleFetchError(error);
   });
 };
@@ -79,7 +81,8 @@ export const saveWatchlist = (movieData) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(movieData),
-  }).catch((error) => {
+  })
+  .catch((error) => {
     handleFetchError(error);
   });
 };
@@ -93,7 +96,8 @@ export const deleteBook = (bookId) => {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).catch((error) => {
+  })
+  .catch((error) => {
     handleFetchError(error);
   });
 };
@@ -106,7 +110,8 @@ export const deleteMovie = (movieId) => {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).catch((error) => {
+  })
+  .catch((error) => {
     handleFetchError(error);
   });
 };
@@ -119,12 +124,13 @@ export const removeWatchlist = (movieId) => {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).catch((error) => {
+  })
+  .catch((error) => {
     handleFetchError(error);
   });
 };
 
-// make a search to google books api
+// Make a search to Google Books API
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
 export const searchGoogleBooks = (query) => {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
