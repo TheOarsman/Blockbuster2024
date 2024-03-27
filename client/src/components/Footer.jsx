@@ -56,7 +56,7 @@ const Footer = () => {
     {
       name: "Whitney Simpson",
       github: "https://github.com/Whitney-Simpson",
-      linkedin: "https://www.linkedin.com/in/whitneysimpson/",
+      linkedin: "https://www.linkedin.com/in/whitney-simpson-9a4471300/",
     },
     {
       name: "Heinz Ulrich V",

@@ -40,7 +40,8 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-
+    },
+    
       resetPassword: async (parent, { email }) => {
 
         try {
@@ -59,8 +60,8 @@ const resolvers = {
         catch (error) {
           throw AuthenticationError;
         }
-      }
-    },
+      },
+ 
 
 
         saveBook: async (parent, { bookData }, context) => {
