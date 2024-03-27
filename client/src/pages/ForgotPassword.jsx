@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { Form, Button, Card, Container } from "react-bootstrap";
+
 import { useMutation } from "@apollo/client";
 import { RESET_PASSWORD } from "../utils/mutations";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -27,6 +29,7 @@ const ForgotPassword = ({ closeModal }) => {
   };
 
   return (
+
     <Container fluid className="d-flex justify-content-center align-items-center resetpassword-container">
       <Card className="resetCard mb-5 mt-5 m-3">
         <Card.Header className="text-center">
@@ -51,7 +54,7 @@ const ForgotPassword = ({ closeModal }) => {
               </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Your email"
+                placeholder="Enter email"
                 name="email"
                 value={email}
                 onChange={handleInputChange}
@@ -74,6 +77,7 @@ const ForgotPassword = ({ closeModal }) => {
         </Card.Body>
       </Card>
     </Container>
+
   );
 };
 
