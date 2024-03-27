@@ -1,7 +1,6 @@
-import { Container, Col, Row } from "react-bootstrap";
-
 import blockbusterLogo from "../assets/images/BlockbusterOriginalLogo.png";
 
+import { Container, Col, Row } from "react-bootstrap";
 import "../css/ErrorPage.css";
 
 const ErrorPage = () => {
@@ -27,7 +26,7 @@ const ErrorPage = () => {
             movie.
           </p>
         </Row>
-        
+
         <Row>
           <a href="/" className="error-page-link">
             Go to Home Page

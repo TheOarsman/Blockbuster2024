@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+
 import { Form, Row, Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
@@ -58,7 +59,7 @@ export default function Contact() {
               <Form.Label column="lg" lg={2}>
                 Full Name
               </Form.Label>
-              
+
               <Form.Control
                 className="text-center"
                 value={fullName}

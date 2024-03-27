@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import YouTube from "react-youtube";
 
 import membershipCardImage from "../assets/images/BlockbusterMembership02.jpg";
@@ -10,6 +9,7 @@ import Slides from "../components/Carousel";
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "../css/home.css";
 
 class Home extends React.Component {

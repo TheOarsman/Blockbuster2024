@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
-import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
+
+import { useMutation } from "@apollo/client";
 
 import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import getRandomMessage from "../utils/randomMessage";
-import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
 
 import blockbusterLogo from "../assets/images/BlockbusterOriginalLogo.png";
+
+import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 import "../css/searchBooks.css";
 
 const SearchBooks = () => {
-  // create state for holding returned google api data
+  // Create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);
-  // create state for holding our search field data
+  // Create state for holding our search field data
   const [searchInput, setSearchInput] = useState("");
 
-  // create state to hold saved bookId values
+  // Create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
   const [saveBook, { error }] = useMutation(SAVE_BOOK);
@@ -26,7 +28,7 @@ const SearchBooks = () => {
     return () => saveBookIds(savedBookIds);
   });
 
-  // create method to search for books and set state on form submit
+  // Create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -53,17 +55,18 @@ const SearchBooks = () => {
 
       setSearchedBooks(bookData);
       setSearchInput("");
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
 
-  // create function to handle saving a book to our database
+  // Create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
-    // find the book in `searchedBooks` state by the matching id
+    // Find the book in `searchedBooks` state by the matching ID
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
-    // get token
+    // Get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -78,7 +81,8 @@ const SearchBooks = () => {
       console.log(savedBookIds);
       console.log(data);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
@@ -97,6 +101,7 @@ const SearchBooks = () => {
                 />
                 Blockbuster Book Catalog
               </Card.Header>
+
               <Card.Body>
                 <Card.Title>
                   <Form
@@ -107,6 +112,7 @@ const SearchBooks = () => {
                       <Col md="auto">
                         <h2>Search Book Collection:</h2>{" "}
                       </Col>
+
                       <Col xs lg="3">
                         <Form.Control
                           name="searchInput"
@@ -118,6 +124,7 @@ const SearchBooks = () => {
                           placeholder="Search for a book"
                         />
                       </Col>
+
                       <Col className="align-items-center" md="auto">
                         <Button
                           type="submit"
@@ -128,6 +135,7 @@ const SearchBooks = () => {
                           Search
                         </Button>
                       </Col>
+                      
                       <Col xs={12} md="auto" className="text-center mt-2">
                         <h5>
                           {searchedBooks.length ? (

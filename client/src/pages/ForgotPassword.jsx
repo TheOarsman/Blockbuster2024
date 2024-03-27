@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
 
 import { useMutation } from "@apollo/client";
 
 import { RESET_PASSWORD} from '../utils/mutations.js'
 
+import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ForgotPassword = () => {

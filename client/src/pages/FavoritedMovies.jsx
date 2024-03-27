@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { useQuery, useMutation } from "@apollo/client";
 
 // Utils and Query imports
@@ -128,7 +129,7 @@ const MyFavoritedMovies = () => {
                           </div>
                         </div>
                       </Col>
-                      
+
                       <Col>
                         <a
                           href={`https://www.imdb.com/title/${movie.movieId}`}

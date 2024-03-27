@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+
 import { useQuery } from "@apollo/client";
-import { Container, Row, Col } from "react-bootstrap";
+
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 import MemberCardProfile from "../components/MemberCardProfile";
+
 import { QUERY_WATCHLIST } from "../utils/queries";
+
+import { Container, Row, Col } from "react-bootstrap";
 
 const Profile = () => {
   // Define useState and useEffect at the top
@@ -32,7 +36,7 @@ const Profile = () => {
     }
   }, [loading, data]);
 
-  // sets the "User Since" date on MemberCard
+  // Sets the "User Since" date on MemberCard
   const memberSince = new Date(Date.now()).toLocaleDateString();
 
   // Convert total watch hours to string with two decimal places
@@ -49,6 +53,7 @@ const Profile = () => {
             alt="Vintage Logo"
             style={{ width: "30%" }}
           />
+
           <div className="membership-card">
             <MemberCardProfile
               username={userData.username}
