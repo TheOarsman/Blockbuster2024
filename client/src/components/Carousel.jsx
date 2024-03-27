@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import  { useState, useEffect, useCallback } from 'react';
 import { Carousel, CarouselItem } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
-import "../css/carousel.css";
+import "../css/Carousel.css";
 
 const Slides = ({ images, interval = 3500 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
