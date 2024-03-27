@@ -7,6 +7,30 @@ import Slides from "../components/Carousel";
 
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
+import Slide1 from "../assets/images/Slide1.jpg";
+import Slide2 from "../assets/images/Slide2.jpg";
+import Slide3 from "../assets/images/Slide3.jpg";
+import Slide4 from "../assets/images/Slide4.jpg";
+import Slide5 from "../assets/images/Slide5.jpg";
+import Slide6 from "../assets/images/Slide6.jpg";
+import Slide7 from "../assets/images/Slide7.jpg";
+import Slide8 from "../assets/images/Slide8.jpg";
+import Slide9 from "../assets/images/Slide9.jpg";
+import Slide10 from "../assets/images/Slide10.jpg";
+import Slide11 from "../assets/images/Slide11.jpg";
+import Slide12 from "../assets/images/Slide12.jpg";
+import Slide13 from "../assets/images/Slide13.jpg";
+import Slide14 from "../assets/images/Slide14.jpg";
+import Slide15 from "../assets/images/Slide15.jpg";
+import Slide16 from "../assets/images/Slide16.jpg";
+import Slide17 from "../assets/images/Slide17.jpg";
+import Slide18 from "../assets/images/Slide18.jpg";
+import Slide19 from "../assets/images/Slide19.jpg";
+import Slide20 from "../assets/images/Slide20.jpg";
+import Slide21 from "../assets/images/Slide21.jpg";
+import Slide22 from "../assets/images/Slide22.jpg";
+import Slide23 from "../assets/images/Slide23.jpg";
+import Slide24 from "../assets/images/Slide24.jpg";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "../css/home.css";
@@ -36,36 +60,39 @@ class Home extends React.Component {
                     <Col className="originalCol pb-3">
                       <Slides
                         images={[
-                          "src/assets/images/Slide1.jpg",
-                          "src/assets/images/Slide2.jpg",
-                          "src/assets/images/Slide3.jpg",
-                          "src/assets/images/Slide4.jpg",
-                          "src/assets/images/Slide5.jpg",
-                          "src/assets/images/Slide6.jpg",
-                          "src/assets/images/Slide7.jpg",
-                          "src/assets/images/Slide8.jpg",
-                          "src/assets/images/Slide9.jpg",
-                          "src/assets/images/Slide10.jpg",
-                          "src/assets/images/Slide11.jpg",
-                          "src/assets/images/Slide12.jpg",
-                          "src/assets/images/Slide13.jpg",
-                          "src/assets/images/Slide14.jpg",
-                          "src/assets/images/Slide15.jpg",
-                          "src/assets/images/Slide16.jpg",
-                          "src/assets/images/Slide17.jpg",
-                          "src/assets/images/Slide18.jpg",
-                          "src/assets/images/Slide19.jpg",
-                          "src/assets/images/Slide20.jpg",
-                          "src/assets/images/Slide21.jpg",
-                          "src/assets/images/Slide22.jpg",
-                          "src/assets/images/Slide23.jpg",
-                          "src/assets/images/Slide24.jpg",
+                          Slide1,
+                          Slide2,
+                          Slide3,
+                          Slide4,
+                          Slide5,
+                          Slide6,
+                          Slide7,
+                          Slide8,
+                          Slide9,
+                          Slide10,
+                          Slide11,
+                          Slide12,
+                          Slide13,
+                          Slide14,
+                          Slide15,
+                          Slide16,
+                          Slide17,
+                          Slide18,
+                          Slide19,
+                          Slide20,
+                          Slide21,
+                          Slide22,
+                          Slide23,
+                          Slide24,
                         ]}
                       />
                     </Col>
                   </Row>
                 </Card.Text>
-                <Card.Footer className="cardFooter" style={{ background: 'none'}}>
+                <Card.Footer
+                  className="cardFooter"
+                  style={{ background: "none" }}
+                >
                   <Card.Text>
                     Take a step back into history and view the original
                     Blockbuster website. It may not be up and running, but it is
