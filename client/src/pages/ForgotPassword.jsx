@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,Card, Container} from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { RESET_PASSWORD} from '../utils/mutations.js'
 
@@ -37,11 +37,13 @@ const ForgotPassword = () => {
   };
 
   return (
-   
+    <Container className="home-container align-items-center">
+   <Card className="original-site-card">
       <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Label  htmlFor="email">Email</Form.Label>
           <Form.Control
+          className="text-center"
             type="text"
             placeholder="Your email"
             name="email"
@@ -62,6 +64,8 @@ const ForgotPassword = () => {
           Submit
         </Button>
       </Form>
+      </Card>
+      </Container>
   
   );
 };
