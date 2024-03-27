@@ -79,7 +79,11 @@ const SavedBooks = () => {
           </Row>
         </Container>
 
+
         <Container style={{ marginBottom: "300px", padding: "10px" }}>
+
+        <Container className="bookSearch-margin" style={{ marginBottom: "300px", padding: "10px" }}>
+
           <Row className="p-5 bookRow">
             {userData.savedBooks.map((book) => {
               return (

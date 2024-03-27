@@ -31,7 +31,9 @@ const DeveloperModal = ({ developer, onHide }) => {
           </a>
         </Modal.Title>
       </Modal.Header>
-
+      <Modal.Body>
+        <p>Full-Stack Web Developer</p>
+      </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
           Close

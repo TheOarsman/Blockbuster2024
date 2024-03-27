@@ -14,6 +14,13 @@
   margin-top: 100px;
 }
 
-.card-box-shadow-books {
-  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.4);
-}
+  .card-box-shadow-books {
+    box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 500px) {
+    .bookSearch-margin {
+    margin-bottom: 315px !important;
+    }
+    }
+
