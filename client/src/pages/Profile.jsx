@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
 import MemberCardProfile from "../components/MemberCardProfile";
 
-import { QUERY_WATCHLIST } from "../utils/queries";
+import { QUERY_MOVIE} from "../utils/queries";
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -16,7 +16,7 @@ const Profile = () => {
   const [totalWatchHours, setTotalWatchHours] = useState(0);
 
   // Fetch data with useQuery
-  const { loading, data } = useQuery(QUERY_WATCHLIST);
+  const { loading, data } = useQuery(QUERY_MOVIE);
 
   useEffect(() => {
     if (!loading && data) {
@@ -26,8 +26,8 @@ const Profile = () => {
 
       // Calculate total watch hours
       let totalHours = 0;
-      if (user?.savedWatchlist) {
-        totalHours = user.savedWatchlist.reduce((total, movie) => {
+      if (user?.savedMovies) {
+        totalHours = user.savedMovies.reduce((total, movie) => {
           const runtime = movie.movieLength ? parseInt(movie.movieLength) : 0;
           return total + runtime;
         }, 0);

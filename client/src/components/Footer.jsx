@@ -110,8 +110,8 @@ const Footer = () => {
           <Col md={{ span: 2 }} className="d-flex p-3">
             <Row className="feedback">
               <Col >
-                <Button type="button" variant="danger" href="/feedback">
-                  Feedback Link
+                <Button type="button" variant="primary" href="/feedback">
+                  Feedback
                 </Button>
               </Col>
             </Row>

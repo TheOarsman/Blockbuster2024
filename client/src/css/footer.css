@@ -24,7 +24,7 @@
   color:#14AAAA;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
   .footer {
     height: auto; 
     padding: 10px;
