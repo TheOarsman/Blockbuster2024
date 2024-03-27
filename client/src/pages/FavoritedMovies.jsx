@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+
 import { useQuery, useMutation } from "@apollo/client";
 
 // Utils and Query imports
-
 import { QUERY_MOVIE } from "../utils/queries";
 import { removeMovieId } from "../utils/localStorage";
 import { REMOVE_MOVIE } from "../utils/mutations";
@@ -10,7 +10,6 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 // Icon and design imports
-
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaVideo } from "react-icons/fa";
@@ -44,7 +43,8 @@ const MyFavoritedMovies = () => {
       });
       removeMovieId(movieId);
       setSavedMovies(savedMovies.filter((movie) => movie.movieId !== movieId));
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
@@ -59,6 +59,7 @@ const MyFavoritedMovies = () => {
             <Card.Header as="h5">
               🎬 {data?.me?.username}'s All Time Favorite Movie Collection! 🎬
             </Card.Header>
+
             <Card.Body>
               <Card.Title>
                 <h2 className="saved-movie-header">
@@ -75,6 +76,7 @@ const MyFavoritedMovies = () => {
                     </>
                   )}
                 </h2>
+                
                 <Card.Text>
                   <p>Movies are shown in alphabetical order from a to z</p>
                 </Card.Text>
@@ -82,6 +84,7 @@ const MyFavoritedMovies = () => {
             </Card.Body>
           </Card>
         </Row>
+
         <Container
           className="movies-container"
           style={{ marginBottom: "200px" }}
@@ -108,10 +111,12 @@ const MyFavoritedMovies = () => {
                       />
                     </div>
                   )}
+
                   <Card.Body>
                     <Card.Title>
                       {movie.title}
                     </Card.Title>
+
                     <Row>
                       <Col xs={6}>
                         <div className="delete-icon-container">
@@ -124,6 +129,7 @@ const MyFavoritedMovies = () => {
                           </div>
                         </div>
                       </Col>
+
                       <Col>
                         <a
                           href={`https://www.imdb.com/title/${movie.movieId}`}

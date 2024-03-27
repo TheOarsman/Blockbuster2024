@@ -1,13 +1,14 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import YouTube from "react-youtube";
+
 import membershipCardImage from "../assets/images/BlockbusterMembership02.jpg";
 import magicBooks from "../assets/images/magicBooks.jpg";
-
 import Slides from "../components/Carousel";
 
 import blockbusterStore from "../assets/images/blockbusterStore.jpg";
 import blockbusterTotalaccess from "../assets/images/BlockBusterTotalAccess.png";
-import YouTube from "react-youtube";
+
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "../css/home.css";
 
 class Home extends React.Component {
@@ -23,62 +24,67 @@ class Home extends React.Component {
             />
           </Col>
         </Row>
+
         <Row className="originalRow">
           <Col className="originalCol">
             <Card className="original-site-card">
               <Card.Header>Take a Step back in time!</Card.Header>
-              <Card.Body
-              >
-                <Row className="originalRow">
-        <Col className="originalCol pb-3">
-            <Slides images={[
-                  "src/assets/images/Slide1.jpg",
-                  "src/assets/images/Slide2.jpg",
-                  "src/assets/images/Slide3.jpg",
-                  "src/assets/images/Slide4.jpg",
-                  "src/assets/images/Slide5.jpg",
-                  "src/assets/images/Slide6.jpg",
-                  "src/assets/images/Slide7.jpg",
-                  "src/assets/images/Slide8.jpg",
-                  "src/assets/images/Slide9.jpg",
-                  "src/assets/images/Slide10.jpg",
-                  "src/assets/images/Slide11.jpg",
-                  "src/assets/images/Slide12.jpg",
-                  "src/assets/images/Slide13.jpg",
-                  "src/assets/images/Slide14.jpg",
-                  "src/assets/images/Slide15.jpg",
-                  "src/assets/images/Slide16.jpg",
-                  "src/assets/images/Slide17.jpg",
-                  "src/assets/images/Slide18.jpg",
-                  "src/assets/images/Slide19.jpg",
-                  "src/assets/images/Slide20.jpg",
-                  "src/assets/images/Slide21.jpg",
-                  "src/assets/images/Slide22.jpg",
-                  "src/assets/images/Slide23.jpg",
-                  "src/assets/images/Slide24.jpg",
-                ]} />
-          </Col>
-        </Row>
-        <Card.Footer className="cardFooter" style={{ background: 'none'}}>
-                <Card.Text
-                >
-                  Take a step back into history and view the original
-                  Blockbuster website. It may not be up and running, but it is
-                  for sure going to induce some nostalgia.
+              <Card.Body>
+                <Card.Title>Original Blockbuster</Card.Title>
+                <Card.Text>
+                  <Row className="originalRow">
+                    <Col className="originalCol pb-3">
+                      <Slides
+                        images={[
+                          "src/assets/images/Slide1.jpg",
+                          "src/assets/images/Slide2.jpg",
+                          "src/assets/images/Slide3.jpg",
+                          "src/assets/images/Slide4.jpg",
+                          "src/assets/images/Slide5.jpg",
+                          "src/assets/images/Slide6.jpg",
+                          "src/assets/images/Slide7.jpg",
+                          "src/assets/images/Slide8.jpg",
+                          "src/assets/images/Slide9.jpg",
+                          "src/assets/images/Slide10.jpg",
+                          "src/assets/images/Slide11.jpg",
+                          "src/assets/images/Slide12.jpg",
+                          "src/assets/images/Slide13.jpg",
+                          "src/assets/images/Slide14.jpg",
+                          "src/assets/images/Slide15.jpg",
+                          "src/assets/images/Slide16.jpg",
+                          "src/assets/images/Slide17.jpg",
+                          "src/assets/images/Slide18.jpg",
+                          "src/assets/images/Slide19.jpg",
+                          "src/assets/images/Slide20.jpg",
+                          "src/assets/images/Slide21.jpg",
+                          "src/assets/images/Slide22.jpg",
+                          "src/assets/images/Slide23.jpg",
+                          "src/assets/images/Slide24.jpg",
+                        ]}
+                      />
+                    </Col>
+                  </Row>
                 </Card.Text>
-                <Button
-                  variant="primary"
-                  href="https://www.blockbuster.com/"
-                  target="_blank"
-                  style={{ color: "white" }}
-                >
-                  Go to Original Site
-                </Button>
+                <Card.Footer className="cardFooter" style={{ background: 'none'}}>
+                  <Card.Text>
+                    Take a step back into history and view the original
+                    Blockbuster website. It may not be up and running, but it is
+                    for sure going to induce some nostalgia.
+                  </Card.Text>
+                  <Button
+                    variant="primary"
+                    href="https://www.blockbuster.com/"
+                    target="_blank"
+                    style={{ color: "white" }}
+                  >
+                    Go to Original Site
+                  </Button>
                 </Card.Footer>
               </Card.Body>
             </Card>
           </Col>
         </Row>
+
         <Row className="youtubeRow pt-4">
           <Col>
             <div className="youtube-container">
@@ -165,7 +171,7 @@ class Home extends React.Component {
   }
 
   _onReady(event) {
-    // access to player in all event handlers via event.target
+    // Access to video player in all event handlers via event.target
     event.target.pauseVideo();
   }
 }

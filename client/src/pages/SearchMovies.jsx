@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+
 import { useMutation } from "@apollo/client";
 
-// import utils
-
+// Import utils
 import {
   saveMovieIds,
   getSavedMovieIds,
@@ -14,8 +14,7 @@ import Auth from "../utils/auth";
 import { SAVE_MOVIE, ADD_WATCHLIST } from "../utils/mutations";
 import AuthService from "../utils/auth";
 
-// import Logos and Css
-
+// Import Logos and CSS
 import {
   Container,
   Col,
@@ -26,7 +25,7 @@ import {
   CardBody,
   CardTitle,
 } from "react-bootstrap";
-import "../css/searchMovies.css";
+
 import imdbLogo from "../assets/images/imdbLogo.png";
 import tomatoesLogo from "../assets/images/rottenTomatoes.png";
 import blockbusterLogo from "../assets/images/BlockbusterOriginalLogo.png";
@@ -48,8 +47,6 @@ const getRottenTomatoesRating = (ratings) => {
     return "N/A";
   }
 };
-
-
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
@@ -90,7 +87,8 @@ const SearchMovies = () => {
       }
 
       setSearchInput("");
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
@@ -132,7 +130,8 @@ const SearchMovies = () => {
         ...prevSaved,
         [movieId]: true,
       }));
-    } catch (err) {
+    }
+    catch (err) {
       console.error("Error saving movie:", err);
     }
   };
@@ -170,7 +169,8 @@ const SearchMovies = () => {
         movieToWatchlist.imdbID,
       ];
       setSavedWatchlistIds(updatedSavedWatchlistIds);
-    } catch (err) {
+    }
+    catch (err) {
       console.error("Error saving movie to watchlist:", err);
     }
   };
@@ -189,6 +189,7 @@ const SearchMovies = () => {
                 />
                 Blockbuster Movie Archive
               </Card.Header>
+
               <Card.Body>
                 <Card.Title>
                   <Form onSubmit={handleFormSubmit}>
@@ -196,6 +197,7 @@ const SearchMovies = () => {
                       <Col md="auto">
                         <h2>Search Movie Collection:</h2>{" "}
                       </Col>
+
                       <Col xs lg="3">
                         <Form.Control
                           name="searchInput"
@@ -207,6 +209,7 @@ const SearchMovies = () => {
                           placeholder="Search for a movie"
                         />
                       </Col>
+
                       <Col className="align-items-center" md="auto">
                         <Button
                           type="submit"
@@ -217,6 +220,7 @@ const SearchMovies = () => {
                           Search
                         </Button>
                       </Col>
+
                       <Col xs={12} md="auto" className="text-center mt-2">
                         <h5>
                           {searchedMovies.length > 0
@@ -248,10 +252,12 @@ const SearchMovies = () => {
                       )}
                     </div>
                   </Col>
+
                   <Col md="8">
                     <CardTitle className="movie-title" as="h1">
                       {movie.Title}
                     </CardTitle>
+
                     <Row className="item-row">
                       {movie.Rated && (
                         <Col>
@@ -272,6 +278,7 @@ const SearchMovies = () => {
                         </Col>
                       )}
                     </Row>
+
                     {movie.Plot && <p className="plot">{movie.Plot}</p>}
                     <Row>
                       <Col>
@@ -280,18 +287,21 @@ const SearchMovies = () => {
                         )}
                       </Col>
                     </Row>
+
                     <Row className="item-row">
                       <Col>
                         {movie.Director && (
                           <p className="item">Directed By: {movie.Director}</p>
                         )}
                       </Col>
+
                       <Col>
                         {movie.Writer && (
                           <p className="item">Written By: {movie.Writer}</p>
                         )}
                       </Col>
                     </Row>
+
                     <Row className="p-3 align-items-center icon-row">
                       <Col md={3} className="text-center">
                         <button>
@@ -304,6 +314,7 @@ const SearchMovies = () => {
                           </a>
                         </button>
                       </Col>
+
                       <Col md={3} className="text-center">
                         {movie.imdbRating && (
                           <>
@@ -312,6 +323,7 @@ const SearchMovies = () => {
                           </>
                         )}
                       </Col>
+
                       <Col md={3} className="text-center">
                         {movie.Ratings && (
                           <>
@@ -322,6 +334,7 @@ const SearchMovies = () => {
                           </>
                         )}
                       </Col>
+
                       {Auth.loggedIn() && (
                         <Col md={3} className="text-center">
                           <div>
@@ -359,6 +372,7 @@ const SearchMovies = () => {
                                 }}
                               />
                             </Button>
+
                             <Button
                               disabled={savedWatchlistIds?.some(
                                 (savedWatchlistId) =>
@@ -399,6 +413,7 @@ const SearchMovies = () => {
                           </p>
                         )}
                       </Col>
+                      
                       <Col>
                         {movie.Awards && (
                           <p className="item">Awards: {movie.Awards}</p>
